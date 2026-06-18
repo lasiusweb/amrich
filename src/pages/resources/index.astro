@@ -1,0 +1,179 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/icons/Icon.astro';
+---
+
+<Layout title="Resources | Amrich Pharma" description="Aquaculture guides, seasonal tips, and expert advice for Indian coastal shrimp & fish farmers.">
+  <section class="resources-hero">
+    <div class="res-hero-bg">
+      <img src="https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg" alt="Reading aquaculture guide" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <h1>Aquaculture Resource Hub</h1>
+      <p style="color: var(--on-dark-soft); margin-top: var(--space-sm); max-width: 600px;">
+        Expert guides, seasonal protocols, and problem-solving articles for Indian coastal farmers.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-heading"><Icon name="pond" size={20} /> <h2>Seasonal Guides</h2></div>
+
+      <div class="card resource-card">
+        <div class="resource-thumb">
+          <img src="https://imgs.mongabay.com/wp-content/uploads/sites/30/2023/03/30152930/shrimp_farm_NSS04247-1.jpg" alt="Monsoon pond management" loading="lazy" />
+        </div>
+        <div class="resource-body">
+          <h3><a href="/resources/seasonal-guides/monsoon-aquaculture-stress-guide">Monsoon Aquaculture Stress Guide</a></h3>
+          <p>Step-by-step monsoon pond management protocol — salinity recovery, ammonia control, pH stabilization, and disease prevention during heavy rains.</p>
+          <a href="/resources/seasonal-guides/monsoon-aquaculture-stress-guide" class="btn-primary">Read the Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding surface-soft">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-heading"><Icon name="water" size={20} /> <h2>Problem-Solution</h2></div>
+
+      <div class="card resource-card">
+        <div class="resource-thumb">
+          <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Water quality testing" loading="lazy" />
+        </div>
+        <div class="resource-body">
+          <h3><a href="/resources/problem-solution/ammonia-nitrite-spike-removal">Ammonia Spike Response Protocol</a></h3>
+          <p>Biological ammonia &amp; nitrite removal guide — detect spikes early, apply GASO CLEAN, and restore water quality within 48 hours.</p>
+          <a href="/resources/problem-solution/ammonia-nitrite-spike-removal" class="btn-primary">Read the Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <div class="section-heading"><Icon name="brochure" size={20} /> <h2>Downloads</h2></div>
+
+      <div class="card resource-card">
+        <div class="resource-thumb">
+          <img src="https://sharangaaqua.com/images/operation4.jpg" alt="Product brochure" loading="lazy" />
+        </div>
+        <div class="resource-body">
+          <h3>Amrich Pharma Product Brochure</h3>
+          <p>Complete product catalog with dosage charts, application guides, and contact information.</p>
+          <a href="/downloads" class="btn-primary">Download Brochure</a>
+        </div>
+      </div>
+
+      <div class="card resource-card" style="margin-top: var(--space-base);">
+        <div class="resource-thumb">
+          <img src="https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg" alt="Pond calendar" loading="lazy" />
+        </div>
+        <div class="resource-body">
+          <h3>Printable Pond Calendar</h3>
+          <p>Month-by-month pond management checklist — water testing, feeding schedules, probiotic application, and disease monitoring.</p>
+          <button class="btn-secondary" disabled>Coming Soon</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .resources-hero {
+    position: relative;
+    min-height: 35dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .res-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .res-hero-bg .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xxl) 0;
+  }
+  .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    letter-spacing: -1px;
+    padding: 0;
+    margin: 0;
+  }
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+  .section-heading h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .section-heading :global(.icon) {
+    color: var(--primary);
+  }
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+  .resource-thumb {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+  }
+  .resource-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .resource-body {
+    padding: var(--space-lg);
+  }
+  .resource-body h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+  .resource-body h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .resource-body h3 a:hover {
+    color: var(--primary);
+  }
+  .resource-body p {
+    font-size: 0.9rem;
+    color: var(--body);
+    line-height: 1.5;
+    margin-bottom: var(--space-base);
+  }
+  @media (min-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .resource-card { flex-direction: row; }
+    .resource-thumb { width: 280px; height: auto; min-height: 180px; flex-shrink: 0; }
+  }
+</style>

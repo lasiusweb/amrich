@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/icons/Icon.astro';
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Contact Amrich Pharma | Aquaculture Experts',
+  description: 'Get in touch with Amrich Pharma. Call 97123 35338, email amrichpharma@gmail.com, or visit our Mumbai office. We serve coastal farmers across India.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Amrich Pharma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
+    email: 'amrichpharma@gmail.com',
+    telephone: '+919712335338',
+  },
+};
+const details = [
+  { icon: 'water', label: 'Address', content: 'Plot No. 2, Sainath Nagar<br />Shivaji Mandpeshwar Road<br />Dahisar, Mumbai-400068', href: null },
+  { icon: 'phone', label: 'Phone', content: '97123 35338', href: 'tel:+919712335338' },
+  { icon: 'farmer', label: 'Email', content: 'amrichpharma@gmail.com', href: 'mailto:amrichpharma@gmail.com' },
+  { icon: 'whatsapp', label: 'WhatsApp', content: 'Chat on WhatsApp', href: 'https://wa.me/919712335338' },
+];
+---
+
+<Layout title="Contact Amrich Pharma | Aquaculture Experts" description="Reach Amrich Pharma's aquaculture experts. Call 97123 35338, email amrichpharma@gmail.com, or visit our Dahisar, Mumbai office for pond health solutions.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+
+  <div class="contact-page">
+    <section class="contact-hero-section">
+      <div class="contact-hero-bg">
+        <img src="https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg" alt="Aquaculture pond experts" class="hero-bg-img" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="container hero-content">
+        <h1>Get in Touch</h1>
+        <p>Our team is ready to help with pond assessments, product recommendations, and custom farm plans.</p>
+      </div>
+    </section>
+
+    <section class="section-padding container">
+      <div class="contact-details">
+        {details.map(d => (
+          <div class="card detail-card">
+            <div class="detail-icon"><Icon name={d.icon} size={20} /></div>
+            <div>
+              <h3>{d.label}</h3>
+              {d.href ? (
+                <p><a href={d.href} target={d.href.startsWith('http') ? '_blank' : undefined} rel={d.href.startsWith('http') ? 'noopener' : undefined} set:html={d.content}></a></p>
+              ) : (
+                <p set:html={d.content}></p>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="surface-soft section-padding">
+      <div class="container form-wrapper">
+        <h2>Send Us a Message</h2>
+        <form action="#" method="post" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" inputmode="email" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+        <div class="form-cta-alt">
+          <p>Or get a custom pond plan instantly</p>
+          <button class="btn-primary" data-modal="quote-form">Request a Quote</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .contact-page {
+    padding-bottom: var(--space-section);
+  }
+  .contact-hero-section {
+    position: relative;
+    min-height: 35dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .contact-hero-bg .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--space-xxl) 0;
+  }
+  .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    letter-spacing: -0.5px;
+    margin-bottom: var(--space-sm);
+  }
+  .hero-content p {
+    color: var(--on-dark-soft);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .contact-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .detail-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-base);
+  }
+  .detail-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--rounded-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .detail-card h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: var(--space-xs);
+  }
+  .detail-card p {
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  .detail-card a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+  .detail-card a:hover {
+    color: var(--primary-active);
+  }
+  .form-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+  }
+  .form-wrapper h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+    margin-bottom: var(--space-base);
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxs);
+    margin-bottom: var(--space-base);
+  }
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .form-group input,
+  .form-group textarea {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    padding: 10px 14px;
+    border: 1px solid var(--hairline);
+    border-radius: var(--rounded-sm);
+    background: var(--canvas);
+    color: var(--ink);
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 255, 0.1);
+  }
+  .form-cta-alt {
+    margin-top: var(--space-lg);
+    text-align: center;
+  }
+  .form-cta-alt p {
+    margin-bottom: var(--space-sm);
+    color: var(--body);
+  }
+  @media (min-width: 768px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .contact-details { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>

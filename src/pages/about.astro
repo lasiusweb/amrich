@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/icons/Icon.astro';
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'About Amrich Pharma | ISO-Certified Aquaculture Health',
+  description: 'Amrich Pharma is an ISO-certified aquaculture health company formulating eco-safe probiotics, water stabilizers, and disease control solutions for Indian coastal farmers.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Amrich Pharma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
+    email: 'amrichpharma@gmail.com',
+    telephone: '+919712335338',
+  },
+};
+---
+
+<Layout title="About Amrich Pharma | ISO-Certified Aquaculture Health" description="Learn about Amrich Pharma — ISO-certified aquaculture health company serving Indian coastal farmers with eco-safe probiotics, water stabilizers, and disease control.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+
+  <section class="about-hero">
+    <div class="about-hero-bg">
+      <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Aerial view of fish ponds" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <h1>Built for Farmers. Backed by Science.</h1>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container about-content">
+      <p>We're Amrich Pharma, an ISO-certified aquaculture health company dedicated to making pond farming predictable, profitable, and planet-friendly. Born from field research along India's coastal belt, we formulate eco-safe probiotics, water stabilizers, and disease control solutions that work where it matters: in your pond.</p>
+      <div class="promise-grid">
+        <div class="card promise-item">
+          <div class="promise-icon"><Icon name="lab" size={20} /></div>
+          <div>
+            <strong>No hidden chemicals</strong>
+            <span>Transparent dosing</span>
+          </div>
+        </div>
+        <div class="card promise-item">
+          <div class="promise-icon"><Icon name="harvest" size={20} /></div>
+          <div>
+            <strong>Real yield data</strong>
+            <span>Farmer-first support</span>
+          </div>
+        </div>
+      </div>
+      <p>From Andhra's brackish waters to Kerala's freshwater systems, we've helped thousands of growers reduce mortality, cut input costs, and harvest healthier stock. Our R&amp;D team continuously tests strains, optimizes shelf life, and validates field performance so you can farm with confidence.</p>
+      <div class="about-stats">
+        <div class="about-stat"><span class="stat-num">10K+</span><span>Acres Treated</span></div>
+        <div class="about-stat"><span class="stat-num">ISO</span><span>Certified</span></div>
+        <div class="about-stat"><span class="stat-num">5+</span><span>States Served</span></div>
+      </div>
+      <div class="about-cta">
+        <button class="btn-primary" data-modal="quote-form">Contact Our Aquaculture Experts</button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero {
+    position: relative;
+    min-height: 40dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .about-hero-bg .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-xxl) 0;
+  }
+  .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    letter-spacing: -1px;
+  }
+  .about-content {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  .about-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--body);
+    margin-bottom: var(--space-lg);
+  }
+  .promise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-base);
+    margin-bottom: var(--space-lg);
+  }
+  .promise-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-base);
+    font-size: 0.95rem;
+  }
+  .promise-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--rounded-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .promise-item strong {
+    color: var(--ink);
+    font-weight: 600;
+    display: block;
+  }
+  .promise-item span {
+    color: var(--body);
+    font-size: 0.85rem;
+  }
+  .about-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xxl);
+    margin: var(--space-xl) 0;
+  }
+  .about-stat {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .about-stat .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--primary);
+  }
+  .about-stat span:last-child {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .about-cta {
+    text-align: center;
+    margin-top: var(--space-xl);
+  }
+  @media (min-width: 768px) {
+    .hero-content h1 { font-size: 3.25rem; }
+  }
+</style>

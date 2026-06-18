@@ -1,0 +1,218 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/icons/Icon.astro';
+import HeroImage from '../../components/HeroImage.astro';
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'All Products | Amrich Pharma',
+  description: 'ISO-certified aquaculture health products: probiotics, water quality stabilizers, disease control, and feed pond preparers for shrimp and fish farming.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Amrich Pharma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
+    email: 'amrichpharma@gmail.com',
+    telephone: '+919712335338',
+  },
+};
+const categories = [
+  { slug: 'probiotics-soil-care', name: 'Probiotics & Soil Care', desc: 'Bacillus & Paracoccus blends that improve pond-bottom health, break down sludge, and boost natural productivity.', icon: 'leaf' },
+  { slug: 'water-quality-ammonia-control', name: 'Water Quality & Ammonia Control', desc: 'Rapid ammonia reduction, pH stabilization, dissolved oxygen boosters for safe, stable water conditions.', icon: 'water' },
+  { slug: 'disease-stress-management', name: 'Disease & Stress Management', desc: 'Herbal and mineral formulations for disease prevention, stress reduction, and healthy molting cycles.', icon: 'lab' },
+  { slug: 'feed-pond-preparers', name: 'Feed & Pond Preparers', desc: 'Feed binders, nutritional boosters, and pond readiness products for optimal grow-out cycles.', icon: 'fish' },
+];
+const catImages: Record<string, string> = {
+  'probiotics-soil-care': 'https://imgs.mongabay.com/wp-content/uploads/sites/30/2023/03/30152930/shrimp_farm_NSS04247-1.jpg',
+  'water-quality-ammonia-control': 'https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg',
+  'disease-stress-management': 'https://sharangaaqua.com/images/operation4.jpg',
+  'feed-pond-preparers': 'https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg',
+};
+---
+
+<Layout title="All Products | Amrich Pharma" description="Browse Amrich Pharma's full range of ISO-certified aquaculture health solutions for shrimp and fish ponds. Probiotics, water care, disease control & more.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+
+  <div class="products-hub container">
+    <div class="hub-header">
+      <h1>Amrich Pharma Product Range</h1>
+      <p class="hub-intro">Scientifically formulated for Indian coastal conditions — from Andhra's brackish waters to Kerala's freshwater systems. Every product is ISO-certified, field-tested, and backed by real farmer results.</p>
+    </div>
+
+    <div class="category-grid">
+      {categories.map(cat => (
+        <a href={`/products/${cat.slug}`} class="category-card">
+          <div class="cat-img-wrap">
+            <img src={catImages[cat.slug]} alt={cat.name} loading="lazy" class="cat-img" />
+            <div class="cat-icon">
+              <Icon name={cat.icon} size={24} />
+            </div>
+          </div>
+          <div class="cat-body">
+            <h2>{cat.name}</h2>
+            <p>{cat.desc}</p>
+            <span class="card-link">View Products <Icon name="arrow-right" size={14} /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="hub-stats">
+      <div class="stat"><span class="stat-num">16</span><span class="stat-label">Products</span></div>
+      <div class="stat"><span class="stat-num">4</span><span class="stat-label">Categories</span></div>
+      <div class="stat"><span class="stat-num">10K+</span><span class="stat-label">Acres Treated</span></div>
+      <div class="stat"><span class="stat-num">ISO</span><span class="stat-label">Certified</span></div>
+    </div>
+
+    <div class="hub-cta hero-band-dark section-padding" style="border-radius: var(--rounded-xl);">
+      <div class="hub-cta-inner">
+        <Icon name="farmer" size={48} style="margin-bottom: var(--space-sm); opacity: 0.8;" />
+        <h2>Need Help Choosing?</h2>
+        <p>Tell us about your pond size, species, and water conditions. Our team will recommend the right products for your farm.</p>
+        <button class="btn-primary" data-modal="quote-form">Chat with Our Team</button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .products-hub {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xxl);
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.5px;
+  }
+  .hub-intro {
+    font-size: 1.05rem;
+    color: var(--body);
+    margin-bottom: var(--space-xl);
+    max-width: 700px;
+    line-height: 1.6;
+  }
+  .category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  .category-card {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface-card);
+    border-radius: var(--rounded-xl);
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .category-card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+  .cat-img-wrap {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+  }
+  .cat-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cat-icon {
+    position: absolute;
+    bottom: var(--space-sm);
+    left: var(--space-sm);
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--rounded-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .cat-body {
+    padding: var(--space-base) var(--space-lg) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
+  }
+  .category-card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .category-card p {
+    font-size: 0.9rem;
+    color: var(--body);
+    line-height: 1.5;
+  }
+  .card-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: auto;
+    padding-top: var(--space-sm);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .hub-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-base);
+    margin: var(--space-xxl) 0;
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .stat {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--primary);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .hub-cta-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hub-cta-inner h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    margin-bottom: var(--space-sm);
+  }
+  .hub-cta-inner p {
+    color: var(--on-dark-soft);
+    margin-bottom: var(--space-lg);
+  }
+  @media (min-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    .category-grid { grid-template-columns: 1fr 1fr; }
+    .cat-img-wrap { height: 200px; }
+    .hub-stats { padding: var(--space-xl) var(--space-xl); }
+  }
+</style>

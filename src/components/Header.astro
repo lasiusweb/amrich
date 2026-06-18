@@ -1,0 +1,537 @@
+---
+import Icon from './icons/Icon.astro';
+
+const menuItems = [
+  { label: 'Home', href: '/' },
+  {
+    label: 'Products',
+    href: '/products',
+    mega: [
+      {
+        category: 'Probiotics & Soil Care',
+        slug: 'probiotics-soil-care',
+        products: [
+          { name: 'PRO PLUS', slug: 'pro-plus' },
+          { name: 'FARM PRO', slug: 'farm-pro' },
+          { name: 'FARM-PS', slug: 'farm-ps' },
+          { name: 'BLOOMER', slug: 'bloomer' },
+          { name: 'GUT-X', slug: 'gut-x' },
+        ],
+      },
+      {
+        category: 'Water Quality & Ammonia Control',
+        slug: 'water-quality-ammonia-control',
+        products: [
+          { name: 'GASO CLEAN', slug: 'gaso-clean' },
+          { name: 'W-SOFTENER', slug: 'w-softener' },
+          { name: 'OXY-FARM', slug: 'oxy-farm' },
+          { name: 'FARMAMIN', slug: 'farmamin' },
+        ],
+      },
+      {
+        category: 'Disease & Stress Management',
+        slug: 'disease-stress-management',
+        products: [
+          { name: 'FARMADINE', slug: 'farmadine' },
+          { name: 'FARM 80%', slug: 'farm-80' },
+          { name: 'FARM-C+', slug: 'farm-c-plus' },
+          { name: 'SHRIMP CARE', slug: 'shrimp-care' },
+        ],
+      },
+      {
+        category: 'Feed & Pond Preparers',
+        slug: 'feed-pond-preparers',
+        products: [
+          { name: 'OMEGA-BOOSTER', slug: 'omega-booster' },
+          { name: 'GRO-BIND', slug: 'gro-bind' },
+          { name: 'Easy Lite', slug: 'easy-lite' },
+        ],
+      },
+    ],
+  },
+  { label: 'Resources', href: '/resources' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<header class="site-header" id="siteHeader">
+  <div class="header-inner container">
+    <a href="/" class="logo" aria-label="Amrich Pharma Home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="logo-icon">
+        <rect width="32" height="32" rx="8" fill="#0052ff"/>
+        <path d="M16 6c-3 3-5 6-5 9s2 7 5 9c3-2 5-6 5-9s-2-6-5-9z" fill="white" opacity="0.9"/>
+        <path d="M12 16h8" stroke="white" stroke-width="1.5"/>
+        <path d="M14 13h4" stroke="white" stroke-width="1.5"/>
+        <path d="M14 19h4" stroke="white" stroke-width="1.5"/>
+      </svg>
+      <span class="logo-text">Amrich<span class="logo-highlight">Pharma</span></span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation" id="mainNav">
+      <ul class="nav-list">
+        {menuItems.map(item => (
+          <li class="nav-item" set:html={item.mega ? 'data-mega="true"' : ''}>
+            {item.mega ? (
+              <>
+                <a href={item.href} class="nav-link mega-trigger" aria-haspopup="true" aria-expanded="false">
+                  {item.label}
+                  <Icon name="chevron-down" size={14} class="chevron-icon" />
+                </a>
+                <div class="mega-menu">
+                  <div class="mega-inner container">
+                    {item.mega.map(cat => (
+                      <div class="mega-col">
+                        <a href={`/products/${cat.slug}`} class="mega-category">
+                          {cat.category}
+                        </a>
+                        <ul class="mega-products">
+                          {cat.products.map(p => (
+                            <li>
+                              <a href={`/products/${cat.slug}/${p.slug}`} class="mega-product-link">
+                                {p.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                    <div class="mega-cta">
+                      <a href="/products" class="btn-primary">View All Products</a>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <a href={item.href} class="nav-link">{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a href="/downloads/amrich-brochure" class="btn-secondary header-brochure-btn" download>
+        <Icon name="brochure" size={16} />
+        <span class="btn-label">Brochure</span>
+      </a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="sun-icon">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <a href="tel:+919712335338" class="header-phone" aria-label="Call us at 97123 35338">
+        <Icon name="phone" size={16} />
+        <span>97123 35338</span>
+      </a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <Icon name="menu" size={24} />
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile navigation drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu">
+        <Icon name="close" size={24} />
+      </button>
+    </div>
+    <nav class="drawer-nav">
+      <ul class="drawer-list">
+        {menuItems.map(item => (
+          <li class="drawer-item">
+            {item.mega ? (
+              <details class="drawer-accordion">
+                <summary class="drawer-link">
+                  {item.label}
+                  <Icon name="chevron-down" size={14} class="chevron-icon" />
+                </summary>
+                <div class="drawer-sub">
+                  {item.mega.map(cat => (
+                    <div class="drawer-cat">
+                      <a href={`/products/${cat.slug}`} class="drawer-cat-link">{cat.category}</a>
+                      <ul class="drawer-prods">
+                        {cat.products.map(p => (
+                          <li><a href={`/products/${cat.slug}/${p.slug}`} class="drawer-prod-link">{p.name}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <a href={item.href} class="drawer-link">{item.label}</a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div class="drawer-footer">
+      <a href="tel:+919712335338" class="drawer-phone">
+        <Icon name="phone" size={16} /> 97123 35338
+      </a>
+      <a href="https://wa.me/919712335338" class="drawer-whatsapp" target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={16} /> WhatsApp Us
+      </a>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay" aria-hidden="true"></div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--canvas);
+    border-bottom: 1px solid var(--hairline);
+    height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .logo-icon {
+    flex-shrink: 0;
+  }
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+  .logo-highlight {
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  .nav-list {
+    display: none;
+    list-style: none;
+    gap: var(--space-xs);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--rounded-pill);
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-link:hover {
+    background: var(--surface-soft);
+    color: var(--primary);
+  }
+  .chevron-icon {
+    transition: transform 0.2s;
+  }
+  .nav-item:hover .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Mega Menu */
+  .mega-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--canvas);
+    border-bottom: 2px solid var(--primary);
+    box-shadow: var(--shadow-mega);
+    z-index: var(--z-mega);
+    padding: var(--space-xl) 0;
+  }
+  .nav-item:hover .mega-menu,
+  .nav-item:focus-within .mega-menu {
+    display: block;
+  }
+  .mega-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+    position: relative;
+  }
+  .mega-category {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    margin-bottom: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 2px solid var(--primary);
+    transition: opacity 0.2s;
+  }
+  .mega-category:hover {
+    opacity: 0.8;
+  }
+  .mega-products {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .mega-product-link {
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--body);
+    text-decoration: none;
+    transition: color 0.2s;
+    border-radius: var(--rounded-sm);
+  }
+  .mega-product-link:hover {
+    color: var(--primary);
+    padding-left: 4px;
+  }
+  .mega-cta {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: var(--space-base);
+    border-top: 1px solid var(--hairline-soft);
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-shrink: 0;
+  }
+  .header-brochure-btn .btn-label {
+    display: none;
+  }
+  .theme-toggle {
+    display: flex;
+    background: none;
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    color: var(--body);
+    padding: 8px;
+    border-radius: var(--rounded-full);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover {
+    background: var(--surface-soft);
+    color: var(--ink);
+    border-color: var(--muted);
+  }
+  .sun-icon, .moon-icon { position: absolute; transition: opacity 0.2s, transform 0.2s; }
+  .moon-icon { opacity: 0; transform: scale(0.5); }
+  html.dark .sun-icon { opacity: 0; transform: scale(0.5); }
+  html.dark .moon-icon { opacity: 1; transform: scale(1); }
+
+  .header-phone {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .header-phone:hover {
+    color: var(--primary);
+  }
+  .mobile-menu-btn {
+    display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    padding: 8px;
+    border-radius: var(--rounded-sm);
+  }
+  .mobile-menu-btn:hover {
+    background: var(--surface-soft);
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100dvh;
+    background: var(--canvas);
+    z-index: var(--z-drawer);
+    transition: right 0.25s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+  }
+  .mobile-drawer.open { right: 0; }
+  .drawer-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--space-base);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .drawer-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink);
+    padding: 4px;
+  }
+  .drawer-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-sm);
+  }
+  .drawer-list {
+    list-style: none;
+  }
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px var(--space-base);
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-radius: var(--rounded-md);
+    cursor: pointer;
+  }
+  .drawer-link:hover {
+    background: var(--surface-soft);
+  }
+  .drawer-accordion[open] .chevron-icon {
+    transform: rotate(180deg);
+  }
+  .drawer-sub {
+    padding: var(--space-xs) var(--space-base) var(--space-base);
+  }
+  .drawer-cat {
+    margin-bottom: var(--space-sm);
+  }
+  .drawer-cat-link {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+  .drawer-prods {
+    list-style: none;
+    padding-left: var(--space-base);
+  }
+  .drawer-prod-link {
+    display: block;
+    padding: 6px 0;
+    font-size: 14px;
+    color: var(--body);
+    text-decoration: none;
+  }
+  .drawer-prod-link:hover {
+    color: var(--primary);
+  }
+  .drawer-footer {
+    padding: var(--space-base);
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .drawer-phone, .drawer-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: var(--rounded-md);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .drawer-phone { color: var(--ink); }
+  .drawer-whatsapp { background: #25D366; color: white; justify-content: center; }
+  .drawer-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: var(--z-overlay);
+  }
+  .drawer-overlay.active { display: block; }
+
+  @media (min-width: 768px) {
+    .header-phone { display: flex; }
+    .header-brochure-btn .btn-label { display: inline; }
+    .mobile-menu-btn { display: none; }
+  }
+  @media (min-width: 1024px) {
+    .nav-list { display: flex; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const drawer = document.getElementById('mobileDrawer');
+    const closeBtn = document.getElementById('drawerClose');
+    const overlay = document.getElementById('drawerOverlay');
+
+    function openDrawer() {
+      drawer?.classList.add('open');
+      drawer?.setAttribute('aria-hidden', 'false');
+      overlay?.classList.add('active');
+      overlay?.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeDrawer() {
+      drawer?.classList.remove('open');
+      drawer?.setAttribute('aria-hidden', 'true');
+      overlay?.classList.remove('active');
+      overlay?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn?.addEventListener('click', openDrawer);
+    closeBtn?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer?.classList.contains('open')) closeDrawer();
+    });
+
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle?.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('amrich_theme', isDark ? 'dark' : 'light');
+    });
+  });
+</script>
