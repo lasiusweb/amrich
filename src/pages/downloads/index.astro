@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Downloads | Amrich Pharma" description="Download Amrich Pharma brochures, guides, and reference materials for Indian aquaculture.">
+  <section class="hero-band-dark">
+    <div class="container">
+      <h1>Downloads &amp; Resources</h1>
+      <p style="color: var(--on-dark-soft); margin-top: var(--space-sm); max-width: 500px;">
+        Brochures, calendars, and reference guides for your farm.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <div style="display: grid; gap: var(--space-base);">
+        <div class="card">
+          <h3>Amrich Pharma Brochure</h3>
+          <p style="margin-top: var(--space-xs); color: var(--muted);">
+            Complete product catalog with dosage charts, application guides, and contact information.
+          </p>
+          <a href="/files/amrich-brochure.pdf" download class="btn-primary" style="margin-top: var(--space-base); display: inline-flex;">
+            Download Brochure (PDF)
+          </a>
+        </div>
+
+        <div class="card">
+          <h3>Pond Management Calendar</h3>
+          <p style="margin-top: var(--space-xs); color: var(--muted);">
+            Printable month-by-month guide — water testing schedule, feeding adjustments, probiotic application timing, and seasonal alerts.
+          </p>
+          <button class="btn-secondary" style="margin-top: var(--space-base);" disabled>Coming Soon</button>
+        </div>
+
+        <div class="card">
+          <h3>Water Parameter Reference Chart</h3>
+          <p style="margin-top: var(--space-xs); color: var(--muted);">
+            Quick-reference card for optimal ranges: salinity, pH, alkalinity, ammonia, nitrite, DO, and temperature for shrimp and fish ponds.
+          </p>
+          <button class="btn-secondary" style="margin-top: var(--space-base);" disabled>Coming Soon</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: var(--space-xl); background: var(--surface-soft); text-align: center; border: none;">
+        <p>
+          Need a specific product brochure? Contact us and we'll send it right away.
+        </p>
+        <div style="margin-top: var(--space-base); display: flex; gap: var(--space-base); justify-content: center; flex-wrap: wrap;">
+          <a href="tel:+919712335338" class="btn-primary">Call 97123 35338</a>
+          <button data-modal="quote-form" class="btn-secondary">Request Brochure</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

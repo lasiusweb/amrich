@@ -1,0 +1,318 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/icons/Icon.astro';
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Ammonia Spike Response Protocol for Shrimp & Fish Ponds',
+  description: 'Step-by-step biological ammonia and nitrite removal guide for aquaculture ponds. Detect spikes early, apply GASO CLEAN, and restore water quality within 48 hours.',
+  author: { '@type': 'Organization', name: 'Amrich Pharma' },
+  datePublished: '2026-01-15',
+  dateModified: '2026-05-20',
+  publisher: { '@type': 'Organization', name: 'Amrich Pharma' },
+  image: 'https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg',
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What causes ammonia spikes in shrimp ponds?', acceptedAnswer: { '@type': 'Answer', text: 'Overfeeding, dead algae decomposition, heavy rain runoff, and accumulated sludge at the pond bottom are the primary causes. High stocking densities and poor aeration accelerate the spike.' } },
+    { '@type': 'Question', name: 'How fast does GASO CLEAN reduce ammonia?', acceptedAnswer: { '@type': 'Answer', text: 'GASO CLEAN biologically reduces toxic ammonia and nitrite within 48 hours when applied at 1-2 L/acre with active aeration. Partial reduction is visible within 24 hours.' } },
+    { '@type': 'Question', name: 'Can I use GASO CLEAN and PRO PLUS together?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, but wait 24 hours between applications. Apply GASO CLEAN first to neutralize ammonia, then introduce PRO PLUS to rebuild the broader pond probiotic community.' } },
+    { '@type': 'Question', name: 'What ammonia level is dangerous for shrimp?', acceptedAnswer: { '@type': 'Answer', text: 'Total ammonia nitrogen (TAN) above 1.0 ppm and free ammonia (NH3) above 0.1 ppm are toxic to shrimp. At 2.0+ ppm TAN, mortality accelerates rapidly without intervention.' } },
+  ],
+};
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Fix an Ammonia Spike in Your Aquaculture Pond',
+  totalTime: 'PT48H',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: 'Test Water Parameters', text: 'Test ammonia (TAN), nitrite, pH, dissolved oxygen, and temperature immediately. Record baseline levels.' },
+    { '@type': 'HowToStep', position: 2, name: 'Stop Feeding', text: 'Stop all feeding for 24-48 hours. Excess feed worsens ammonia during a spike.' },
+    { '@type': 'HowToStep', position: 3, name: 'Increase Aeration', text: 'Run all aerators at maximum. Add emergency aerators if available. Target DO above 5 ppm.' },
+    { '@type': 'HowToStep', position: 4, name: 'Apply GASO CLEAN', text: 'Mix 1-2 L of GASO CLEAN per acre with 30-40 L pond water. Broadcast evenly across the pond surface.' },
+    { '@type': 'HowToStep', position: 5, name: 'Monitor & Repeat', text: 'Re-test after 24 hours. If ammonia is still above 1.0 ppm TAN, repeat application. Full recovery in 48 hours.' },
+  ],
+};
+---
+
+<Layout title="Ammonia Spike Response Protocol | Amrich Pharma" description="Step-by-step ammonia and nitrite removal guide for aquaculture ponds. Detect spikes early, apply GASO CLEAN, and restore water quality within 48 hours.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+
+  <section class="ammonia-hero">
+    <div class="hero-bg">
+      <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Water quality testing in aquaculture pond" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <span class="hero-badge">Problem-Solution Guide</span>
+      <h1>Ammonia Spike Response Protocol</h1>
+      <p class="hero-sub">Detect, treat, and prevent toxic ammonia & nitrite spikes in shrimp and fish ponds. Biological removal within 48 hours.</p>
+    </div>
+  </section>
+
+  <!-- Quick Answer / AEO Block -->
+  <section class="section-padding surface-soft">
+    <div class="container" style="max-width: 800px;">
+      <div class="alert-card">
+        <div class="alert-header"><Icon name="water" size={20} class="alert-icon" /> <h2>Quick Answer — AEO Direct Answer</h2></div>
+        <p style="margin-top: var(--space-sm);">
+          Ammonia spikes above 1.0 ppm TAN (or 0.1 ppm free NH<sub>3</sub>) require immediate action: <strong>stop feeding</strong>, <strong>maximize aeration</strong>, and apply <a href="/products/water-quality-ammonia-control/gaso-clean">GASO CLEAN</a> at 1–2 L/acre mixed in 30–40 L pond water. Re-test after 24 hours; full biological ammonia removal occurs within 48 hours. For long-term prevention, maintain <a href="/products/probiotics-soil-care/pro-plus">PRO PLUS</a> applications every 15 days.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Spikes Happen -->
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <h2>Why Ammonia Spikes Happen</h2>
+      <p style="margin-top: var(--space-sm);">
+        Ammonia (NH<sub>3</sub>/NH<sub>4</sub><sup>+</sup>) is the #1 water quality killer in aquaculture. It enters ponds primarily through shrimp/fish excretion and uneaten feed decomposition. Under normal conditions, beneficial nitrifying bacteria convert ammonia → nitrite → nitrate (a harmless end product). But when the system is overloaded — from overfeeding, algae die-off, rain runoff, or sludge accumulation — bacterial capacity is overwhelmed and toxic ammonia accumulates rapidly.
+      </p>
+      <div class="cause-grid" style="margin-top: var(--space-xl); display: grid; gap: var(--space-base); grid-template-columns: 1fr 1fr;">
+        <div class="cause-card"><Icon name="harvest" size={20} /> <span><strong>Overfeeding</strong> — Excess feed decomposes into ammonia within hours</span></div>
+        <div class="cause-card"><Icon name="leaf" size={20} /> <span><strong>Algae Die-Off</strong> — Dead algae release ammonia during decomposition</span></div>
+        <div class="cause-card"><Icon name="pond" size={20} /> <span><strong>Rain Runoff</strong> — Flushes organic matter into ponds, spiking TAN</span></div>
+        <div class="cause-card"><Icon name="water" size={20} /> <span><strong>Low DO</strong> — Oxygen depletion stalls nitrification, allowing ammonia buildup</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spike Levels Table -->
+  <section class="section-padding surface-soft">
+    <div class="container" style="max-width: 800px;">
+      <h2>Ammonia Spike Severity Levels</h2>
+      <div style="overflow-x: auto; margin-top: var(--space-lg);">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: var(--surface-strong);">
+              <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid var(--hairline);">Severity</th>
+              <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid var(--hairline);">TAN (ppm)</th>
+              <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid var(--hairline);">Free NH₃ (ppm)</th>
+              <th style="padding: var(--space-sm); text-align: left; border-bottom: 1px solid var(--hairline);">Action Required</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background: rgba(5,177,105,0.05);">
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft); font-weight: 600; color: var(--semantic-up);">Safe</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">&lt; 0.5</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">&lt; 0.02</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">Routine monitoring</td>
+            </tr>
+            <tr style="background: rgba(244,176,0,0.05);">
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft); font-weight: 600; color: var(--accent-yellow);">Caution</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">0.5 – 1.0</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">0.02 – 0.1</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">Reduce feeding, increase aeration</td>
+            </tr>
+            <tr style="background: rgba(207,32,47,0.05);">
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft); font-weight: 600; color: var(--semantic-down);">Critical</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">&gt; 1.0</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">&gt; 0.1</td>
+              <td style="padding: var(--space-sm); border-bottom: 1px solid var(--hairline-soft);">Apply <a href="/products/water-quality-ammonia-control/gaso-clean">GASO CLEAN</a> immediately</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Emergency Step-by-Step -->
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <h2>Emergency Response (0–48 Hours)</h2>
+      <div style="margin-top: var(--space-xl); display: grid; gap: var(--space-lg);">
+        <div class="step-item">
+          <div class="step-icon"><span>1</span></div>
+          <div><h3>Test Water Parameters</h3><p>Test TAN, free NH₃, nitrite, pH, DO, temperature, and salinity. Record baseline. Use a reliable test kit calibrated for brackish water if applicable.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon"><span>2</span></div>
+          <div><h3>Stop Feeding Immediately</h3><p>Stop all feeding for 24–48 hours. Each kg of feed generates ~35g of ammonia. Halting feed cuts the ammonia source instantly.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon"><span>3</span></div>
+          <div><h3>Maximize Aeration</h3><p>Run all paddlewheels and diffusers at full capacity. Target DO above 5 ppm. Low DO slows nitrifying bacteria and worsens the spike. If DO is critically low (&lt;3 ppm), apply <a href="/products/water-quality-ammonia-control/oxy-farm">OXY-FARM</a> for emergency oxygen boost.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon"><span>4</span></div>
+          <div><h3>Apply GASO CLEAN</h3><p>Mix <a href="/products/water-quality-ammonia-control/gaso-clean">GASO CLEAN</a> at 1–2 L per acre with 30–40 L pond water. Broadcast evenly across the pond. Keep aerators running during and after application to distribute the microbial blend.</p></div>
+        </div>
+        <div class="step-item">
+          <div class="step-icon"><span>5</span></div>
+          <div><h3>Monitor &amp; Repeat</h3><p>Re-test after 24 hours. If TAN remains above 1.0 ppm, apply a second dose of GASO CLEAN. Most ponds reach safe levels within 48 hours of first application.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prevention Protocol -->
+  <section class="section-padding surface-soft">
+    <div class="container" style="max-width: 800px;">
+      <h2>Prevention Protocol</h2>
+      <div class="prevention-grid">
+        <div class="prev-card"><div class="prev-icon"><Icon name="leaf" size={22} /></div><h3>Weekly Probiotics</h3><p>Apply <a href="/products/probiotics-soil-care/pro-plus">PRO PLUS</a> 5 kg/acre every 15 days to maintain healthy nitrifying bacteria populations.</p></div>
+        <div class="prev-card"><div class="prev-icon"><Icon name="water" size={22} /></div><h3>Feed Management</h3><p>Never exceed 3% body weight/day in feeding. Use check trays to monitor consumption and adjust.</p></div>
+        <div class="prev-card"><div class="prev-icon"><Icon name="pond" size={22} /></div><h3>Sludge Removal</h3><p>Remove accumulated sludge every 2–3 weeks. Decomposing organic matter is the largest ammonia reservoir.</p></div>
+        <div class="prev-card"><div class="prev-icon"><Icon name="harvest" size={22} /></div><h3>Post-Rain Protocol</h3><p>After heavy rain, test ammonia within 2 hours. Apply <a href="/products/water-quality-ammonia-control/gaso-clean">GASO CLEAN</a> preemptively if TAN exceeds 0.5 ppm.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <h2>Frequently Asked Questions</h2>
+      <div style="margin-top: var(--space-lg); display: grid; gap: var(--space-base);">
+        <div class="faq-item">
+          <div class="faq-q"><Icon name="farmer" size={18} class="faq-icon" /> <h3>What causes ammonia spikes in shrimp ponds?</h3></div>
+          <p>Overfeeding, dead algae decomposition, heavy rain runoff, and accumulated sludge at the pond bottom are the primary causes. High stocking densities and poor aeration accelerate the spike.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><Icon name="farmer" size={18} class="faq-icon" /> <h3>How fast does GASO CLEAN reduce ammonia?</h3></div>
+          <p>GASO CLEAN biologically reduces toxic ammonia and nitrite within 48 hours when applied at 1–2 L/acre with active aeration. Partial reduction is visible within 24 hours.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><Icon name="farmer" size={18} class="faq-icon" /> <h3>Can I use GASO CLEAN and PRO PLUS together?</h3></div>
+          <p>Yes, but wait 24 hours between applications. Apply GASO CLEAN first to neutralize ammonia, then introduce PRO PLUS to rebuild the broader pond probiotic community.</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><Icon name="farmer" size={18} class="faq-icon" /> <h3>What ammonia level is dangerous for shrimp?</h3></div>
+          <p>Total ammonia nitrogen (TAN) above 1.0 ppm and free ammonia (NH₃) above 0.1 ppm are toxic to shrimp. At 2.0+ ppm TAN, mortality accelerates rapidly without intervention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding ammonia-cta">
+    <div class="container" style="text-align: center;">
+      <h2 style="color: var(--on-dark);">Facing an Ammonia Spike Right Now?</h2>
+      <p style="color: var(--on-dark-soft); margin-top: var(--space-sm); max-width: 500px; margin-inline: auto;">
+        Get immediate expert advice. Share your pond parameters and we'll respond with a customized treatment plan within 2 hours.
+      </p>
+      <button data-modal="quote-form" class="btn-primary" style="margin-top: var(--space-lg);">
+        Get Emergency Pond Help
+      </button>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .ammonia-hero {
+    position: relative;
+    min-height: 40dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg-img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.85), rgba(10,11,13,0.6));
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xxl) 0;
+  }
+  .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    letter-spacing: -1px;
+    margin-top: var(--space-sm);
+  }
+  .hero-sub { color: var(--on-dark-soft); margin-top: var(--space-sm); max-width: 600px; font-size: 1.05rem; line-height: 1.6; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--rounded-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--ink); }
+  .alert-card {
+    border-left: 4px solid var(--semantic-down);
+    padding: var(--space-lg);
+  }
+  .alert-header { display: flex; align-items: center; gap: var(--space-sm); }
+  .alert-header h2 { font-size: 1.1rem; margin: 0; }
+  .alert-icon { color: var(--semantic-down); flex-shrink: 0; }
+
+  .cause-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-base);
+    background: var(--canvas);
+    border-radius: var(--rounded-sm);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--body);
+  }
+  .cause-card :global(.icon) { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+
+  .step-item { display: flex; align-items: flex-start; gap: var(--space-base); }
+  .step-icon {
+    width: 40px; height: 40px; background: var(--primary); color: var(--on-primary);
+    border-radius: var(--rounded-full); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 500; font-size: 1rem; flex-shrink: 0;
+  }
+  .step-item h3 { font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: var(--space-xs); }
+  .step-item p { color: var(--body); line-height: 1.6; font-size: 0.95rem; }
+
+  .prevention-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+    margin-top: var(--space-xl);
+  }
+  .prev-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--canvas);
+    border-radius: var(--rounded-md);
+    border: 1px solid var(--hairline);
+  }
+  .prev-icon {
+    width: 44px; height: 44px; background: var(--primary); color: var(--on-primary);
+    border-radius: var(--rounded-full); display: flex; align-items: center; justify-content: center;
+  }
+  .prev-card h3 { font-size: 1rem; font-weight: 600; color: var(--ink); }
+  .prev-card p { font-size: 0.9rem; color: var(--body); line-height: 1.5; }
+
+  .faq-item {
+    padding: var(--space-base);
+    background: var(--surface-soft);
+    border-radius: var(--rounded-sm);
+  }
+  .faq-q { display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-xs); }
+  .faq-icon { color: var(--primary); flex-shrink: 0; }
+  .faq-q h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin: 0; }
+  .faq-item p { color: var(--body); line-height: 1.6; font-size: 0.95rem; margin-left: calc(18px + var(--space-sm)); }
+
+  .ammonia-cta { background: linear-gradient(135deg, rgba(10,11,13,0.95), rgba(20,22,28,0.95)); text-align: center; }
+
+  @media (min-width: 768px) {
+    .hero-content h1 { font-size: 2.75rem; }
+    h2 { font-size: 1.75rem; }
+    .prevention-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

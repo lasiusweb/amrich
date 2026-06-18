@@ -1,0 +1,187 @@
+<div id="consentBanner" class="consent-banner" role="dialog" aria-modal="true" aria-label="Cookie consent" aria-hidden="true">
+  <div class="consent-content">
+    <h2>Your Privacy Matters</h2>
+    <p>We use cookies and similar technologies to improve your browsing experience, analyze site traffic, and help us understand how farmers use our content. This helps us serve you better.</p>
+    <p class="consent-legal">By clicking "Accept All", you consent to our use of cookies. You can customize your preferences or reject non-essential cookies. <a href="/privacy-policy" target="_blank">Read our Privacy Policy</a> (India DPDP Act 2023 &amp; GDPR compliant).</p>
+    <div class="consent-actions">
+      <button id="consentAccept" class="btn-primary">Accept All</button>
+      <button id="consentSettings" class="btn-secondary">Customize</button>
+      <button id="consentReject" class="btn-ghost">Reject Non-Essential</button>
+    </div>
+    <div id="consentCustomize" class="consent-customize" style="display:none;">
+      <label class="consent-toggle"><input type="checkbox" id="consentAnalytics" checked disabled /> <span>Essential (Required)</span></label>
+      <label class="consent-toggle"><input type="checkbox" id="consentAnalyticsStorage" checked /> <span>Analytics &amp; Performance</span></label>
+      <label class="consent-toggle"><input type="checkbox" id="consentAdStorage" /> <span>Marketing &amp; Advertising</span></label>
+      <button id="consentSave" class="btn-primary">Save Preferences</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: var(--z-modal);
+    background: var(--canvas);
+    border-top: 1px solid var(--hairline);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+  .consent-banner.visible {
+    transform: translateY(0);
+  }
+  .consent-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-base);
+  }
+  .consent-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+  .consent-content p {
+    font-size: 0.85rem;
+    color: var(--body);
+    line-height: 1.5;
+    margin-bottom: var(--space-xs);
+  }
+  .consent-legal {
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .consent-legal a {
+    color: var(--primary);
+    text-decoration: underline;
+  }
+  .consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+  .consent-actions .btn-primary,
+  .consent-actions .btn-secondary {
+    font-size: 14px;
+    padding: 8px 16px;
+    height: 40px;
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    color: var(--muted);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    height: 40px;
+    border: none;
+    border-radius: var(--rounded-pill);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: underline;
+  }
+  .btn-ghost:hover {
+    background: var(--surface-soft);
+    color: var(--ink);
+  }
+  .consent-customize {
+    margin-top: var(--space-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding-top: var(--space-base);
+    border-top: 1px solid var(--hairline);
+  }
+  .consent-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .consent-toggle input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+  }
+  .consent-toggle input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  @media (min-width: 768px) {
+    .consent-content { padding: var(--space-lg) var(--space-xl); }
+    .consent-actions { gap: var(--space-sm); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('consentBanner');
+    const acceptBtn = document.getElementById('consentAccept');
+    const rejectBtn = document.getElementById('consentReject');
+    const settingsBtn = document.getElementById('consentSettings');
+    const saveBtn = document.getElementById('consentSave');
+    const customizeDiv = document.getElementById('consentCustomize');
+    const analyticsStorageCheck = document.getElementById('consentAnalyticsStorage');
+    const adStorageCheck = document.getElementById('consentAdStorage');
+
+    const CONSENT_KEY = 'amrich_consent';
+
+    function getConsent() {
+      try {
+        return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null');
+      } catch { return null; }
+    }
+
+    function setConsent(state, storage, adStorage) {
+      const pref = { state, analytics_storage: storage, ad_storage: adStorage, updatedAt: new Date().toISOString() };
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(pref));
+      applyConsent(pref);
+      banner?.classList.remove('visible');
+      banner?.setAttribute('aria-hidden', 'true');
+    }
+
+    function applyConsent(pref) {
+      if (typeof gtag === 'undefined') {
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function() { dataLayer.push(arguments); };
+      }
+      gtag('consent', 'update', {
+        analytics_storage: pref.analytics_storage ? 'granted' : 'denied',
+        ad_storage: pref.ad_storage ? 'granted' : 'denied',
+      });
+    }
+
+    const existing = getConsent();
+    if (existing) {
+      applyConsent(existing);
+      return;
+    }
+
+    gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+    setTimeout(() => {
+      banner?.classList.add('visible');
+      banner?.setAttribute('aria-hidden', 'false');
+    }, 1000);
+
+    acceptBtn?.addEventListener('click', () => setConsent('accepted', true, true));
+    rejectBtn?.addEventListener('click', () => setConsent('rejected', false, false));
+    settingsBtn?.addEventListener('click', () => {
+      if (customizeDiv) customizeDiv.style.display = customizeDiv.style.display === 'none' ? 'flex' : 'none';
+    });
+    saveBtn?.addEventListener('click', () => {
+      setConsent('customized', analyticsStorageCheck?.checked || false, adStorageCheck?.checked || false);
+    });
+  });
+</script>
