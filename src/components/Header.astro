@@ -74,7 +74,7 @@ const menuItems = [
           <li class="nav-item" set:html={item.mega ? 'data-mega="true"' : ''}>
             {item.mega ? (
               <>
-                <a href={item.href} class="nav-link mega-trigger" aria-haspopup="true" aria-expanded="false">
+                <a href={item.href} class="nav-link mega-trigger" aria-haspopup="true">
                   {item.label}
                   <Icon name="chevron-down" size={14} class="chevron-icon" />
                 </a>
@@ -533,5 +533,16 @@ const menuItems = [
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('amrich_theme', isDark ? 'dark' : 'light');
     });
+
+    // Mega menu aria-expanded management
+    document.querySelectorAll('.nav-item').forEach(item => {
+      const trigger = item.querySelector('.mega-trigger');
+      if (!trigger) return;
+      item.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded','true'));
+      item.addEventListener('mouseleave', () => trigger.setAttribute('aria-expanded','false'));
+      item.addEventListener('focusin', () => trigger.setAttribute('aria-expanded','true'));
+      item.addEventListener('focusout', () => trigger.setAttribute('aria-expanded','false'));
+    });
+
   });
 </script>

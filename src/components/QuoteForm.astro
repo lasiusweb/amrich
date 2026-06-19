@@ -8,14 +8,14 @@
     <form id="quoteForm" class="quote-form" novalidate>
       <div class="form-group">
         <label for="fullName">Full Name *</label>
-        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g., Ramesh K.">
-        <span class="error-msg" role="alert" aria-live="polite"></span>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g., Ramesh K.…">
+        <span class="error-msg" aria-live="polite"></span>
       </div>
 
       <div class="form-group">
         <label for="phone">WhatsApp/Mobile Number *</label>
-        <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="98765 43210" autocomplete="tel">
-        <span class="error-msg" role="alert" aria-live="polite"></span>
+        <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="98765 43210…" autocomplete="tel">
+        <span class="error-msg" aria-live="polite"></span>
       </div>
 
       <div class="form-row">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
           <label for="pondSize">Pond Size (Acres) *</label>
-          <input type="number" id="pondSize" name="pondSize" required min="0.1" step="0.1" placeholder="e.g., 12">
+          <input type="number" id="pondSize" name="pondSize" required min="0.1" step="0.1" placeholder="e.g., 12…">
         </div>
       </div>
 
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
           <label for="productInterest">Product of Interest *</label>
-          <input type="text" id="productInterest" name="productInterest" required placeholder="Auto-filled or type here">
+          <input type="text" id="productInterest" name="productInterest" required placeholder="Auto-filled or type here…">
           <small class="hint">Pre-filled from current page. Edit if needed.</small>
         </div>
       </div>
@@ -80,7 +80,7 @@
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
     display: flex; align-items: flex-end; justify-content: center;
-    opacity: 0; visibility: hidden; transition: all 0.3s ease;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
   }
   .modal-overlay.active { opacity: 1; visibility: visible; }
   .modal-container {
@@ -214,7 +214,7 @@
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
       if (!btn) return;
-      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Sending...';
+      btn.disabled = true; btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending…';
 
       const raw = Object.fromEntries(new FormData(form).entries());
       const quoteData = {
@@ -244,8 +244,12 @@
           <p>Need immediate assistance? Chat directly on WhatsApp:</p>
           <a href="${waLink}" class="whatsapp-btn" target="_blank" rel="noopener">Open WhatsApp Chat</a>
           <p style="margin:16px 0; font-size:0.85rem; color:var(--muted);">Reference ID: ${quoteData.referenceId}</p>
-          <button class="btn-secondary" onclick="document.getElementById('quoteModalClose')?.click()">Submit Another Quote</button>
+          <button class="btn-secondary" data-action="close-quote">Submit Another Quote</button>
         `;
+        // attach non-inline handler
+        setTimeout(() => {
+          successDiv.querySelector('.btn-secondary')?.addEventListener('click', () => document.getElementById('quoteModalClose')?.click());
+        }, 0);
       }
     });
   });

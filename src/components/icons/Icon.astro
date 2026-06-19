@@ -3,9 +3,17 @@ export interface Props {
   name: 'shrimp' | 'fish' | 'pond' | 'water' | 'leaf' | 'lab' | 'farmer' | 'harvest' | 'phone' | 'whatsapp' | 'brochure' | 'quote' | 'check' | 'chevron-down' | 'menu' | 'close' | 'search' | 'arrow-right';
   size?: number;
   class?: string;
+  ariaLabel?: string;
 }
-const { name, size = 24, class: className = '' } = Astro.props;
+const { name, size = 24, class: className = '', ariaLabel } = Astro.props;
 const svgAttrs = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', class: className };
+if (ariaLabel) {
+  svgAttrs['role'] = 'img';
+  svgAttrs['aria-label'] = ariaLabel;
+} else {
+  svgAttrs['aria-hidden'] = 'true';
+  svgAttrs['focusable'] = 'false';
+}
 ---
 
 {
