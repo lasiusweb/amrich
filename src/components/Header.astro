@@ -58,7 +58,7 @@ const menuItems = [
 <header class="site-header" id="siteHeader">
   <div class="header-inner container">
     <a href="/" class="logo" aria-label="Amrich Pharma Home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="logo-icon">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" class="logo-icon" aria-hidden="true" focusable="false">
         <rect width="32" height="32" rx="8" fill="#0052ff"/>
         <path d="M16 6c-3 3-5 6-5 9s2 7 5 9c3-2 5-6 5-9s-2-6-5-9z" fill="white" opacity="0.9"/>
         <path d="M12 16h8" stroke="white" stroke-width="1.5"/>
@@ -74,7 +74,7 @@ const menuItems = [
           <li class="nav-item" set:html={item.mega ? 'data-mega="true"' : ''}>
             {item.mega ? (
               <>
-                <a href={item.href} class="nav-link mega-trigger" aria-haspopup="true">
+                <a href={item.href} class="nav-link mega-trigger" aria-haspopup="true" aria-expanded="false">
                   {item.label}
                   <Icon name="chevron-down" size={14} class="chevron-icon" />
                 </a>
@@ -111,7 +111,7 @@ const menuItems = [
     </nav>
 
     <div class="header-actions">
-      <a href="/downloads/amrich-brochure" class="btn-secondary header-brochure-btn" download>
+      <a href="/files/amrich-brochure.pdf" class="btn-secondary header-brochure-btn" download aria-label="Download brochure">
         <Icon name="brochure" size={16} />
         <span class="btn-label">Brochure</span>
       </a>
@@ -134,7 +134,7 @@ const menuItems = [
   </div>
 
   <!-- Mobile navigation drawer -->
-  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true" inert
     <div class="drawer-header">
       <button class="drawer-close" id="drawerClose" aria-label="Close menu">
         <Icon name="close" size={24} />
@@ -307,7 +307,7 @@ const menuItems = [
   }
   .mega-product-link:hover {
     color: var(--primary);
-    padding-left: 4px;
+    transform: translateX(4px);
   }
   .mega-cta {
     grid-column: 1 / -1;
@@ -331,11 +331,11 @@ const menuItems = [
     border: 1px solid var(--hairline);
     cursor: pointer;
     color: var(--body);
-    padding: 8px;
+    padding: 10px;
     border-radius: var(--rounded-full);
     transition: background 0.2s, color 0.2s, border-color 0.2s;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -370,7 +370,9 @@ const menuItems = [
     border: none;
     cursor: pointer;
     color: var(--ink);
-    padding: 8px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
     border-radius: var(--rounded-sm);
   }
   .mobile-menu-btn:hover {
@@ -403,7 +405,9 @@ const menuItems = [
     border: none;
     cursor: pointer;
     color: var(--ink);
-    padding: 4px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
   }
   .drawer-nav {
     flex: 1;
@@ -508,22 +512,42 @@ const menuItems = [
 
     function openDrawer() {
       drawer?.classList.add('open');
+      drawer?.removeAttribute('inert');
       drawer?.setAttribute('aria-hidden', 'false');
       overlay?.classList.add('active');
       overlay?.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      setTimeout(() => (drawer?.querySelector('button, [href]') as HTMLElement | null)?.focus(), 100);
     }
     function closeDrawer() {
       drawer?.classList.remove('open');
+      drawer?.setAttribute('inert', '');
       drawer?.setAttribute('aria-hidden', 'true');
       overlay?.classList.remove('active');
       overlay?.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
 
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (!drawer?.classList.contains('open')) return;
+      const focusable = drawer.querySelectorAll(focusableSelector);
+      const first = focusable[0] as HTMLElement | null;
+      const last = focusable[focusable.length - 1] as HTMLElement | null;
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first && last) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last && first) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    };
+
     menuBtn?.addEventListener('click', openDrawer);
     closeBtn?.addEventListener('click', closeDrawer);
     overlay?.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', trapFocus);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && drawer?.classList.contains('open')) closeDrawer();
     });

@@ -1,6 +1,6 @@
 ---
 import ProductLayout from '../../../layouts/ProductLayout.astro';
-import products, { getProduct } from '../../../data/products';
+import products from '../../../data/products';
 import type { Product } from '../../../data/products';
 import Icon from '../../../components/icons/Icon.astro';
 import ProductImage from '../../../components/ProductImage.astro';
@@ -71,7 +71,7 @@ const faqSchema = {
         </div>
         <div class="hero-actions">
           <button class="btn-primary" data-modal="quote-form" data-product={nameShort}>Get a Quote</button>
-          <a href="/downloads/amrich-brochure" class="btn-secondary" download>Download Brochure</a>
+          <a href="/files/amrich-brochure.pdf" class="btn-secondary" download>Download Brochure</a>
         </div>
       </div>
       <div class="hero-image">
@@ -136,7 +136,7 @@ const faqSchema = {
   <div slot="resources" class="resources-section">
     <h2>Resources</h2>
     <div class="resource-links">
-      <a href="/downloads/amrich-brochure" class="btn-secondary" download><Icon name="brochure" size={16} /> Download Full Brochure</a>
+      <a href="/files/amrich-brochure.pdf" class="btn-secondary" download><Icon name="brochure" size={16} /> Download Full Brochure</a>
       <button class="btn-primary" data-modal="quote-form" data-product={nameShort}><Icon name="quote" size={16} /> Get a Quote</button>
     </div>
   </div>

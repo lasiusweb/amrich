@@ -16,15 +16,32 @@ const { title = 'Amrich Pharma – Healthier Ponds. Higher Yields.', description
 <html lang="en-IN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="keywords" content="shrimp pond probiotic, ammonia remover for aquaculture, eco-friendly fish farm water treatment, water quality stabilizer for shrimp farming, Bacillus pond cleaner India, ISO certified aquaculture products" />
-    <link rel="preconnect" href="https://imgs.mongabay.com" />
-    <link rel="dns-prefetch" href="https://imgs.mongabay.com" />
-    <link rel="preconnect" href="https://www.globalseafood.org" />
-    <link rel="dns-prefetch" href="https://www.globalseafood.org" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Amrich Pharma" />
+    <meta property="og:image" content="https://amrichpharma.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://amrichpharma.com/og-image.jpg" />
+    <link rel="canonical" href={`https://amrich-pharma.netlify.app${Astro.url.pathname}`} />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://imgs.mongabay.com" />
+    <link rel="preconnect" href="https://www.globalseafood.org" />
+    <link rel="preconnect" href="https://undark.org" />
+    <link rel="preconnect" href="https://sharangaaqua.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://www.aquaculturealliance.org" />
+    <meta name="theme-color" content="#0052ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="manifest" href="/manifest.json" />
@@ -36,8 +53,8 @@ const { title = 'Amrich Pharma – Healthier Ponds. Higher Yields.', description
     <title>{title}</title>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied'});
+      window.gtag = function(){ window.dataLayer!.push(Array.from(arguments)); };
+      window.gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied'});
       (function() {
         const stored = localStorage.getItem('amrich_theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -59,7 +76,7 @@ const { title = 'Amrich Pharma – Healthier Ponds. Higher Yields.', description
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const startTime = Date.now();
-        const scrollState = {25:false, 50:false, 75:false, 100:false};
+        const scrollState: Record<number, boolean> = {25:false, 50:false, 75:false, 100:false};
         let ctaClicked = false;
         const isMobile = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
         const getProduct = () => document.querySelector('h1')?.textContent?.split('–')[0]?.trim() || 'Unknown';
@@ -98,7 +115,7 @@ const { title = 'Amrich Pharma – Healthier Ponds. Higher Yields.', description
 
         const sendEngagement = () => {
           const timeOnPage = Math.round((Date.now() - startTime) / 1000);
-          const maxScroll = Math.max(...Object.keys(scrollState).filter(k => scrollState[k]).map(Number));
+          const maxScroll = Math.max(...Object.keys(scrollState).filter(k => scrollState[Number(k)]).map(Number));
           if (timeOnPage >= 60 || maxScroll >= 50 || ctaClicked) {
             gtag?.('event', 'product_page_engagement', {
               product_name: getProduct(),

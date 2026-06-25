@@ -37,10 +37,10 @@ const testimonials = [
   },
 ];
 const metrics = [
-  { label: 'Ammonia', before: '1.8 ppm', after: '0.3 ppm', icon: 'water' },
-  { label: 'DO Levels', before: '3.2 mg/L', after: '5.8 mg/L', icon: 'pond' },
-  { label: 'Feed Conversion Ratio', before: '1.9', after: '1.4', icon: 'harvest' },
-  { label: 'Mortality', before: '22%', after: '8%', icon: 'leaf' },
+  { label: 'Ammonia', before: '1.8 ppm', after: '0.3 ppm', icon: 'water' as const },
+  { label: 'DO Levels', before: '3.2 mg/L', after: '5.8 mg/L', icon: 'pond' as const },
+  { label: 'Feed Conversion Ratio', before: '1.9', after: '1.4', icon: 'harvest' as const },
+  { label: 'Mortality', before: '22%', after: '8%', icon: 'leaf' as const },
 ];
 ---
 
@@ -49,7 +49,7 @@ const metrics = [
 
   <section class="testimonials-hero-section">
     <div class="t-hero-bg">
-      <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Farmer at pond" class="hero-bg-img" />
+      <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Farmer at pond" class="hero-bg-img" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" />
       <div class="hero-overlay"></div>
     </div>
     <div class="container hero-content">

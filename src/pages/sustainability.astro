@@ -15,11 +15,11 @@ const org = {
   },
 };
 const commitments = [
-  { title: 'Biodegradable Packaging', desc: 'Recyclable pouches &amp; reduced plastic waste', icon: 'leaf' },
-  { title: 'Zero Harmful Runoff', desc: 'Microbial &amp; herbal blends that break down safely', icon: 'water' },
-  { title: 'Carbon-Neutral Logistics', desc: 'Optimized routing for coastal distribution', icon: 'harvest' },
-  { title: 'Water Conservation Tech', desc: 'Formulations that maintain DO &amp; reduce flush cycles', icon: 'pond' },
-  { title: 'Farmer Training Programs', desc: 'Free pond management workshops &amp; digital guides', icon: 'farmer' },
+  { title: 'Biodegradable Packaging', desc: 'Recyclable pouches &amp; reduced plastic waste', icon: 'leaf' as const },
+  { title: 'Zero Harmful Runoff', desc: 'Microbial &amp; herbal blends that break down safely', icon: 'water' as const },
+  { title: 'Carbon-Neutral Logistics', desc: 'Optimized routing for coastal distribution', icon: 'harvest' as const },
+  { title: 'Water Conservation Tech', desc: 'Formulations that maintain DO &amp; reduce flush cycles', icon: 'pond' as const },
+  { title: 'Farmer Training Programs', desc: 'Free pond management workshops &amp; digital guides', icon: 'farmer' as const },
 ];
 ---
 
@@ -28,7 +28,7 @@ const commitments = [
 
   <section class="sustainability-hero-section">
     <div class="sus-hero-bg">
-      <img src="https://sharangaaqua.com/images/operation4.jpg" alt="Sustainable aquaculture pond" class="hero-bg-img" />
+      <img src="https://sharangaaqua.com/images/operation4.jpg" alt="Sustainable aquaculture pond" class="hero-bg-img" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" />
       <div class="hero-overlay"></div>
     </div>
     <div class="container hero-content">

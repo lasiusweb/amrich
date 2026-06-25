@@ -16,6 +16,21 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
+.env.development
+
+# test output
+playwright-report/
+test-results/
+
+# agent work files
+.opencode/
+
+# generated reports
+reports/
+
+# general logs
+*.log
 
 # macOS-specific files
 .DS_Store

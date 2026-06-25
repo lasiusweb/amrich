@@ -1,13 +1,100 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+
+const calendarMonths = [
+  {
+    month: 'January', season: 'Dry / Post-Harvest',
+    waterFocus: 'Salinity stabilisation, pH 7.5–8.5',
+    diseaseRisk: 'Low — fungal risk in leftover sludge',
+    products: 'FARM PRO, GASO CLEAN',
+    farmActivity: 'Pond drying, liming, soil tilling. Apply FARM PRO for bottom conditioning.'
+  },
+  {
+    month: 'February', season: 'Pre-Stocking Prep',
+    waterFocus: 'Ammonia baseline, hardness (≥120 ppm)',
+    diseaseRisk: 'Low — focus on biosecurity',
+    products: 'FARM-PS, BLOOMER, W-SOFTENER',
+    farmActivity: 'Fill ponds, treat inlet water. Use BLOOMER for natural feed base.'
+  },
+  {
+    month: 'March', season: 'Stocking / Early Rearing',
+    waterFocus: 'DO ≥5 mg/L, pH stability',
+    diseaseRisk: 'Medium — stress from transport & acclimation',
+    products: 'PRO PLUS, GUT-X, OXY-FARM',
+    farmActivity: 'Stock PLs, start probiotics in feed. Monitor oxygen daily.'
+  },
+  {
+    month: 'April', season: 'Early Growth',
+    waterFocus: 'Ammonia <0.5 ppm, nitrite spike watch',
+    diseaseRisk: 'Medium — vibrio risk',
+    products: 'GASO CLEAN, FARMADINE, FARM-C+',
+    farmActivity: 'Weekly probiotic dosing, check pond bottom for organic load.'
+  },
+  {
+    month: 'May', season: 'Peak Growth / Summer',
+    waterFocus: 'Temperature control, DO ≥4 mg/L',
+    diseaseRisk: 'High — WSSV, EHP during heat stress',
+    products: 'OXY-FARM, FARM 80%, SHRIMP CARE',
+    farmActivity: 'Increase aeration, reduce feeding if DO drops. Apply SHRIMP CARE for immune support.'
+  },
+  {
+    month: 'June', season: 'Monsoon Onset',
+    waterFocus: 'pH swings, turbidity, salinity drop',
+    diseaseRisk: 'High — fungal, bacterial blooms',
+    products: 'GASO CLEAN, W-SOFTENER, FARM-PS',
+    farmActivity: 'Check inlet water quality. Apply probiotics after heavy rain. Reduce feed 20–30%.'
+  },
+  {
+    month: 'July', season: 'Peak Monsoon',
+    waterFocus: 'Low salinity, high turbidity, low DO',
+    diseaseRisk: 'Very High — shell disease, gill rot',
+    products: 'FARMADINE, FARM-C+, OXY-FARM, GRO-BIND',
+    farmActivity: 'Emergency aeration ready. Use FARMADINE for pond disinfection. Bind sludge with GRO-BIND.'
+  },
+  {
+    month: 'August', season: 'Late Monsoon',
+    waterFocus: 'Ammonia rebound, alkalinity check',
+    diseaseRisk: 'High — post-monsoon stress',
+    products: 'GASO CLEAN, PRO PLUS, Easy Lite',
+    farmActivity: 'Restore gut health with PRO PLUS. Add Easy Lite for mineral balance after dilution.'
+  },
+  {
+    month: 'September', season: 'Post-Monsoon / Growth',
+    waterFocus: 'Stabilising parameters, DO recovery',
+    diseaseRisk: 'Medium — recovery phase',
+    products: 'BLOOMER, FARM PRO, GUT-X',
+    farmActivity: 'Increase feeding gradually. Rebuild natural productivity with BLOOMER.'
+  },
+  {
+    month: 'October', season: 'Harvest Prep / Growth',
+    waterFocus: 'Final ammonia checks, salinity adjustment',
+    diseaseRisk: 'Medium — harvest stress',
+    products: 'FARM 80%, SHRIMP CARE, OMEGA-BOOSTER',
+    farmActivity: 'Immune booster in feed. Apply OMEGA-BOOSTER for weight gain and firm texture.'
+  },
+  {
+    month: 'November', season: 'Harvest Season',
+    waterFocus: 'Pre-harvest water flush, parameter check',
+    diseaseRisk: 'Low — maintain biosecurity',
+    products: 'GASO CLEAN, FARMADINE',
+    farmActivity: 'Partial harvesting. Treat discharge water per CPCB norms.'
+  },
+  {
+    month: 'December', season: 'Post-Harvest / Dry Prep',
+    waterFocus: 'Soil testing, organic matter reduction',
+    diseaseRisk: 'Low — farm downtime',
+    products: 'FARM PRO, GASO CLEAN, GRO-BIND',
+    farmActivity: 'Pond drying, sludge removal. Plan next cycle inputs.'
+  }
+];
 ---
 
-<Layout title="Downloads | Amrich Pharma" description="Download Amrich Pharma brochures, guides, and reference materials for Indian aquaculture.">
+<Layout title="Downloads &amp; Resources | Amrich Pharma" description="Download Amrich Pharma brochures, printable pond management calendar, and reference guides for Indian aquaculture farmers.">
   <section class="hero-band-dark">
     <div class="container">
       <h1>Downloads &amp; Resources</h1>
       <p style="color: var(--on-dark-soft); margin-top: var(--space-sm); max-width: 500px;">
-        Brochures, calendars, and reference guides for your farm.
+        Brochures, printable calendars, and reference guides for your farm.
       </p>
     </div>
   </section>
@@ -15,36 +102,98 @@ import Layout from '../../layouts/Layout.astro';
   <section class="section-padding">
     <div class="container" style="max-width: 800px;">
       <div style="display: grid; gap: var(--space-base);">
-        <div class="card">
-          <h3>Amrich Pharma Brochure</h3>
+        <!-- Brochure Download -->
+        <div class="card" id="brochure-download">
+          <h2>Amrich Pharma Brochure</h2>
           <p style="margin-top: var(--space-xs); color: var(--muted);">
-            Complete product catalog with dosage charts, application guides, and contact information.
+            Complete product catalog with dosage charts, application guides, and contact information. Everything you need to choose the right solution for your pond.
           </p>
-          <a href="/files/amrich-brochure.pdf" download class="btn-primary" style="margin-top: var(--space-base); display: inline-flex;">
+          <ul style="margin-top: var(--space-sm); padding-left: var(--space-lg); color: var(--muted); font-size: 0.9rem;">
+            <li>Full product range overview (16 products across 4 categories)</li>
+            <li>Dosage recommendations per acre for shrimp &amp; fish ponds</li>
+            <li>Seasonal application calendar</li>
+            <li>Contact details for regional sales support</li>
+          </ul>
+          <a
+            href="/files/amrich-brochure.pdf"
+            download
+            class="btn-primary"
+            style="margin-top: var(--space-base); display: inline-flex;"
+            data-ga-event="brochure_download"
+            data-ga-brochure-type="master"
+          >
             Download Brochure (PDF)
           </a>
         </div>
 
-        <div class="card">
-          <h3>Pond Management Calendar</h3>
+        <!-- Pond Management Calendar -->
+        <div class="card" id="calendar-section">
+          <h2>Pond Management Calendar 2026–2027</h2>
           <p style="margin-top: var(--space-xs); color: var(--muted);">
-            Printable month-by-month guide — water testing schedule, feeding adjustments, probiotic application timing, and seasonal alerts.
+            Month-by-month reference guide — water testing schedule, feeding adjustments, probiotic application timing, and seasonal disease alerts for Indian shrimp &amp; fish ponds.
           </p>
-          <button class="btn-secondary" style="margin-top: var(--space-base);" disabled>Coming Soon</button>
+          <p style="margin-top: var(--space-xs); font-size: 0.85rem; color: var(--muted-soft);">
+            <strong>How to use:</strong> Refer to the current month column for water quality focus, disease risk level, recommended Amrich products, and key farm activities. Click the print button below to get a hard copy for your farm office.
+          </p>
+
+          <div class="calendar-table-wrap">
+            <table class="calendar-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Season</th>
+                  <th>Water Quality Focus</th>
+                  <th>Disease Risk</th>
+                  <th>Recommended Products</th>
+                  <th>Farm Activity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {calendarMonths.map((row) => (
+                  <tr class={row.diseaseRisk === 'Very High' ? 'risk-critical' : row.diseaseRisk === 'High' ? 'risk-high' : row.diseaseRisk === 'Medium' ? 'risk-medium' : ''}>
+                    <td data-label="Month">{row.month}</td>
+                    <td data-label="Season">{row.season}</td>
+                    <td data-label="Water Focus">{row.waterFocus}</td>
+                    <td data-label="Disease Risk">
+                      <span class={`risk-badge risk-${row.diseaseRisk === 'Very High' ? 'critical' : row.diseaseRisk === 'High' ? 'high' : row.diseaseRisk === 'Medium' ? 'medium' : 'low'}`}>
+                        {row.diseaseRisk}
+                      </span>
+                    </td>
+                    <td data-label="Products">{row.products}</td>
+                    <td data-label="Activity">{row.farmActivity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: var(--space-base); display: flex; gap: var(--space-base); flex-wrap: wrap;">
+            <button class="btn-secondary" id="printCalendarBtn" data-ga-event="calendar_print" aria-label="Print pond management calendar">
+              🖨️ Print Calendar
+            </button>
+            <span style="font-size: 0.8rem; color: var(--muted-soft); align-self: center;">
+              The calendar renders as a clean, print-friendly table. Use browser print (Ctrl+P) or tap the button above.
+            </span>
+          </div>
         </div>
 
+        <!-- Water Parameter Reference Chart -->
         <div class="card">
-          <h3>Water Parameter Reference Chart</h3>
+          <h2>Water Parameter Reference Chart</h2>
           <p style="margin-top: var(--space-xs); color: var(--muted);">
-            Quick-reference card for optimal ranges: salinity, pH, alkalinity, ammonia, nitrite, DO, and temperature for shrimp and fish ponds.
+            Quick-reference card for optimal ranges: salinity, pH, alkalinity, ammonia, nitrite, dissolved oxygen, and temperature for shrimp and fish ponds.
+          </p>
+          <p style="margin-top: var(--space-xs); font-size: 0.9rem; color: var(--muted);">
+            <strong>Optimal ranges:</strong> Salinity 10–25 ppt | pH 7.5–8.5 | Alkalinity ≥120 ppm | Ammonia &lt;0.5 ppm | Nitrite &lt;0.1 ppm | DO ≥5 mg/L | Temp 28–32°C
           </p>
           <button class="btn-secondary" style="margin-top: var(--space-base);" disabled>Coming Soon</button>
         </div>
       </div>
 
+      <!-- Contact CTA -->
       <div class="card" style="margin-top: var(--space-xl); background: var(--surface-soft); text-align: center; border: none;">
         <p>
-          Need a specific product brochure? Contact us and we'll send it right away.
+          Need a specific product brochure or custom farm plan? Contact us and we'll send it right away.
         </p>
         <div style="margin-top: var(--space-base); display: flex; gap: var(--space-base); justify-content: center; flex-wrap: wrap;">
           <a href="tel:+919712335338" class="btn-primary">Call 97123 35338</a>
@@ -54,3 +203,198 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<style is:global>
+  /* Calendar table styles */
+  .calendar-table-wrap {
+    overflow-x: auto;
+    margin-top: var(--space-base);
+    -webkit-overflow-scrolling: touch;
+  }
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+  .calendar-table th {
+    background: var(--surface-dark);
+    color: var(--on-dark);
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    border: 1px solid var(--surface-dark-elevated);
+  }
+  .calendar-table td {
+    padding: 10px 8px;
+    border: 1px solid var(--hairline);
+    vertical-align: top;
+    line-height: 1.45;
+  }
+  .calendar-table tbody tr:nth-child(even) {
+    background: var(--surface-soft);
+  }
+  .calendar-table tbody tr:hover {
+    background: var(--hairline-soft);
+  }
+  .calendar-table tbody tr.risk-critical {
+    border-left: 4px solid var(--semantic-down);
+    background: #fff5f5;
+  }
+  .calendar-table tbody tr.risk-high {
+    border-left: 4px solid #f59e0b;
+  }
+  .calendar-table tbody tr.risk-medium {
+    border-left: 4px solid var(--muted-soft);
+  }
+
+  :root.dark .calendar-table tbody tr.risk-critical {
+    background: rgba(207, 32, 47, 0.12);
+  }
+  :root.dark .calendar-table tbody tr.risk-high {
+    background: rgba(245, 158, 11, 0.1);
+  }
+  :root.dark .calendar-table tbody tr.risk-medium {
+    background: rgba(168, 172, 179, 0.08);
+  }
+  :root.dark .calendar-table th {
+    background: var(--surface-dark-elevated);
+    color: var(--on-dark);
+    border-color: var(--hairline);
+  }
+  :root.dark .calendar-table td {
+    border-color: var(--hairline);
+  }
+  :root.dark .calendar-table tbody tr:nth-child(even) {
+    background: var(--surface-soft);
+  }
+
+  .risk-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--rounded-pill);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .risk-badge.risk-critical {
+    background: var(--semantic-down);
+    color: #ffffff;
+  }
+  .risk-badge.risk-high {
+    background: #f59e0b;
+    color: #0a0b0d;
+  }
+  .risk-badge.risk-medium {
+    background: var(--muted-soft);
+    color: var(--on-dark);
+  }
+  .risk-badge.risk-low {
+    background: var(--semantic-up);
+    color: #ffffff;
+  }
+
+  /* Print Styles */
+  @media print {
+    body * {
+      visibility: visible !important;
+    }
+    .site-header,
+    .site-footer,
+    .skip-link,
+    .consent-banner,
+    #quoteModal,
+    .btn-primary,
+    .btn-secondary,
+    [data-modal="quote-form"] {
+      display: none !important;
+    }
+    .hero-band-dark {
+      padding: 20px 0 !important;
+      background: #0a0b0d !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .section-padding {
+      padding: 16px 0 !important;
+    }
+    .card {
+      box-shadow: none !important;
+      border: 1px solid #ccc !important;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    .calendar-table {
+      font-size: 0.75rem !important;
+      min-width: 100% !important;
+    }
+    .calendar-table th {
+      background: #0a0b0d !important;
+      color: #ffffff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .calendar-table td {
+      padding: 6px 4px !important;
+    }
+    .calendar-table tbody tr.risk-critical,
+    .calendar-table tbody tr.risk-high,
+    .calendar-table tbody tr.risk-medium {
+      border-left-width: 6px !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .risk-badge {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .calendar-table-wrap {
+      overflow: visible !important;
+    }
+    #calendar-section .btn-secondary,
+    #calendar-section span {
+      display: none !important;
+    }
+    a[href]::after {
+      content: none !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Print calendar button
+    const printBtn = document.getElementById('printCalendarBtn');
+    if (printBtn) {
+      printBtn.addEventListener('click', () => {
+        // Fire GA4 event for calendar print
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'calendar_print', {
+            page_url: window.location.pathname,
+            device_type: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop'
+          });
+        }
+        window.print();
+      });
+    }
+
+    // Enhanced brochure GA4 tracking with type
+    const brochureLink = document.querySelector('a[data-ga-event="brochure_download"]');
+    if (brochureLink) {
+      // The global listener in Layout.astro already tracks a[download] clicks,
+      // but we add a more specific event here with brochure_type detail.
+      brochureLink.addEventListener('click', () => {
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'brochure_download', {
+            brochure_type: brochureLink.getAttribute('data-ga-brochure-type') || 'master',
+            page_url: window.location.pathname,
+            device_type: /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop',
+            download_page: 'dedicated'
+          });
+        }
+      });
+    }
+  });
+</script>

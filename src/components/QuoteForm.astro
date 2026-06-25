@@ -8,31 +8,31 @@
     <form id="quoteForm" class="quote-form" novalidate>
       <div class="form-group">
         <label for="fullName">Full Name *</label>
-        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g., Ramesh K.…">
-        <span class="error-msg" aria-live="polite"></span>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g., Ramesh K.…" aria-describedby="error-fullName">
+        <span class="error-msg" aria-live="polite" id="error-fullName"></span>
       </div>
 
       <div class="form-group">
         <label for="phone">WhatsApp/Mobile Number *</label>
-        <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="98765 43210…" autocomplete="tel">
-        <span class="error-msg" aria-live="polite"></span>
+        <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="98765 43210…" autocomplete="tel" aria-describedby="error-phone">
+        <span class="error-msg" aria-live="polite" id="error-phone"></span>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="location">Farm Location (State/District) *</label>
-          <input type="text" id="location" name="location" required placeholder="e.g., Kakinada, AP">
+          <input type="text" id="location" name="location" required placeholder="e.g., Kakinada, AP" aria-describedby="error-location">
         </div>
         <div class="form-group">
           <label for="pondSize">Pond Size (Acres) *</label>
-          <input type="number" id="pondSize" name="pondSize" required min="0.1" step="0.1" placeholder="e.g., 12…">
+          <input type="number" id="pondSize" name="pondSize" required min="0.1" step="0.1" placeholder="e.g., 12…" aria-describedby="error-pondSize">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="species">Target Species *</label>
-          <select id="species" name="species" required>
+          <select id="species" name="species" required aria-describedby="error-species">
             <option value="">Select species</option>
             <option value="Shrimp">Shrimp / Prawn</option>
             <option value="Fish">Fish</option>
@@ -41,14 +41,14 @@
         </div>
         <div class="form-group">
           <label for="productInterest">Product of Interest *</label>
-          <input type="text" id="productInterest" name="productInterest" required placeholder="Auto-filled or type here…">
+          <input type="text" id="productInterest" name="productInterest" required placeholder="Auto-filled or type here…" aria-describedby="error-productInterest">
           <small class="hint">Pre-filled from current page. Edit if needed.</small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="challenge">Current Pond Challenge</label>
-        <select id="challenge" name="challenge">
+        <select id="challenge" name="challenge" aria-describedby="error-challenge">
           <option value="">Select primary challenge</option>
           <option value="Ammonia/Nitrite Spikes">Ammonia/Nitrite Spikes</option>
           <option value="Low Dissolved Oxygen">Low Dissolved Oxygen</option>
@@ -59,26 +59,27 @@
         </select>
       </div>
 
-      <div class="form-group">
-        <label>Preferred Contact Method *</label>
+      <fieldset class="form-group">
+        <legend>Preferred Contact Method *</legend>
         <div class="radio-group">
           <label><input type="radio" name="contactMethod" value="WhatsApp" checked> WhatsApp</label>
           <label><input type="radio" name="contactMethod" value="Call"> Phone Call</label>
           <label><input type="radio" name="contactMethod" value="Email"> Email</label>
         </div>
-      </div>
+      </fieldset>
 
+      <div id="formErrorSummary" class="form-error-summary" role="alert" aria-live="polite" style="display:none;"></div>
       <button type="submit" class="btn-primary full-width">Get My Custom Quote & Dosage Plan</button>
       <p class="form-footer">Your data is secure. Our aquaculture specialist responds within 2 hours (Mon-Sat).</p>
     </form>
 
-    <div id="quoteSuccess" class="success-state" style="display:none;"></div>
+    <div id="quoteSuccess" class="success-state" role="status" aria-live="polite" style="display:none;"></div>
   </div>
 </div>
 
 <style>
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal);
     display: flex; align-items: flex-end; justify-content: center;
     opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
   }
@@ -97,11 +98,11 @@
   }
   .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
   .modal-header h2 { font-size: 1.25rem; margin: 0; color: var(--ink); }
-  .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 4px; color: var(--body); }
+  .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; color: var(--body); }
   .quote-form { display: flex; flex-direction: column; gap: 14px; }
   .form-group { display: flex; flex-direction: column; gap: 6px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  label { font-weight: 500; font-size: 0.9rem; color: var(--ink); }
+  label { font-weight: 500; font-size: 1rem; color: var(--ink); }
   input, select { padding: 10px; border: 1px solid var(--hairline); border-radius: var(--rounded-md); font-size: 1rem; font-family: var(--font-sans); }
   input:focus, select:focus { outline: 2px solid var(--primary); border-color: transparent; }
   .error-msg { color: var(--semantic-down); font-size: 0.8rem; min-height: 1.2em; }
@@ -110,7 +111,8 @@
   .radio-group label:has(input:checked) { border-color: var(--primary); background: rgba(0,82,255,0.06); }
   .full-width { width: 100%; }
   .form-footer { font-size: 0.8rem; color: var(--muted); margin-top: 8px; text-align: center; }
-  .hint { font-size: 0.75rem; color: var(--muted); }
+  .form-error-summary { background: #fef2f2; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 10px 14px; font-size: 0.85rem; color: var(--semantic-down); }
+  .hint { font-size: 0.85rem; color: var(--muted); }
   .success-state { text-align: center; padding: 24px 0; }
   .success-state h3 { color: var(--semantic-up); margin-bottom: 8px; }
   .success-state p { color: var(--body); line-height: 1.5; }
@@ -125,38 +127,38 @@
 
     retryQueuedQuotes();
 
-    const modal = document.getElementById('quoteModal');
-    const form = document.getElementById('quoteForm');
+    const modal = document.getElementById('quoteModal')!;
+    const form = document.getElementById('quoteForm') as HTMLFormElement | null;
     const successDiv = document.getElementById('quoteSuccess');
     const closeBtn = document.getElementById('quoteModalClose');
-    const productInput = document.getElementById('productInterest');
+    const productInput = document.getElementById('productInterest') as HTMLInputElement | null;
 
     const pageProduct = document.querySelector('h1')?.textContent?.split('–')[0]?.trim();
     if (pageProduct && productInput) productInput.value = pageProduct;
 
-    let lastFocusedElement = null;
+    let lastFocusedElement: HTMLElement | null = null;
 
     window.openQuoteModal = () => {
       if (!modal) return;
-      lastFocusedElement = document.activeElement;
+      lastFocusedElement = document.activeElement as HTMLElement | null;
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      const firstInput = modal?.querySelector('input, select, button');
+      const firstInput = modal?.querySelector('input, select, button') as HTMLElement | null;
       if (firstInput) setTimeout(() => firstInput.focus(), 100);
     };
 
     const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-    const trapFocus = (e) => {
+    const trapFocus = (e: KeyboardEvent) => {
       if (!modal?.classList.contains('active')) return;
       const focusable = modal.querySelectorAll(focusableSelector);
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
+      const first = focusable[0] as HTMLElement | null;
+      const last = focusable[focusable.length - 1] as HTMLElement | null;
       if (e.key === 'Tab') {
-        if (e.shiftKey && document.activeElement === first) {
+        if (e.shiftKey && document.activeElement === first && last) {
           e.preventDefault(); last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
+        } else if (!e.shiftKey && document.activeElement === last && first) {
           e.preventDefault(); first.focus();
         }
       }
@@ -173,16 +175,16 @@
     };
 
     closeBtn?.addEventListener('click', closeModal);
-    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', (e) => {
+    modal?.addEventListener('click', (e: Event) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.key === 'Escape' && modal?.classList.contains('active')) closeModal();
       trapFocus(e);
     });
 
     document.querySelectorAll('[data-modal="quote-form"]').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', (e: Event) => {
         e.preventDefault();
-        const product = btn.dataset.product || document.querySelector('h1')?.textContent?.split('–')[0]?.trim() || '';
+        const product = (btn as HTMLElement).dataset.product || document.querySelector('h1')?.textContent?.split('–')[0]?.trim() || '';
         if (productInput) productInput.value = product;
         window.openQuoteModal();
       });
@@ -191,18 +193,19 @@
     if (!form) return;
     form.querySelectorAll('input, select').forEach(f => {
       f.addEventListener('blur', () => {
-        const errorEl = f.parentElement?.querySelector('.error-msg');
+        const el = f as HTMLInputElement | HTMLSelectElement;
+        const errorEl = el.parentElement?.querySelector('.error-msg');
         if (!errorEl) return;
         let isValid = true;
         let errorMsg = '';
-        if (f.required && !f.value.trim()) {
+        if (el.required && !el.value.trim()) {
           isValid = false; errorMsg = 'This field is required.';
-        } else if (f.id === 'phone') {
-          const cleaned = f.value.replace(/\D/g, '');
+        } else if (el.id === 'phone') {
+          const cleaned = el.value.replace(/\D/g, '');
           isValid = /^[6-9]\d{9}$/.test(cleaned);
           if (!isValid) errorMsg = 'Enter a valid 10-digit Indian mobile number.';
-        } else if (f.id === 'pondSize') {
-          const acres = parseFloat(f.value);
+        } else if (el.id === 'pondSize') {
+          const acres = parseFloat(el.value);
           isValid = !isNaN(acres) && acres > 0 && acres <= 1000;
           if (!isValid) errorMsg = 'Enter a valid pond size (0.1 to 1000 acres).';
         }
@@ -210,10 +213,31 @@
       });
     });
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async (e: Event) => {
       e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
       if (!btn) return;
+
+      // Validate all required fields before submission
+      const errorSummary = document.getElementById('formErrorSummary');
+      const errors: string[] = [];
+      [...form.querySelectorAll('[required]')].forEach(f => {
+        f.dispatchEvent(new Event('blur'));
+        const errorEl = (f as HTMLElement).nextElementSibling;
+        if (errorEl?.textContent?.trim()) {
+          const label = form.querySelector(`label[for="${(f as HTMLInputElement).id}"]`);
+          errors.push(label?.textContent?.replace(' *', '') || (f as HTMLInputElement).id);
+        }
+      });
+      if (errors.length > 0) {
+        if (errorSummary) {
+          errorSummary.style.display = 'block';
+          errorSummary.textContent = `Please fix the following: ${errors.join(', ')}.`;
+          errorSummary.focus();
+        }
+        return;
+      }
+
       btn.disabled = true; btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending…';
 
       const raw = Object.fromEntries(new FormData(form).entries());
@@ -239,7 +263,7 @@
       if (successDiv) successDiv.style.display = 'block';
       if (successDiv) {
         successDiv.innerHTML = `
-          <h3>Quote Request Received!</h3>
+          <h3 tabindex="-1">Quote Request Received!</h3>
           <p>Thank you, <strong>${quoteData.fullName}</strong>. Our aquaculture specialist will share a <strong>customized dosage & pricing plan</strong> for your ${quoteData.pondSize}-acre pond within 2 hours.</p>
           <p>Need immediate assistance? Chat directly on WhatsApp:</p>
           <a href="${waLink}" class="whatsapp-btn" target="_blank" rel="noopener">Open WhatsApp Chat</a>
@@ -250,6 +274,9 @@
         setTimeout(() => {
           successDiv.querySelector('.btn-secondary')?.addEventListener('click', () => document.getElementById('quoteModalClose')?.click());
         }, 0);
+        const successHeading = successDiv.querySelector('h3');
+        if (successHeading) successHeading.setAttribute('tabindex', '-1');
+        if (successHeading) successHeading.focus();
       }
     });
   });

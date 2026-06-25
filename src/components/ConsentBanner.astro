@@ -5,7 +5,7 @@
     <p class="consent-legal">By clicking "Accept All", you consent to our use of cookies. You can customize your preferences or reject non-essential cookies. <a href="/privacy-policy" target="_blank">Read our Privacy Policy</a> (India DPDP Act 2023 &amp; GDPR compliant).</p>
     <div class="consent-actions">
       <button id="consentAccept" class="btn-primary">Accept All</button>
-      <button id="consentSettings" class="btn-secondary">Customize</button>
+      <button id="consentSettings" class="btn-secondary" aria-expanded="false">Customize</button>
       <button id="consentReject" class="btn-ghost">Reject Non-Essential</button>
     </div>
     <div id="consentCustomize" class="consent-customize" style="display:none;">
@@ -71,7 +71,7 @@
   .consent-actions .btn-secondary {
     font-size: 14px;
     padding: 8px 16px;
-    height: 40px;
+    min-height: 44px;
   }
   .btn-ghost {
     display: inline-flex;
@@ -83,7 +83,7 @@
     font-size: 14px;
     font-weight: 500;
     padding: 8px 16px;
-    height: 40px;
+    min-height: 44px;
     border: none;
     border-radius: var(--rounded-pill);
     cursor: pointer;
@@ -133,18 +133,18 @@
     const settingsBtn = document.getElementById('consentSettings');
     const saveBtn = document.getElementById('consentSave');
     const customizeDiv = document.getElementById('consentCustomize');
-    const analyticsStorageCheck = document.getElementById('consentAnalyticsStorage');
-    const adStorageCheck = document.getElementById('consentAdStorage');
+    const analyticsStorageCheck = document.getElementById('consentAnalyticsStorage') as HTMLInputElement | null;
+    const adStorageCheck = document.getElementById('consentAdStorage') as HTMLInputElement | null;
 
     const CONSENT_KEY = 'amrich_consent';
 
-    function getConsent() {
+    function getConsent(): Record<string, unknown> | null {
       try {
         return JSON.parse(localStorage.getItem(CONSENT_KEY) || 'null');
       } catch { return null; }
     }
 
-    function setConsent(state, storage, adStorage) {
+    function setConsent(state: string, storage: boolean, adStorage: boolean) {
       const pref = { state, analytics_storage: storage, ad_storage: adStorage, updatedAt: new Date().toISOString() };
       localStorage.setItem(CONSENT_KEY, JSON.stringify(pref));
       applyConsent(pref);
@@ -152,16 +152,31 @@
       banner?.setAttribute('aria-hidden', 'true');
     }
 
-    function applyConsent(pref) {
+    function applyConsent(pref: Record<string, unknown>) {
       if (typeof gtag === 'undefined') {
         window.dataLayer = window.dataLayer || [];
-        window.gtag = function() { dataLayer.push(arguments); };
+        window.gtag = function() { window.dataLayer!.push(Array.from(arguments)); };
       }
       gtag('consent', 'update', {
         analytics_storage: pref.analytics_storage ? 'granted' : 'denied',
         ad_storage: pref.ad_storage ? 'granted' : 'denied',
       });
     }
+
+    const trapConsentFocus = (e: KeyboardEvent) => {
+      if (!banner?.classList.contains('visible')) return;
+      const focusable = banner.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+      const first = focusable[0] as HTMLElement | null;
+      const last = focusable[focusable.length - 1] as HTMLElement | null;
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first?.focus();
+        }
+      }
+    };
+    document.addEventListener('keydown', trapConsentFocus);
 
     const existing = getConsent();
     if (existing) {
@@ -173,12 +188,25 @@
     setTimeout(() => {
       banner?.classList.add('visible');
       banner?.setAttribute('aria-hidden', 'false');
+      document.getElementById('consentAccept')?.focus();
     }, 1000);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (banner?.classList.contains('visible')) {
+          setConsent('rejected', false, false);
+        }
+      }
+    });
 
     acceptBtn?.addEventListener('click', () => setConsent('accepted', true, true));
     rejectBtn?.addEventListener('click', () => setConsent('rejected', false, false));
     settingsBtn?.addEventListener('click', () => {
-      if (customizeDiv) customizeDiv.style.display = customizeDiv.style.display === 'none' ? 'flex' : 'none';
+      if (customizeDiv) {
+        const isVisible = customizeDiv.style.display === 'flex';
+        customizeDiv.style.display = isVisible ? 'none' : 'flex';
+        settingsBtn?.setAttribute('aria-expanded', isVisible ? 'false' : 'true');
+      }
     });
     saveBtn?.addEventListener('click', () => {
       setConsent('customized', analyticsStorageCheck?.checked || false, adStorageCheck?.checked || false);

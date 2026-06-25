@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import Icon from '../../components/icons/Icon.astro';
 import ProductImage from '../../components/ProductImage.astro';
-import products, { getProductsByCategory, getCategory, getAllCategories } from '../../data/products';
+import { getProductsByCategory, getCategory, getAllCategories } from '../../data/products';
 
 export async function getStaticPaths() {
   return getAllCategories().map(cat => ({
@@ -15,12 +15,28 @@ export async function getStaticPaths() {
 const { categorySlug } = Astro.props as { categorySlug: string };
 const category = getCategory(categorySlug);
 const catProducts = getProductsByCategory(categorySlug);
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `${category.name} | Amrich Pharma`,
+  description: category.desc,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: catProducts.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://amrich-pharma.netlify.app/products/${categorySlug}/${p.slug}`,
+      name: p.name,
+    })),
+  },
+};
 ---
 
 <Layout
   title={`${category.name} | Amrich Pharma`}
   description={category.desc}
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)}></script>
   <div class="category-page container">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },

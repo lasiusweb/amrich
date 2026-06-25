@@ -3,9 +3,9 @@
   --primary-active: #003ecc;
   --primary-disabled: #a8b8cc;
   --ink: #0a0b0d;
-  --body: #5b616e;
+  --body: #4d5461;
   --body-strong: #0a0b0d;
-  --muted: #7c828a;
+  --muted: #5e6573;
   --muted-soft: #a8acb3;
   --hairline: #dee1e6;
   --hairline-soft: #eef0f3;
@@ -17,7 +17,7 @@
   --surface-dark-elevated: #16181c;
   --on-primary: #ffffff;
   --on-dark: #ffffff;
-  --on-dark-soft: #a8acb3;
+  --on-dark-soft: #c0c4cc;
   --semantic-up: #05b169;
   --semantic-down: #cf202f;
   --accent-yellow: #f4b000;
@@ -51,9 +51,9 @@
 
   --z-base: 0;
   --z-sticky: 100;
-  --z-overlay: 250;
+  --z-overlay: 200;
   --z-drawer: 300;
-  --z-mega: 200;
+  --z-mega: 400;
   --z-cta: 900;
   --z-modal: 1000;
 
@@ -109,6 +109,18 @@ html.dark {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  
+  .modal-overlay,
+  .modal-container,
+  .mobile-drawer,
+  .drawer-panel {
+    transition: none !important;
+  }
+  
+  .hero-band-dark,
+  .hero-overlay {
+    transition: none !important;
+  }
 }
 
 body {
@@ -139,6 +151,9 @@ button:focus:not(:focus-visible),
 a:focus:not(:focus-visible),
 input:focus:not(:focus-visible),
 select:focus:not(:focus-visible) {
+  outline: none;
+}
+:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -224,6 +239,36 @@ select:focus:not(:focus-visible) {
   cursor: pointer;
 }
 
+/* Button Outline on Dark — transparent pill with white border for dark backgrounds */
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--on-dark);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--rounded-pill);
+  padding: 11px 19px;
+  height: 44px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.15;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.btn-outline-dark:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--on-dark);
+  color: var(--on-dark);
+}
+.btn-outline-dark:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
 .section-padding {
   padding: var(--space-section) 0;
 }
@@ -269,5 +314,20 @@ select:focus:not(:focus-visible) {
 @media (min-width: 1024px) {
   .container {
     padding: 0 var(--space-xl);
+  }
+}
+
+/* ============================================
+   Accessibility: Reduced Motion & Contrast
+   ============================================ */
+
+/* High contrast: enhance borders and text for users who need it */
+@media (prefers-contrast: high) {
+  :root {
+    --hairline: var(--muted);
+    --body: var(--ink);
+  }
+  .btn-secondary {
+    border-width: 2px;
   }
 }

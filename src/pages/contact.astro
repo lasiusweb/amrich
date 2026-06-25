@@ -15,10 +15,10 @@ const org = {
   },
 };
 const details = [
-  { icon: 'water', label: 'Address', content: 'Plot No. 2, Sainath Nagar<br />Shivaji Mandpeshwar Road<br />Dahisar, Mumbai-400068', href: null },
-  { icon: 'phone', label: 'Phone', content: '97123 35338', href: 'tel:+919712335338' },
-  { icon: 'farmer', label: 'Email', content: 'amrichpharma@gmail.com', href: 'mailto:amrichpharma@gmail.com' },
-  { icon: 'whatsapp', label: 'WhatsApp', content: 'Chat on WhatsApp', href: 'https://wa.me/919712335338' },
+  { icon: 'water' as const, label: 'Address', content: 'Plot No. 2, Sainath Nagar<br />Shivaji Mandpeshwar Road<br />Dahisar, Mumbai-400068', href: null },
+  { icon: 'phone' as const, label: 'Phone', content: '97123 35338', href: 'tel:+919712335338' },
+  { icon: 'farmer' as const, label: 'Email', content: 'amrichpharma@gmail.com', href: 'mailto:amrichpharma@gmail.com' },
+  { icon: 'whatsapp' as const, label: 'WhatsApp', content: 'Chat on WhatsApp', href: 'https://wa.me/919712335338' },
 ];
 ---
 
@@ -28,7 +28,7 @@ const details = [
   <div class="contact-page">
     <section class="contact-hero-section">
       <div class="contact-hero-bg">
-        <img src="https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg" alt="Aquaculture pond experts" class="hero-bg-img" />
+        <img src="https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg" alt="Aquaculture pond experts" class="hero-bg-img" width="1600" height="900" loading="eager" fetchpriority="high" decoding="async" />
         <div class="hero-overlay"></div>
       </div>
       <div class="container hero-content">

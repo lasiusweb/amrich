@@ -9,7 +9,7 @@ export interface Props {
   categorySlug: string;
   productSlug: string;
 }
-const { title, description, category, categorySlug, productSlug } = Astro.props;
+const { title, description, category, categorySlug } = Astro.props;
 const breadcrumbItems = [
   { label: 'Home', href: '/' },
   { label: 'Products', href: '/products' },
@@ -32,7 +32,7 @@ const breadcrumbItems = [
     <div class="sticky-inner container">
       <span class="sticky-product-name">{title.split('–')[0]?.trim() || title}</span>
       <div class="sticky-actions">
-        <a href="/downloads/amrich-brochure" class="btn-secondary" download>Download Brochure</a>
+        <a href="/files/amrich-brochure.pdf" class="btn-secondary" download>Download Brochure</a>
         <button class="btn-primary" data-modal="quote-form" data-product={title.split('–')[0]?.trim() || title}>Get a Quote</button>
       </div>
     </div>

@@ -10,6 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "npx astro check",
+    "typecheck": "npx astro check",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:report": "playwright show-report"
@@ -21,8 +23,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "typescript": "^6.0.3",
+    "@playwright/test": "^1.40.0",
     "playwright": "^1.40.0",
-    "@playwright/test": "^1.40.0"
+    "serve": "^14.2.6",
+    "typescript": "^6.0.3"
   }
 }

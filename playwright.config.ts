@@ -17,10 +17,10 @@ export default defineConfig({
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
   ],
   webServer: {
-    command: 'npx serve -s dist -l 4321',
+    command: 'python -m http.server 4321 --directory dist',
     port: 4321,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120000,
   },
-  // Note: using a static server to serve built `dist/` because the Netlify adapter doesn't support `astro preview` in this environment.
+  // Using Python http.server to serve built `dist/` (Windows compatibility).
 });

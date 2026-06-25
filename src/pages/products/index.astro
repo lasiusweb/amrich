@@ -1,26 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/icons/Icon.astro';
-import HeroImage from '../../components/HeroImage.astro';
 
-const org = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: 'All Products | Amrich Pharma',
-  description: 'ISO-certified aquaculture health products: probiotics, water quality stabilizers, disease control, and feed pond preparers for shrimp and fish farming.',
-  publisher: {
-    '@type': 'Organization',
-    name: 'Amrich Pharma',
-    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
-    email: 'amrichpharma@gmail.com',
-    telephone: '+919712335338',
-  },
-};
 const categories = [
-  { slug: 'probiotics-soil-care', name: 'Probiotics & Soil Care', desc: 'Bacillus & Paracoccus blends that improve pond-bottom health, break down sludge, and boost natural productivity.', icon: 'leaf' },
-  { slug: 'water-quality-ammonia-control', name: 'Water Quality & Ammonia Control', desc: 'Rapid ammonia reduction, pH stabilization, dissolved oxygen boosters for safe, stable water conditions.', icon: 'water' },
-  { slug: 'disease-stress-management', name: 'Disease & Stress Management', desc: 'Herbal and mineral formulations for disease prevention, stress reduction, and healthy molting cycles.', icon: 'lab' },
-  { slug: 'feed-pond-preparers', name: 'Feed & Pond Preparers', desc: 'Feed binders, nutritional boosters, and pond readiness products for optimal grow-out cycles.', icon: 'fish' },
+  { slug: 'probiotics-soil-care', name: 'Probiotics & Soil Care', desc: 'Bacillus & Paracoccus blends that improve pond-bottom health, break down sludge, and boost natural productivity.', icon: 'leaf' as const },
+  { slug: 'water-quality-ammonia-control', name: 'Water Quality & Ammonia Control', desc: 'Rapid ammonia reduction, pH stabilization, dissolved oxygen boosters for safe, stable water conditions.', icon: 'water' as const },
+  { slug: 'disease-stress-management', name: 'Disease & Stress Management', desc: 'Herbal and mineral formulations for disease prevention, stress reduction, and healthy molting cycles.', icon: 'lab' as const },
+  { slug: 'feed-pond-preparers', name: 'Feed & Pond Preparers', desc: 'Feed binders, nutritional boosters, and pond readiness products for optimal grow-out cycles.', icon: 'fish' as const },
 ];
 const catImages: Record<string, string> = {
   'probiotics-soil-care': 'https://imgs.mongabay.com/wp-content/uploads/sites/30/2023/03/30152930/shrimp_farm_NSS04247-1.jpg',
@@ -28,10 +14,25 @@ const catImages: Record<string, string> = {
   'disease-stress-management': 'https://sharangaaqua.com/images/operation4.jpg',
   'feed-pond-preparers': 'https://www.aquaculturealliance.org/wp-content/uploads/2019/03/Shrimp-Forum-2019_Pic-1-960x720.jpg',
 };
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'All Products | Amrich Pharma',
+  description: 'ISO-certified aquaculture health products: probiotics, water quality stabilizers, disease control, and feed pond preparers for shrimp and fish farming.',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: categories.map((cat, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://amrich-pharma.netlify.app/products/${cat.slug}`,
+      name: cat.name,
+    })),
+  },
+};
 ---
 
 <Layout title="All Products | Amrich Pharma" description="Browse Amrich Pharma's full range of ISO-certified aquaculture health solutions for shrimp and fish ponds. Probiotics, water care, disease control & more.">
-  <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(collectionSchema)} />
 
   <div class="products-hub container">
     <div class="hub-header">
@@ -43,7 +44,7 @@ const catImages: Record<string, string> = {
       {categories.map(cat => (
         <a href={`/products/${cat.slug}`} class="category-card">
           <div class="cat-img-wrap">
-            <img src={catImages[cat.slug]} alt={cat.name} loading="lazy" class="cat-img" />
+            <img src={catImages[cat.slug]} alt={cat.name} loading="lazy" decoding="async" width="1200" height="675" class="cat-img" />
             <div class="cat-icon">
               <Icon name={cat.icon} size={24} />
             </div>

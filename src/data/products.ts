@@ -1,3 +1,8 @@
+/**
+ * Product metadata catalog for Amrich Pharma.
+ * Single source of truth for product titles, slugs, categories, and SEO data.
+ * Used by product pages, category pages, navigation, and schema generation.
+ */
 export interface Product {
   slug: string;
   name: string;
@@ -8,15 +13,23 @@ export interface Product {
   dosage: string;
   packSize: string;
   shelfLife: string;
+  /** Display badges (e.g., "ISO Certified", "Eco-Safe Formulation") */
   badges: string[];
+  /** Technical specification rows (composition, salinity range, pH range, etc.) */
   specRows: { label: string; value: string }[];
+  /** Key benefits with title and description */
   benefits: { title: string; desc: string }[];
+  /** Step-by-step application instructions */
   applySteps: string[];
+  /** Practical tip for farmers */
   farmerTip: string;
+  /** Frequently asked questions */
   faq: { q: string; a: string }[];
+  /** Stock Keeping Unit identifier */
   sku: string;
 }
 
+/** Product categories with display names and descriptions */
 const categories = {
   'probiotics-soil-care': { name: 'Probiotics & Pond Soil Care', desc: 'Unhealthy pond bottoms kill growth before it starts. Our soil & probiotic blends break down organic load, prevent black soil, and create a clean, oxygen-rich environment for faster, safer shrimp & fish growth.' },
   'water-quality-ammonia-control': { name: 'Water Quality & Ammonia Control', desc: 'Biological ammonia removers, pH stabilizers, and oxygen boosters for brackish & freshwater ponds. Eliminate nitrite spikes, buffer alkalinity, and prevent night-time DO crashes without chemical residue.' },
@@ -24,10 +37,14 @@ const categories = {
   'feed-pond-preparers': { name: 'Feed & Pond Preparers', desc: 'Feed binding gels, metabolic accelerators, and oxygen utilization supports. Reduce pellet sinkage, improve FCR, accelerate uniform molting, and protect stock during seasonal shifts. Designed for high-density Indian aquaculture.' },
 };
 
+/** Get category metadata by slug. Returns empty data if slug not found. */
+/** Get category metadata by slug. Returns empty data if slug not found. */
 export function getCategory(slug: string) {
   return categories[slug as keyof typeof categories] || { name: slug, desc: '' };
 }
 
+/** Get all categories as an array of { slug, name, desc } objects. */
+/** Get all categories as an array of { slug, name, desc } objects. */
 export function getAllCategories() {
   return Object.entries(categories).map(([slug, cat]) => ({ slug, ...cat }));
 }
@@ -584,10 +601,13 @@ const products: Product[] = [
 
 export default products;
 
+/** Get all products belonging to a specific category slug. */
+/** Get all products belonging to a specific category slug. */
 export function getProductsByCategory(categorySlug: string) {
   return products.filter(p => p.categorySlug === categorySlug);
 }
 
+/** Get a single product by category slug and product slug. Returns null if not found. */
 export function getProduct(categorySlug: string, productSlug: string) {
   return products.find(p => p.categorySlug === categorySlug && p.slug === productSlug) || null;
 }

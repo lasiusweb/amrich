@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline | Amrich Pharma</title>
+  <meta name="description" content="You are offline. Please check your internet connection and try again." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #ffffff;
+      color: #0a0b0d;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .logo {
+      width: 64px;
+      height: 64px;
+      background: #0052ff;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .logo svg { width: 36px; height: 36px; }
+    h1 {
+      font-family: 'Coinbase Display', -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+      color: #0a0b0d;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #5b616e;
+      max-width: 400px;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      background: #0052ff;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .btn:hover { background: #003ecc; }
+    .btn:focus-visible { outline: 2px solid #0052ff; outline-offset: 2px; }
+    .retry-note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #a8acb3;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo" aria-hidden="true">
+    <svg viewBox="0 0 32 32" fill="none">
+      <path d="M16 6c-3 3-5 6-5 9s2 7 5 9c3-2 5-6 5-9s-2-6-5-9z" fill="white" opacity="0.9" />
+      <path d="M12 16h8" stroke="white" stroke-width="1.5" />
+      <path d="M14 13h4" stroke="white" stroke-width="1.5" />
+      <path d="M14 19h4" stroke="white" stroke-width="1.5" />
+    </svg>
+  </div>
+  <h1>You're Offline</h1>
+  <p>Please check your internet connection and try again. Cached pages are still available.</p>
+  <a href="/" class="btn">Go to Home</a>
+  <p class="retry-note">The page will load automatically when you're back online.</p>
+</body>
+</html>
