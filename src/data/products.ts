@@ -37,18 +37,28 @@ const categories = {
   'feed-pond-preparers': { name: 'Feed & Pond Preparers', desc: 'Feed binding gels, metabolic accelerators, and oxygen utilization supports. Reduce pellet sinkage, improve FCR, accelerate uniform molting, and protect stock during seasonal shifts. Designed for high-density Indian aquaculture.' },
 };
 
-/** Get category metadata by slug. Returns empty data if slug not found. */
-/** Get category metadata by slug. Returns empty data if slug not found. */
+/**
+ * Get category metadata by slug.
+ * @param slug - The category slug to look up
+ * @returns Category object with name and description, or empty data if not found
+ */
 export function getCategory(slug: string) {
   return categories[slug as keyof typeof categories] || { name: slug, desc: '' };
 }
 
-/** Get all categories as an array of { slug, name, desc } objects. */
-/** Get all categories as an array of { slug, name, desc } objects. */
+/**
+ * Get all categories as an array of objects.
+ * @returns Array of category objects with slug, name, and description
+ */
 export function getAllCategories() {
   return Object.entries(categories).map(([slug, cat]) => ({ slug, ...cat }));
 }
 
+/**
+ * Complete product catalog for Amrich Pharma.
+ * Each product includes metadata for display, SEO, and schema generation.
+ * Used by product pages, category pages, navigation, and structured data.
+ */
 const products: Product[] = [
   {
     slug: 'pro-plus',
@@ -601,13 +611,21 @@ const products: Product[] = [
 
 export default products;
 
-/** Get all products belonging to a specific category slug. */
-/** Get all products belonging to a specific category slug. */
+/**
+ * Get all products belonging to a specific category.
+ * @param categorySlug - The category slug to filter by
+ * @returns Array of products in the specified category
+ */
 export function getProductsByCategory(categorySlug: string) {
   return products.filter(p => p.categorySlug === categorySlug);
 }
 
-/** Get a single product by category slug and product slug. Returns null if not found. */
+/**
+ * Get a single product by category and product slugs.
+ * @param categorySlug - The category slug
+ * @param productSlug - The product slug
+ * @returns Product object if found, null otherwise
+ */
 export function getProduct(categorySlug: string, productSlug: string) {
   return products.find(p => p.categorySlug === categorySlug && p.slug === productSlug) || null;
 }

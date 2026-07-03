@@ -21,6 +21,17 @@ const faqSchema = {
     { '@type': 'Question', name: 'My pond overflowed — what should I do first?', acceptedAnswer: { '@type': 'Answer', text: 'Check stock survival, restore aeration immediately, test salinity and ammonia, then apply GASO CLEAN if ammonia is elevated. Restocking decisions should wait 72 hours until water stabilizes.' } },
   ],
 };
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Monsoon Pond Management for Indian Aquaculture Farmers',
+  description: 'Step-by-step guide to protecting shrimp and fish ponds during monsoon season.',
+  step: [
+    { '@type': 'HowToStep', name: 'Pre-Monsoon Preparation', text: 'Test water parameters, apply probiotics, and reinforce pond bunds before rainfall begins.' },
+    { '@type': 'HowToStep', name: 'During Rainfall', text: 'Monitor salinity and pH every 2 hours. Maintain aeration. Reduce feeding by 30-50%.' },
+    { '@type': 'HowToStep', name: 'Post-Rain Action', text: 'Test ammonia within 2 hours. Apply GASO CLEAN if elevated. Restore feeding gradually over 48 hours.' },
+  ],
+};
 ---
 
 <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />

@@ -1,13 +1,13 @@
-/** Form data collected from the quote request modal. 
- *  Queued in localStorage for offline resilience and retried on subsequent page loads. */
 /**
  * Quote/lead submission service for Amrich Pharma.
  * Collects farmer inquiries and queues failed submissions in localStorage
  * for retry. Posts to a configurable webhook endpoint when available.
  */
 
-/** Form data collected from the quote request modal.
- *  Queued in localStorage for offline resilience and retried on subsequent page loads. */
+/**
+ * Form data collected from the quote request modal.
+ * Queued in localStorage for offline resilience and retried on subsequent page loads.
+ */
 export interface QuoteData {
   fullName: string;
   phone: string;
@@ -22,7 +22,6 @@ export interface QuoteData {
 }
 
 /** Webhook endpoint for quote form submissions. Configured via PUBLIC_QUOTE_WEBHOOK_URL env var. */
-/** Webhook endpoint for quote form submissions. Configured via PUBLIC_QUOTE_WEBHOOK_URL env var. */
 const WEBHOOK_URL = import.meta.env.PUBLIC_QUOTE_WEBHOOK_URL || '';
 
 function getQueue(): QuoteData[] {
@@ -35,10 +34,12 @@ function setQueue(queue: QuoteData[]) {
   localStorage.setItem('amrich_quote_queue', JSON.stringify(queue));
 }
 
-/** Submit a quote request. Stores in localStorage queue, then attempts webhook POST.
- *  On success, removes from queue. On failure, remains queued for retry. */
-/** Submit a quote request. Stores in localStorage queue, then attempts webhook POST.
- *  On success, removes from queue. On failure, remains queued for retry. */
+/**
+ * Submit a quote request.
+ * Stores in localStorage queue, then attempts webhook POST.
+ * On success, removes from queue. On failure, remains queued for retry.
+ * @param data - Quote form data to submit
+ */
 export async function submitQuote(data: QuoteData): Promise<void> {
   const queue = getQueue();
   queue.push(data);
@@ -64,7 +65,11 @@ export async function submitQuote(data: QuoteData): Promise<void> {
   }
 }
 
-/** Build a WhatsApp deep link with pre-filled quote details for manual fallback. */
+/**
+ * Build a WhatsApp deep link with pre-filled quote details for manual fallback.
+ * @param data - Quote data to include in the WhatsApp message
+ * @returns WhatsApp deep link URL with encoded message
+ */
 export function getWhatsAppLink(data: QuoteData): string {
   const msg = encodeURIComponent(
     `Hi Amrich Pharma, I requested a quote for ${data.productInterest} for my ${data.pondSize}-acre ${data.species} pond in ${data.location}. Preferred contact: ${data.contactMethod}. Ref: ${data.referenceId}`
@@ -72,7 +77,10 @@ export function getWhatsAppLink(data: QuoteData): string {
   return `https://wa.me/919712335338?text=${msg}`;
 }
 
-/** Fire GA4 quote_form_submit event with product, pond size, species, and location data. */
+/**
+ * Fire GA4 quote_form_submit event with product, pond size, species, and location data.
+ * @param data - Quote data to track in GA4
+ */
 export function trackQuoteGA4(data: QuoteData) {
   if (typeof gtag !== 'undefined') {
     gtag('event', 'quote_form_submit', {
@@ -87,7 +95,10 @@ export function trackQuoteGA4(data: QuoteData) {
   }
 }
 
-/** Retry any queued quote submissions that failed previously. Called on page load. */
+/**
+ * Retry any queued quote submissions that failed previously.
+ * Called on page load to ensure failed submissions are retried.
+ */
 export async function retryQueuedQuotes() {
   const queue = getQueue();
   if (!queue.length || !WEBHOOK_URL) return;
