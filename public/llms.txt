@@ -32,28 +32,34 @@ AMRich Aquaculture Solutions provides scientifically formulated products for aqu
 - pH Balance Plus - pH stabilization system
 - ClarityMax - Water clarifier
 
-## Contact
+## Species
 
-- Website: https://amrich.netlify.app
-- Email: info@amrich.netlify.app
-- Phone: +60 (0) 12-345-6789
-- Location: Southeast Asia
+- /species/shrimp/ - Products and solutions for shrimp farming
+- /species/fish/ - Products and solutions for fish farming
 
 ## Blog
 
 Expert insights on aquaculture management:
-- /blog/shrimp-disease-prevention-guide - Complete Guide to Shrimp Disease Prevention
-- /blog/control-ammonia-shrimp-ponds - How to Control Ammonia in Shrimp Ponds
-- /blog/biofloc-technology-beginners-guide - Biofloc Technology: A Beginner's Guide
+- /blog/shrimp-disease-prevention-guide/ - Complete Guide to Shrimp Disease Prevention
+- /blog/control-ammonia-shrimp-ponds/ - How to Control Ammonia in Shrimp Ponds
+- /blog/biofloc-technology-beginners-guide/ - Biofloc Technology: A Beginner's Guide
+
+## Case Studies
+
+Real results from farms using AMRich products:
+- /case-studies/ - Success stories from Vietnam, Malaysia, Thailand, and Indonesia
 
 ## Resources
 
-- /resources - Farming guides, product information, and quick reference materials
+- /resources/ - Farming guides, product information, and quick reference materials
+- /faq/ - Frequently asked questions
+- /how-to-order/ - Step-by-step ordering guide
+- /sitemap/ - Complete site sitemap
 
 ## Legal
 
-- /privacy - Privacy Policy
-- /terms - Terms of Service
+- /privacy/ - Privacy Policy
+- /terms/ - Terms of Service
 
 ## Technical Information
 
@@ -62,6 +68,13 @@ All products are:
 - Environmentally safe
 - Formulated by aquaculture scientists
 - Backed by technical support
+
+## Contact
+
+- Website: https://amrich.netlify.app
+- Email: info@amrich.netlify.app
+- Phone: +60 (0) 12-345-6789
+- Location: Southeast Asia
 
 ## API/Integration
 

@@ -6,9 +6,13 @@ interface Props {
   description?: string;
   ogImage?: string;
   schema?: object;
+  type?: string;
 }
 
-const { title, description = 'Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, and more.', ogImage = '/images/og-default.svg', schema } = Astro.props;
+const { title, description = 'Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, and more.', ogImage = '/images/og-default.svg', schema, type = 'website' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://amrich.netlify.app');
+const absoluteOGImage = ogImage.startsWith('http') ? ogImage : `https://amrich.netlify.app${ogImage}`;
 ---
 
 <!DOCTYPE html>
@@ -18,6 +22,7 @@ const { title, description = 'Premium aquaculture products for healthier farms a
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -25,19 +30,21 @@ const { title, description = 'Premium aquaculture products for healthier farms a
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={absoluteOGImage} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content={type} />
     <meta property="og:site_name" content="AMRich Aquaculture" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={absoluteOGImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <title>{title}</title>
