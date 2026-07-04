@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Conversion Goals | Amrich Pharma — Internal"
+  description="Internal reference: conversion tracking goals for Google Analytics 4."
+>
+  <Header />
+
+  <main id="main-content" class="flex-1">
+    <section class="section-padding">
+      <div class="container-wide max-w-3xl mx-auto">
+        <h1 class="font-display text-3xl font-bold text-ink mb-2">Conversion Goals</h1>
+        <p class="text-sm text-ink-light/70 mb-8">Internal reference for Google Analytics 4 event tracking.</p>
+
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-surface-muted border-b border-border">
+              <th class="text-left px-4 py-3 font-semibold text-ink">Type</th>
+              <th class="text-left px-4 py-3 font-semibold text-ink">Target</th>
+              <th class="text-left px-4 py-3 font-semibold text-ink">Event</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-border">
+              <td class="px-4 py-3 text-ink">Page</td>
+              <td class="px-4 py-3 text-ink">/contact/</td>
+              <td class="px-4 py-3 text-ink-light">Contact form submit (Formspree)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="px-4 py-3 text-ink">Page</td>
+              <td class="px-4 py-3 text-ink">/brochures/*</td>
+              <td class="px-4 py-3 text-ink-light">Brochure download (page view)</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="px-4 py-3 text-ink">Element</td>
+              <td class="px-4 py-3 text-ink">Sticky CTA "Get a Quote"</td>
+              <td class="px-4 py-3 text-ink-light">Click</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="px-4 py-3 text-ink">Element</td>
+              <td class="px-4 py-3 text-ink">"Call Us" phone link</td>
+              <td class="px-4 py-3 text-ink-light">Click</td>
+            </tr>
+            <tr class="border-b border-border">
+              <td class="px-4 py-3 text-ink">Goal</td>
+              <td class="px-4 py-3 text-ink">Quote modal form</td>
+              <td class="px-4 py-3 text-ink-light">Form submit</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

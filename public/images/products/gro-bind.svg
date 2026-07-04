@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Squeeze bottle body -->
+  <path d="M155 175 L145 310 L255 310 L245 175Z" fill="#0B5E8A"/>
+  <path d="M145 310 L255 310 L260 330 L140 330Z" fill="#094C72"/>
+  <!-- Squeeze bottle neck -->
+  <rect x="162" y="130" width="76" height="45" rx="6" fill="#0B5E8A"/>
+  <!-- Nozzle tip -->
+  <rect x="172" y="116" width="56" height="18" rx="3" fill="#1A7FC4"/>
+  <rect x="180" y="110" width="40" height="8" rx="2" fill="#1A7FC4"/>
+  <!-- Nozzle opening -->
+  <rect x="190" y="108" width="20" height="4" rx="1" fill="#094C72"/>
+  <!-- Label -->
+  <rect x="162" y="190" width="76" height="95" rx="6" fill="white" opacity="0.95"/>
+  <text x="200" y="212" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="8">AMRICH</text>
+  <text x="200" y="229" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="11">GRO-BIND</text>
+  <text x="200" y="245" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="7">Feed Binder</text>
+  <line x1="170" y1="253" x2="230" y2="253" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="268" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="7">1 LITRE</text>
+  <rect x="178" y="275" width="44" height="12" rx="6" fill="#1A7FC4"/>
+  <text x="200" y="284" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="6">GEL</text>
+  <!-- Gel drip effect -->
+  <path d="M200 310 C200 318 205 320 205 325 C205 328 197 328 197 325 C197 320 200 318 200 310Z" fill="#1A7FC4" opacity="0.3"/>
+</svg>

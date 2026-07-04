@@ -42,6 +42,17 @@ const caseStudies = [
     quoteAuthor: 'Pradeep S., Farm Owner',
   },
   {
+    title: 'Nagapattinam Vannamei Farm — Monsoon Stability & Record Survival',
+    location: 'Nagapattinam, Tamil Nadu',
+    date: 'June 2025',
+    challenge: 'Maintaining pond stability during monsoon season with unpredictable weather patterns, risk of water quality crashes, and high mortality rates.',
+    solution: 'Applied PRO PLUS for organic load reduction and soil health, FARM PRO for water column probiotics, and GASO CLEAN for biological ammonia and nitrite elimination. Amrich technical team conducted two on-site visits to set up a monitoring schedule.',
+    results: ['Achieved highest-ever survival rate of 91%', 'FCR of 1.28 using PRO PLUS + FARM PRO + GASO CLEAN protocol', 'Cleanest pond bottoms ever observed', 'Water colour stayed stable throughout monsoon with zero crashes'],
+    products: ['PRO PLUS', 'FARM PRO', 'GASO CLEAN'],
+    quote: 'Using PRO PLUS and FARM PRO together gave me the cleanest pond bottoms I have ever seen. My water colour stayed stable throughout the monsoon — no crashes, no panic. The technical team from Amrich visited my farm twice and helped me set up a monitoring schedule that caught problems before they became disasters.',
+    quoteAuthor: 'Murugan S., Vannamei Farmer',
+  },
+  {
     title: 'Gujarat Fish Farm — Antibiotic-Free Disease Control',
     location: 'Surat, Gujarat',
     date: 'August 2024',
@@ -54,6 +65,17 @@ const caseStudies = [
   },
 ];
 
+const stats = {
+  totalFarmers: 6000,
+  totalStories: 5,
+  beforeAfter: {
+    ammonia: { before: '1.8 ppm', after: '0.3 ppm' },
+    do: { before: '3.2 mg/L', after: '5.8 mg/L' },
+    fcr: { before: '1.9', after: '1.3' },
+    mortality: { before: '22%', after: '8%' },
+  },
+};
+
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -62,6 +84,10 @@ const schema = {
       "name": "Case Studies | Amrich Pharma",
       "description": "Real-world success stories from Indian coastal farms using Amrich Pharma aquaculture products.",
       "url": `${site.url}/case-studies/`,
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 5,
+      },
     },
     {
       "@type": "BreadcrumbList",
@@ -102,13 +128,28 @@ const schema = {
 
     <section class="section-padding bg-surface-muted border-b border-border">
       <div class="container-wide max-w-4xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: 'Farmer Stories', value: `${stats.totalStories}`, subtitle: 'documented case studies' },
+            { label: 'Farmers Reached', value: `${stats.totalFarmers}+`, subtitle: 'across India' },
+            { label: 'Avg FCR', value: stats.beforeAfter.fcr.after, subtitle: 'feed conversion ratio' },
+            { label: 'Avg Survival', value: '91%', subtitle: 'reported survival rate' },
+          ].map((stat) => (
+            <div class="bg-brand-900 text-white rounded-2xl p-5 text-center">
+              <div class="font-display text-3xl font-bold mb-1">{stat.value}</div>
+              <div class="text-sm text-white/70">{stat.label}</div>
+              <div class="text-xs text-white/40 mt-1">{stat.subtitle}</div>
+            </div>
+          ))}
+        </div>
+
         <h2 class="font-display text-2xl font-bold text-ink text-center mb-8">Before / After Dashboard</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: 'Ammonia', before: '1.8 ppm', after: '0.3 ppm', color: 'text-red-500' },
-            { label: 'DO Levels', before: '3.2 mg/L', after: '5.8 mg/L', color: 'text-brand-500' },
-            { label: 'Feed Conversion', before: '1.9', after: '1.4', color: 'text-ocean-500' },
-            { label: 'Mortality', before: '22%', after: '8%', color: 'text-brand-500' },
+            { label: 'Ammonia', before: stats.beforeAfter.ammonia.before, after: stats.beforeAfter.ammonia.after, color: 'text-red-500' },
+            { label: 'DO Levels', before: stats.beforeAfter.do.before, after: stats.beforeAfter.do.after, color: 'text-brand-500' },
+            { label: 'Feed Conversion', before: stats.beforeAfter.fcr.before, after: stats.beforeAfter.fcr.after, color: 'text-ocean-500' },
+            { label: 'Mortality', before: stats.beforeAfter.mortality.before, after: stats.beforeAfter.mortality.after, color: 'text-brand-500' },
           ].map((metric) => (
             <div class="bg-surface border border-border rounded-2xl p-5 text-center">
               <div class="text-xs font-semibold text-ink-light/60 uppercase tracking-wider mb-3">{metric.label}</div>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Bottle body -->
+  <path d="M145 160 L135 310 L265 310 L255 160Z" fill="#0B5E8A"/>
+  <path d="M135 310 L265 310 L270 330 L130 330Z" fill="#094C72"/>
+  <!-- Bottle neck -->
+  <rect x="155" y="120" width="90" height="40" rx="4" fill="#0B5E8A"/>
+  <!-- Bottle cap -->
+  <rect x="150" y="108" width="100" height="16" rx="4" fill="#1A7FC4"/>
+  <rect x="160" y="104" width="80" height="6" rx="2" fill="#1A7FC4"/>
+  <!-- Cap ridges -->
+  <line x1="160" y1="112" x2="160" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="170" y1="112" x2="170" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="180" y1="112" x2="180" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="190" y1="112" x2="190" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="200" y1="112" x2="200" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="210" y1="112" x2="210" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="220" y1="112" x2="220" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="230" y1="112" x2="230" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="240" y1="112" x2="240" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <!-- Label -->
+  <rect x="152" y="175" width="96" height="105" rx="6" fill="white" opacity="0.95"/>
+  <text x="200" y="198" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="216" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="14">FARM PRO</text>
+  <text x="200" y="234" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="8">Liquid Probiotic</text>
+  <line x1="160" y1="243" x2="240" y2="243" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="258" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">1 LITRE</text>
+  <rect x="175" y="266" width="50" height="14" rx="7" fill="#1A7FC4"/>
+  <text x="200" y="277" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="7">LIQUID</text>
+  <!-- Liquid level -->
+  <path d="M145 260 L135 310 L160 310 L160 260Z" fill="#1A7FC4" opacity="0.15"/>
+  <path d="M255 260 L265 310 L240 310 L240 260Z" fill="#1A7FC4" opacity="0.15"/>
+  <!-- Bottom detail -->
+  <rect x="145" y="295" width="110" height="2" rx="1" fill="#1A7FC4" opacity="0.3"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Can body -->
+  <path d="M125 160 L115 310 L285 310 L275 160Z" fill="#0B5E8A"/>
+  <path d="M115 310 L285 310 L290 330 L110 330Z" fill="#094C72"/>
+  <!-- Can top rim -->
+  <ellipse cx="200" cy="155" rx="80" ry="10" fill="#1A7FC4"/>
+  <!-- Can lid -->
+  <rect x="175" y="130" width="50" height="28" rx="6" fill="#1A7FC4"/>
+  <rect x="185" y="126" width="30" height="6" rx="2" fill="#1A7FC4"/>
+  <!-- Pull tab -->
+  <ellipse cx="200" cy="135" rx="12" ry="3" fill="#0B5E8A" opacity="0.4"/>
+  <!-- Can ridges -->
+  <line x1="118" y1="195" x2="282" y2="195" stroke="#094C72" stroke-width="1" opacity="0.3"/>
+  <line x1="116" y1="225" x2="284" y2="225" stroke="#094C72" stroke-width="1" opacity="0.3"/>
+  <line x1="114" y1="255" x2="286" y2="255" stroke="#094C72" stroke-width="1" opacity="0.3"/>
+  <line x1="112" y1="285" x2="288" y2="285" stroke="#094C72" stroke-width="1" opacity="0.3"/>
+  <!-- Label -->
+  <rect x="140" y="165" width="120" height="120" rx="8" fill="white" opacity="0.95"/>
+  <text x="200" y="191" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="209" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="13">GASO CLEAN</text>
+  <text x="200" y="228" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="8">Ammonia Remover</text>
+  <line x1="150" y1="239" x2="250" y2="239" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="257" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">1 LITRE CAN</text>
+  <rect x="172" y="265" width="56" height="14" rx="7" fill="#1A7FC4"/>
+  <text x="200" y="276" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="7">LIQUID</text>
+</svg>

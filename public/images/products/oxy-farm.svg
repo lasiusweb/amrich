@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Capsule jar body -->
+  <rect x="130" y="130" width="140" height="170" rx="14" fill="#0B5E8A"/>
+  <!-- Jar mouth -->
+  <rect x="140" y="115" width="120" height="20" rx="4" fill="#1A7FC4"/>
+  <!-- Jar lid -->
+  <rect x="136" y="106" width="128" height="14" rx="4" fill="#1A7FC4"/>
+  <rect x="146" y="102" width="108" height="6" rx="2" fill="#1A7FC4"/>
+  <!-- Lid ridges -->
+  <line x1="150" y1="108" x2="150" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="160" y1="108" x2="160" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="170" y1="108" x2="170" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="180" y1="108" x2="180" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="190" y1="108" x2="190" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="200" y1="108" x2="200" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="210" y1="108" x2="210" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="220" y1="108" x2="220" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="230" y1="108" x2="230" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="240" y1="108" x2="240" y2="118" stroke="#0B5E8A" stroke-width="1.5"/>
+  <!-- Label -->
+  <rect x="145" y="155" width="110" height="125" rx="8" fill="white" opacity="0.95"/>
+  <text x="200" y="180" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="198" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="13">OXY-FARM</text>
+  <text x="200" y="216" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="8">DO & Nitrification</text>
+  <line x1="155" y1="226" x2="245" y2="226" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="243" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">1 kg / Capsule</text>
+  <!-- Capsule icons inside -->
+  <rect x="165" y="253" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.5"/>
+  <rect x="190" y="253" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.5"/>
+  <rect x="215" y="253" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.5"/>
+  <rect x="165" y="267" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.3"/>
+  <rect x="190" y="267" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.3"/>
+  <rect x="215" y="267" width="20" height="10" rx="5" fill="#1A7FC4" opacity="0.3"/>
+</svg>

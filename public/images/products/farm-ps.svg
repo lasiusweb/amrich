@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Bottle body (taller, narrower) -->
+  <path d="M155 170 L145 310 L255 310 L245 170Z" fill="#0B5E8A"/>
+  <path d="M145 310 L255 310 L260 330 L140 330Z" fill="#094C72"/>
+  <!-- Bottle neck -->
+  <rect x="162" y="120" width="76" height="50" rx="4" fill="#0B5E8A"/>
+  <!-- Bottle cap -->
+  <rect x="158" y="106" width="84" height="18" rx="4" fill="#1A7FC4"/>
+  <rect x="158" y="102" width="84" height="6" rx="2" fill="#1A7FC4"/>
+  <!-- Cap ridges -->
+  <line x1="165" y1="110" x2="165" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="175" y1="110" x2="175" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="185" y1="110" x2="185" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="195" y1="110" x2="195" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="205" y1="110" x2="205" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="215" y1="110" x2="215" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="225" y1="110" x2="225" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="235" y1="110" x2="235" y2="120" stroke="#0B5E8A" stroke-width="1.5"/>
+  <!-- Label -->
+  <rect x="162" y="185" width="76" height="95" rx="6" fill="white" opacity="0.95"/>
+  <text x="200" y="207" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="224" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="12">FARM-PS</text>
+  <text x="200" y="241" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="7">Phosphate Solubilizer</text>
+  <line x1="170" y1="250" x2="230" y2="250" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="264" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">1 LITRE</text>
+  <rect x="178" y="271" width="44" height="12" rx="6" fill="#1A7FC4"/>
+  <text x="200" y="280" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="6">LIQUID</text>
+  <!-- Liquid level -->
+  <path d="M155 250 L145 310 L160 310 L160 250Z" fill="#1A7FC4" opacity="0.15"/>
+  <path d="M245 250 L255 310 L240 310 L240 250Z" fill="#1A7FC4" opacity="0.15"/>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Pouch body -->
+  <rect x="130" y="115" width="140" height="195" rx="12" fill="#0B5E8A"/>
+  <!-- Pouch top seal -->
+  <rect x="130" y="108" width="140" height="14" rx="3" fill="#1A7FC4"/>
+  <!-- Pouch bottom seal -->
+  <rect x="130" y="302" width="140" height="10" rx="3" fill="#1A7FC4"/>
+  <!-- Pouch notch -->
+  <path d="M190 108 L200 100 L210 108Z" fill="#1A7FC4"/>
+  <!-- Label area -->
+  <rect x="145" y="140" width="110" height="145" rx="8" fill="white" opacity="0.95"/>
+  <text x="200" y="165" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="184" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="16">GUT-X</text>
+  <text x="200" y="203" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="9">Gut Health Probiotic</text>
+  <line x1="155" y1="215" x2="245" y2="215" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="233" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">500 gm POUCH</text>
+  <rect x="175" y="245" width="50" height="14" rx="7" fill="#1A7FC4"/>
+  <text x="200" y="255" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="7">POWDER</text>
+  <!-- Zigzag seal pattern at bottom -->
+  <path d="M135 295 L140 290 L145 295 L150 290 L155 295 L160 290 L165 295 L170 290 L175 295 L180 290 L185 295 L190 290 L195 295 L200 290 L205 295 L210 290 L215 295 L220 290 L225 295 L230 290 L235 295 L240 290 L245 295 L250 290 L255 295 L260 290 L265 295" stroke="#1A7FC4" stroke-width="1" opacity="0.3"/>
+</svg>

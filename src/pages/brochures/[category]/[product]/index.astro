@@ -1,0 +1,604 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { categories } from '../../../../data/products.ts';
+import { site } from '../../../../data/site.ts';
+
+export function getStaticPaths() {
+  const paths: { params: { category: string; product: string }; props: { category: typeof categories[0]; product: typeof categories[0]['products'][0] } }[] = [];
+
+  for (const category of categories) {
+    for (const product of category.products) {
+      paths.push({
+        params: { category: category.slug, product: product.slug },
+        props: { category, product },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { category, product } = Astro.props;
+
+const metaDescription = `${product.name} Brochure — ${product.tagline} ${product.shortDescription}`;
+
+const productUrl = `${site.url}/products/${category.slug}/${product.slug}/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": product.name,
+      "description": product.shortDescription,
+      "url": productUrl,
+      "brand": {
+        "@type": "Organization",
+        "name": site.name,
+      },
+      "category": category.name,
+      ...(product.specs ? {
+        "additionalProperty": product.specs.map(s => ({
+          "@type": "PropertyValue",
+          "name": s.label,
+          "value": s.value,
+        })),
+      } : {}),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url },
+        { "@type": "ListItem", "position": 2, "name": "Products", "item": `${site.url}/products/` },
+        { "@type": "ListItem", "position": 3, "name": category.name, "item": `${site.url}/products/${category.slug}/` },
+        { "@type": "ListItem", "position": 4, "name": `${product.name} Brochure` },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${product.name} Brochure | ${site.name}`}
+  description={metaDescription}
+  schema={schema}
+>
+  <main id="main-content" class="brochure-page">
+    <div class="brochure-controls">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-4">
+          <a href={productUrl} class="back-link">
+            &larr; Back to {product.name}
+          </a>
+          <button onclick="window.print()" class="print-btn">
+            Print Brochure
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="brochure-content">
+      <header class="brochure-header">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="brochure-header-inner">
+            <span class="brochure-category">{category.name}</span>
+            <h1 class="brochure-title">{product.name}</h1>
+            <p class="brochure-tagline">{product.tagline}</p>
+            <p class="brochure-description">{product.description}</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="brochure-section">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="brochure-section-title">Quick Specs</h2>
+          <div class="specs-grid">
+            <div class="spec-item">
+              <span class="spec-label">Form</span>
+              <span class="spec-value">{product.form}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Dosage</span>
+              <span class="spec-value">{product.dosage}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Pack Size</span>
+              <span class="spec-value">{product.packSize}</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Shelf Life</span>
+              <span class="spec-value">{product.shelfLife}</span>
+            </div>
+            {product.specs?.map((spec) => (
+              <div class="spec-item">
+                <span class="spec-label">{spec.label}</span>
+                <span class="spec-value">{spec.value}</span>
+              </div>
+            ))}
+            <div class="spec-item">
+              <span class="spec-label">Target Species</span>
+              <span class="spec-value">{product.targetSpecies.join(', ')}</span>
+            </div>
+          </div>
+          {product.stockingDensityGuide && product.stockingDensityGuide.length > 0 && (
+            <table class="brochure-table">
+              <thead>
+                <tr>
+                  <th>Stocking Density</th>
+                  <th>Dosage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.stockingDensityGuide.map((row) => (
+                  <tr>
+                    <td>{row.density}</td>
+                    <td>{row.dosage}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {product.dosageTiers && product.dosageTiers.length > 0 && (
+            <table class="brochure-table">
+              <thead>
+                <tr>
+                  <th>Pond Condition</th>
+                  <th>Dosage</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.dosageTiers.map((tier) => (
+                  <tr>
+                    <td>{tier.label}</td>
+                    <td>{tier.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </section>
+
+      <section class="brochure-section">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="brochure-section-title">Benefits</h2>
+          <ul class="brochure-list">
+            {product.benefits.map((benefit) => (
+              <li>{benefit}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section class="brochure-section">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="brochure-section-title">Application Steps</h2>
+          <ol class="brochure-steps">
+            {product.applicationSteps.map((step, i) => (
+              <li>
+                <span class="step-number">{i + 1}</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+          <div class="farmer-tip">
+            <strong>Farmer Tip:</strong> {product.farmerTip}
+          </div>
+        </div>
+      </section>
+
+      {product.testimonial && (
+        <section class="brochure-section">
+          <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="brochure-section-title">What Farmers Say</h2>
+            <blockquote class="brochure-quote">
+              &ldquo;{product.testimonial.quote}&rdquo;
+              <footer>
+                <strong>{product.testimonial.name}</strong>
+                {product.testimonial.metric && <span> &mdash; {product.testimonial.metric}</span>}
+                <br />
+                <span>{product.testimonial.location}</span>
+              </footer>
+            </blockquote>
+          </div>
+        </section>
+      )}
+
+      {product.faqs.length > 0 && (
+        <section class="brochure-section">
+          <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="brochure-section-title">Frequently Asked Questions</h2>
+            <div class="brochure-faqs">
+              {product.faqs.map((faq) => (
+                <div class="faq-item">
+                  <strong>{faq.question}</strong>
+                  <p>{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <footer class="brochure-footer">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <p><strong>{site.name}</strong> &mdash; {site.tagline}</p>
+          <p>{site.address} | {site.phone} | {site.email}</p>
+          <p class="brochure-footer-note">For more details, visit <a href={productUrl}>{productUrl}</a></p>
+        </div>
+      </footer>
+    </div>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .brochure-page {
+    background: #fff;
+    color: #1a1a1a;
+    font-family: "Inter Variable", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+  }
+
+  .brochure-controls {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .back-link {
+    color: #059669;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: #047857;
+  }
+
+  .print-btn {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .print-btn:hover {
+    background: #059669;
+  }
+
+  .brochure-content {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .brochure-header {
+    padding: 3rem 0 2rem;
+    border-bottom: 2px solid #10b981;
+    margin-bottom: 2rem;
+  }
+
+  .brochure-header-inner {
+    text-align: center;
+  }
+
+  .brochure-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #059669;
+    margin-bottom: 0.75rem;
+  }
+
+  .brochure-title {
+    font-family: "Outfit Variable", system-ui, -apple-system, sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #064e3b;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+
+  .brochure-tagline {
+    font-size: 1.125rem;
+    color: #059669;
+    font-weight: 600;
+    margin: 0 0 1rem;
+  }
+
+  .brochure-description {
+    font-size: 0.9375rem;
+    color: #334155;
+    line-height: 1.7;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  .brochure-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .brochure-section-title {
+    font-family: "Outfit Variable", system-ui, -apple-system, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #064e3b;
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #10b981;
+    display: inline-block;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0.75rem;
+  }
+
+  .spec-item {
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+  }
+
+  .spec-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+  }
+
+  .spec-value {
+    display: block;
+    font-size: 0.875rem;
+    color: #1a1a1a;
+    font-weight: 500;
+  }
+
+  .brochure-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .brochure-table th {
+    text-align: left;
+    padding: 0.625rem 0.75rem;
+    background: #f0fdfa;
+    font-weight: 700;
+    color: #064e3b;
+    border: 1px solid #d1fae5;
+  }
+
+  .brochure-table td {
+    padding: 0.625rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+  }
+
+  .brochure-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .brochure-list li {
+    padding: 0.625rem 0.75rem 0.625rem 1.75rem;
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    font-size: 0.875rem;
+    color: #334155;
+    position: relative;
+  }
+
+  .brochure-list li::before {
+    content: "";
+    position: absolute;
+    left: 0.625rem;
+    top: 0.875rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #10b981;
+    border-radius: 50%;
+  }
+
+  .brochure-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .brochure-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #334155;
+    line-height: 1.6;
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: #10b981;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .farmer-tip {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: #92400e;
+    line-height: 1.6;
+  }
+
+  .farmer-tip strong {
+    color: #78350f;
+  }
+
+  .brochure-quote {
+    margin: 0;
+    padding: 1.25rem;
+    background: #f0fdfa;
+    border-left: 4px solid #10b981;
+    border-radius: 0.5rem;
+    font-size: 0.9375rem;
+    color: #334155;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .brochure-quote footer {
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: 0.8125rem;
+    color: #64748b;
+  }
+
+  .brochure-quote footer strong {
+    color: #064e3b;
+  }
+
+  .brochure-faqs {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    padding: 0.875rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+  }
+
+  .faq-item strong {
+    display: block;
+    font-size: 0.875rem;
+    color: #064e3b;
+    margin-bottom: 0.375rem;
+  }
+
+  .faq-item p {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .brochure-footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.8;
+  }
+
+  .brochure-footer strong {
+    color: #064e3b;
+  }
+
+  .brochure-footer a {
+    color: #059669;
+    text-decoration: none;
+  }
+
+  .brochure-footer-note {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+  }
+
+  @media print {
+    body {
+      background: #fff !important;
+    }
+
+    .brochure-page {
+      background: #fff !important;
+      color: #000 !important;
+    }
+
+    .brochure-controls {
+      display: none;
+    }
+
+    .brochure-header {
+      padding-top: 0;
+    }
+
+    .brochure-section {
+      break-inside: avoid;
+    }
+
+    .brochure-table th {
+      background: #f0fdfa !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .brochure-list li {
+      background: #f8fafc !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .step-number {
+      background: #10b981 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .farmer-tip {
+      background: #fffbeb !important;
+      border-color: #fde68a !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .brochure-quote {
+      background: #f0fdfa !important;
+      border-left-color: #10b981 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .back-link,
+    .print-btn {
+      display: none;
+    }
+
+    a {
+      color: #000 !important;
+      text-decoration: underline !important;
+    }
+  }
+</style>

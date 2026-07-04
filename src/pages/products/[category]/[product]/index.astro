@@ -83,23 +83,35 @@ const relatedProducts = category.products.filter((p) => p.slug !== product.slug)
 
     <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-brand-300 mb-4">
-            <span class="size-4" set:html={getIcon(category.icon)} />
-            <span>{category.name}</span>
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+          <div class="max-w-4xl">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-brand-300 mb-4">
+              <span class="size-4" set:html={getIcon(category.icon)} />
+              <span>{category.name}</span>
+            </div>
+            <div class="size-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 mb-4">
+              <span set:html={getIcon(product.icon)} />
+            </div>
+            <h1 class="font-display text-4xl md:text-5xl font-bold mb-2">
+              {product.name}
+            </h1>
+            <p class="text-xl text-brand-300 font-medium mb-4">
+              {product.tagline}
+            </p>
+            <p class="text-lg text-white/70 leading-relaxed max-w-2xl">
+              {product.shortDescription}
+            </p>
           </div>
-          <div class="size-16 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 mb-4">
-            <span set:html={getIcon(product.icon)} />
-          </div>
-          <h1 class="font-display text-4xl md:text-5xl font-bold mb-2">
-            {product.name}
-          </h1>
-          <p class="text-xl text-brand-300 font-medium mb-4">
-            {product.tagline}
-          </p>
-          <p class="text-lg text-white/70 leading-relaxed max-w-2xl">
-            {product.shortDescription}
-          </p>
+          {product.image && (
+            <div class="shrink-0">
+              <img
+                src={product.image}
+                alt={`${product.name} product illustration`}
+                class="w-64 h-64 md:w-72 md:h-72 object-contain drop-shadow-xl"
+                loading="eager"
+              />
+            </div>
+          )}
         </div>
       </div>
     </section>

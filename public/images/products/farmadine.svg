@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Bottle body -->
+  <path d="M145 155 L135 310 L265 310 L255 155Z" fill="#0B5E8A"/>
+  <path d="M135 310 L265 310 L270 330 L130 330Z" fill="#094C72"/>
+  <!-- Bottle neck -->
+  <rect x="158" y="112" width="84" height="43" rx="6" fill="#0B5E8A"/>
+  <!-- Bottle cap (large, distinctive) -->
+  <rect x="150" y="96" width="100" height="20" rx="6" fill="#1A7FC4"/>
+  <rect x="150" y="92" width="100" height="6" rx="2" fill="#1A7FC4"/>
+  <!-- Cap ridges -->
+  <line x1="158" y1="100" x2="158" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="168" y1="100" x2="168" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="178" y1="100" x2="178" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="188" y1="100" x2="188" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="198" y1="100" x2="198" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="208" y1="100" x2="208" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="218" y1="100" x2="218" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="228" y1="100" x2="228" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <line x1="238" y1="100" x2="238" y2="112" stroke="#0B5E8A" stroke-width="1.5"/>
+  <!-- Label -->
+  <rect x="152" y="170" width="96" height="110" rx="6" fill="white" opacity="0.95"/>
+  <text x="200" y="193" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="9">AMRICH</text>
+  <text x="200" y="212" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="13">FARMADINE</text>
+  <text x="200" y="230" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="8">Iodine Treatment</text>
+  <line x1="160" y1="239" x2="240" y2="239" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="254" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="8">1 LITRE</text>
+  <rect x="172" y="262" width="56" height="14" rx="7" fill="#1A7FC4"/>
+  <text x="200" y="273" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="7">LIQUID</text>
+  <!-- Warning symbol -->
+  <text x="200" y="290" text-anchor="middle" fill="#CC3333" font-family="Arial, sans-serif" font-weight="700" font-size="7">⚠ KEEP OUT OF REACH</text>
+</svg>

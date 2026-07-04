@@ -99,6 +99,16 @@ const schema = {
                   <span class="text-brand-600" set:html={getIcon(product.icon)} />
                 </div>
               </div>
+              {product.image && (
+                <div class="mb-4 -mx-4">
+                  <img
+                    src={product.image}
+                    alt={`${product.name} product illustration`}
+                    class="w-full h-40 object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <h3 class="text-xl font-bold text-ink mb-2 group-hover:text-brand-600 transition-colors">{product.name}</h3>
               <p class="text-sm text-ink-light mb-4">
                 {product.shortDescription}

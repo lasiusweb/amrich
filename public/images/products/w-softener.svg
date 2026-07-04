@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <rect width="400" height="400" rx="24" fill="#E8F4FD"/>
+  <rect x="60" y="60" width="280" height="280" rx="20" fill="white" stroke="#1A7FC4" stroke-width="2"/>
+  <!-- Pouch body -->
+  <rect x="140" y="118" width="120" height="188" rx="10" fill="#0B5E8A"/>
+  <!-- Pouch top seal -->
+  <rect x="140" y="110" width="120" height="14" rx="3" fill="#1A7FC4"/>
+  <!-- Pouch bottom seal -->
+  <rect x="140" y="298" width="120" height="10" rx="3" fill="#1A7FC4"/>
+  <!-- Pouch notch -->
+  <path d="M190 110 L200 102 L210 110Z" fill="#1A7FC4"/>
+  <!-- Heat seal lines -->
+  <line x1="140" y1="124" x2="260" y2="124" stroke="#094C72" stroke-width="1"/>
+  <line x1="140" y1="298" x2="260" y2="298" stroke="#094C72" stroke-width="1"/>
+  <!-- Label -->
+  <rect x="155" y="142" width="90" height="140" rx="8" fill="white" opacity="0.95"/>
+  <text x="200" y="166" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="700" font-size="8">AMRICH</text>
+  <text x="200" y="184" text-anchor="middle" fill="#0B5E8A" font-family="Arial, sans-serif" font-weight="900" font-size="12">W-SOFTENER</text>
+  <text x="200" y="202" text-anchor="middle" fill="#1A7FC4" font-family="Arial, sans-serif" font-weight="600" font-size="7">Water Conditioner</text>
+  <line x1="163" y1="212" x2="237" y2="212" stroke="#1A7FC4" stroke-width="0.5"/>
+  <text x="200" y="228" text-anchor="middle" fill="#666" font-family="Arial, sans-serif" font-weight="500" font-size="7">1 kg POUCH</text>
+  <rect x="175" y="238" width="50" height="14" rx="7" fill="#1A7FC4"/>
+  <text x="200" y="249" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-weight="700" font-size="7">GRANULES</text>
+  <!-- Granule dots -->
+  <circle cx="175" cy="265" r="2" fill="#E8F4FD" opacity="0.4"/>
+  <circle cx="185" cy="262" r="2.5" fill="#E8F4FD" opacity="0.4"/>
+  <circle cx="195" cy="266" r="2" fill="#E8F4FD" opacity="0.4"/>
+  <circle cx="205" cy="263" r="2.5" fill="#E8F4FD" opacity="0.4"/>
+  <circle cx="215" cy="265" r="2" fill="#E8F4FD" opacity="0.4"/>
+  <circle cx="225" cy="262" r="2" fill="#E8F4FD" opacity="0.4"/>
+</svg>

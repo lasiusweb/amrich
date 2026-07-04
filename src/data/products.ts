@@ -29,6 +29,7 @@ export interface Product {
   name: string;
   slug: string;
   icon: string;
+  image?: string;
   tagline: string;
   shortDescription: string;
   description: string;
@@ -75,6 +76,7 @@ export const categories: ProductCategory[] = [
         name: 'PRO PLUS',
         slug: 'pro-plus',
         icon: 'powder',
+        image: '/images/products/pro-plus.svg',
         tagline: 'Clean bottoms. Higher DO. Zero black soil.',
         shortDescription: 'Dual-action soil probiotic for shrimp & fish ponds. Degrades detritus and prevents toxic black soil.',
         description: 'PRO PLUS is a concentrated soil probiotic formulated to break down accumulated organic waste, leftover feed, and detritus in pond bottoms. With >1.2 Billion CFU/g from 5 strains of Bacillus spp. and Paracoccus spp., it prevents black soil formation, reduces foul odors, and naturally boosts dissolved oxygen levels. Regular use creates a clean, aerobic sediment environment that supports healthier stock and better feed conversion.',
@@ -102,8 +104,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Use after harvest & before stocking. Repeat every 15 days during grow-out for sustained soil health.',
         resources: [
-          { label: 'Download Full Brochure', href: '#' },
-          { label: 'View Lab Report & Strain IDs', href: '#' },
+          { label: 'Download Full Brochure', href: '/brochures/probiotics-soil-care/pro-plus/' },
+          { label: 'View Lab Report & Strain IDs', href: '/brochures/probiotics-soil-care/pro-plus/lab-report-strain-ids' },
         ],
         testimonial: {
           quote: 'After using PRO PLUS + GASO CLEAN, ammonia dropped from 2.1 to 0.4 ppm in 5 days. Survival rate improved by 18% this cycle.',
@@ -120,6 +122,7 @@ export const categories: ProductCategory[] = [
         name: 'FARM PRO',
         slug: 'farm-pro',
         icon: 'flask',
+        image: '/images/products/farm-pro.svg',
         tagline: 'Balanced water. Stronger immunity. Predictable growth.',
         shortDescription: 'Liquid probiotic for stable pond ecosystems. Suppresses pathogens without harming beneficial microbes.',
         description: 'FARM PRO is a liquid probiotic concentrate that stabilizes water color and plankton balance within 48 hours of application. It suppresses pathogenic bacteria through competitive exclusion while leaving beneficial microbial communities intact. The result is improved feed conversion, reduced early-stage mortality, and more predictable growth cycles across a wide range of salinities and pH conditions.',
@@ -153,8 +156,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Best applied during Week 1–2 post-stocking. Repeat every 10–14 days during rapid growth phases.',
         resources: [
-          { label: 'Download Full Brochure', href: '#' },
-          { label: 'View Density Dosage Chart', href: '#' },
+          { label: 'Download Full Brochure', href: '/brochures/probiotics-soil-care/farm-pro/' },
+          { label: 'View Density Dosage Chart', href: '/brochures/probiotics-soil-care/farm-pro/density-dosage-chart' },
         ],
         faqs: [
           { question: 'How quickly does FARM PRO work?', answer: 'Water color and plankton balance typically stabilize within 48 hours of application.' },
@@ -165,6 +168,7 @@ export const categories: ProductCategory[] = [
         name: 'FARM-PS',
         slug: 'farm-ps',
         icon: 'flask',
+        image: '/images/products/farm-ps.svg',
         tagline: 'Unlock soil nutrients. Clearer water. Faster cycles.',
         shortDescription: 'Phosphate-solubilizing liquid probiotic that converts bound phosphates into plant-available nutrients.',
         description: 'FARM-PS is a specialized phosphate-solubilizing probiotic that converts bound phosphates in pond sediment into bioavailable nutrients for phytoplankton. This promotes stable algal blooms, prevents green scum formation, and reduces dependency on chemical fertilizers. By enhancing the natural food web, it supports post-larvae and juvenile stock during critical early development stages.',
@@ -193,8 +197,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Pair with FARM PRO for synergistic water & soil conditioning. Ideal for high-density shrimp farms.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Check Field Trial Data', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/probiotics-soil-care/farm-ps/' },
+          { label: 'Check Field Trial Data', href: '/brochures/probiotics-soil-care/farm-ps/field-trial-data' },
         ],
         faqs: [
           { question: 'How is FARM-PS different from regular probiotics?', answer: 'FARM-PS specifically targets phosphate solubilization, making it ideal for ponds with hardpan soils or heavy fertilizer history.' },
@@ -205,6 +209,7 @@ export const categories: ProductCategory[] = [
         name: 'GUT-X',
         slug: 'gut-x',
         icon: 'capsule',
+        image: '/images/products/gut-x.svg',
         tagline: 'Cleaner guts. Better feed. Faster growth.',
         shortDescription: 'Gut health & digestion probiotic that improves nutrient absorption and reduces FCR.',
         description: 'GUT-X is a targeted gut health probiotic that colonizes shrimp and fish intestines with beneficial microbes. By improving nutrient absorption and suppressing harmful gut bacteria including Vibrio, it directly reduces Feed Conversion Ratio (FCR) and improves growth uniformity. Consistent use enhances stool quality, reduces sludge load on the pond, and lowers dependency on antibiotics.',
@@ -227,8 +232,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Start from Week 2 post-stocking. Consistent use reduces antibiotic dependency.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'FCR Reduction Case Studies', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/probiotics-soil-care/gut-x/' },
+          { label: 'FCR Reduction Case Studies', href: '/brochures/probiotics-soil-care/gut-x/fcr-reduction-case-studies' },
         ],
         faqs: [
           { question: 'When should I start using GUT-X?', answer: 'Start from Week 2 post-stocking for best results. Consistent use throughout grow-out reduces FCR and improves size uniformity.' },
@@ -251,6 +256,7 @@ export const categories: ProductCategory[] = [
         name: 'SHRIMP CARE',
         slug: 'shrimp-care',
         icon: 'capsule',
+        image: '/images/products/shrimp-care.svg',
         tagline: 'All-in-one protection. Predictable molting.',
         shortDescription: 'Comprehensive pond & health care pack with pre-measured doses for water, soil & stock health.',
         description: 'SHRIMP CARE is a multi-component health management pack that provides integrated support for water quality, soil health, and stock immunity. Each pack contains pre-measured doses of complementary formulations that work together to accelerate uniform molting, strengthen shell hardening, and reduce mortality from environmental and microbial stress. Designed for farmers managing 5–15 acre plots with limited technical staff.',
@@ -278,8 +284,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Ideal for farmers managing 5–15 acre plots with limited technical staff.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Step-by-Step Care Guide', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/disease-stress-management/shrimp-care/' },
+          { label: 'Step-by-Step Care Guide', href: '/brochures/disease-stress-management/shrimp-care/step-by-step-care-guide' },
         ],
         faqs: [
           { question: 'How do I choose the right dosage tier?', answer: 'Use Regular for normal conditions, Problematic for ponds with history of mortality, and High RMS for multi-cycle stressed ponds or post-disease recovery.' },
@@ -290,6 +296,7 @@ export const categories: ProductCategory[] = [
         name: 'FARM-C+',
         slug: 'farm-c-plus',
         icon: 'capsule',
+        image: '/images/products/farm-c-plus.svg',
         tagline: 'Quick recovery. Stronger defenses.',
         shortDescription: 'Stress release & immunity booster with rapid vitamin blend for handling, transport & weather stress.',
         description: 'FARM-C+ is a concentrated vitamin and antioxidant formula designed for rapid stress recovery in shrimp and fish. It boosts antioxidant capacity, supports healing post-molt or minor injuries, and improves feed intake during recovery phases. Essential during handling, transport, weather fluctuations, and after disease events.',
@@ -312,8 +319,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Keep on hand for cyclone warnings, harvest transfers, or sudden salinity drops.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Stress Response Protocol', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/disease-stress-management/farm-c-plus/' },
+          { label: 'Stress Response Protocol', href: '/brochures/disease-stress-management/farm-c-plus/stress-response-protocol' },
         ],
         faqs: [
           { question: 'How quickly does FARM-C+ work?', answer: 'Feed intake improvement is often visible within 24 hours. Full stress recovery typically takes 3–5 days of consecutive application.' },
@@ -324,6 +331,7 @@ export const categories: ProductCategory[] = [
         name: 'FARMADINE',
         slug: 'farmadine',
         icon: 'flask',
+        image: '/images/products/farmadine.svg',
         tagline: 'Targeted protection. Fast recovery. Clean ponds.',
         shortDescription: 'Iodine-based disease control for Blackgill, Browngill & fungal infections in shrimp and fish.',
         description: 'FARMADINE is a broad-spectrum iodine-based disease control concentrate effective against bacterial, fungal, and protozoan pathogens. Its non-alkyl phenoxyl polyethylene complex ensures targeted activity with minimal environmental residue. Particularly effective for controlling Blackgill and Browngill in shrimp, it can be used safely during grow-out without harsh chemical buildup.',
@@ -349,8 +357,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Use at first sign of gill discoloration or erratic swimming. Maintain DO >4 mg/L during treatment.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Disease Identification Guide', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/disease-stress-management/farmadine/' },
+          { label: 'Disease Identification Guide', href: '/brochures/disease-stress-management/farmadine/disease-identification-guide' },
         ],
         faqs: [
           { question: 'Is FARMADINE safe for all species?', answer: 'Yes, it is safe for shrimp, fish, and prawns at recommended dosages. Always maintain DO above 4 mg/L during treatment.' },
@@ -361,6 +369,7 @@ export const categories: ProductCategory[] = [
         name: 'FARM 80%',
         slug: 'farm-80',
         icon: 'flask',
+        image: '/images/products/farm-80.svg',
         tagline: 'Clean surfaces. Controlled algae. Safer molting.',
         shortDescription: 'Pond disinfectant & surface sanitizer with Benzyl Konium Chloride for bacterial load control.',
         description: 'FARM 80% is a concentrated pond disinfectant formulated with Benzyl Konium Chloride 80% w/v. It effectively reduces bacterial load on shrimp and fish body surfaces, controls gill rot, tail rot, and antenna rot, and manages excess algae without crashing dissolved oxygen. Regular application improves molting uniformity and shell clarity in crustacean ponds.',
@@ -386,8 +395,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Use only when bacterial load or rot symptoms are visible. Never mix with iodine or oxidizers.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Safety & Handling Guide', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/disease-stress-management/farm-80/' },
+          { label: 'Safety & Handling Guide', href: '/brochures/disease-stress-management/farm-80/safety-handling-guide' },
         ],
         faqs: [
           { question: 'Can FARM 80% be used as a preventive?', answer: 'It is best used curatively when symptoms appear. For prevention, focus on probiotics and water quality management.' },
@@ -410,6 +419,7 @@ export const categories: ProductCategory[] = [
         name: 'GRO-BIND',
         slug: 'gro-bind',
         icon: 'droplet',
+        image: '/images/products/gro-bind.svg',
         tagline: 'Stable pellets. Less sink. More growth.',
         shortDescription: 'Feed binding gel that prevents pellet disintegration, reduces waste & improves FCR.',
         description: 'GRO-BIND is a liquid gel binder that creates a protective coating around feed pellets, preventing disintegration in water. This dramatically reduces feed waste, sludge accumulation, and ammonia spikes from uneaten feed. By keeping pellets intact longer, it ensures better nutrient absorption and improved Feed Conversion Ratio, especially during high-density stocking and monsoon months.',
@@ -432,8 +442,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Critical during high-density stocking & monsoon months when feed sinkage increases.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'FCR Comparison Chart', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/feed-pond-preparers/gro-bind/' },
+          { label: 'FCR Comparison Chart', href: '/brochures/feed-pond-preparers/gro-bind/fcr-comparison-chart' },
         ],
         faqs: [
           { question: 'Does GRO-BIND affect feed palatability?', answer: 'No, GRO-BIND is odorless and tasteless. Shrimp and fish accept coated feed normally.' },
@@ -444,6 +454,7 @@ export const categories: ProductCategory[] = [
         name: 'OMEGA-BOOSTER',
         slug: 'omega-booster',
         icon: 'capsule',
+        image: '/images/products/omega-booster.svg',
         tagline: 'Faster weight gain. Stronger stress resistance.',
         shortDescription: 'Growth & immunity support supplement that accelerates metabolic rate and feed assimilation.',
         description: 'OMEGA-BOOSTER is a liquid and powder blend supplement that accelerates metabolic rate, enhances feed assimilation, and strengthens immune response against seasonal stressors. It supports uniform molting, better size grading, and reduces mortality during weather fluctuations, monsoon transitions, and temperature swings common along Indian coastal belts.',
@@ -466,8 +477,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Pair with probiotics for maximum gut-to-growth efficiency. Ideal for AP, TN & Odisha coastal cycles.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'View Growth Curve Data', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/feed-pond-preparers/omega-booster/' },
+          { label: 'View Growth Curve Data', href: '/brochures/feed-pond-preparers/omega-booster/growth-curve-data' },
         ],
         faqs: [
           { question: 'When is the best time to use OMEGA-BOOSTER?', answer: 'Use during early grow-out for growth acceleration and during weather transitions for stress protection.' },
@@ -478,6 +489,7 @@ export const categories: ProductCategory[] = [
         name: 'FARMAMIN',
         slug: 'farmamin',
         icon: 'powder',
+        image: '/images/products/farmamin.svg',
         tagline: 'Rich water. Stable parameters. Zero guesswork.',
         shortDescription: 'Pond fertility & mineral balancer that boosts productivity and maintains essential minerals.',
         description: 'FARMAMIN is a powdered pond fertility and mineral balancer that boosts soil productivity and maintains essential minerals for strong exoskeleton development in crustaceans. It naturally stabilizes pH, alkalinity, and hardness while lowering toxic gas buildup and supporting higher dissolved oxygen levels. Regular use prevents soft-shell syndrome and creates optimal conditions for rapid growth.',
@@ -500,8 +512,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Apply every 7–10 days during pre-molt stages to prevent soft-shell syndrome.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'View Mineral Profile', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/feed-pond-preparers/farmamin/' },
+          { label: 'View Mineral Profile', href: '/brochures/feed-pond-preparers/farmamin/mineral-profile' },
         ],
         faqs: [
           { question: 'How is FARMAMIN different from regular minerals?', answer: 'FARMAMIN combines fertility enhancement with mineral balancing, making it a dual-action product for both water and soil health.' },
@@ -512,6 +524,7 @@ export const categories: ProductCategory[] = [
         name: 'BLOOMER',
         slug: 'bloomer',
         icon: 'powder',
+        image: '/images/products/bloomer.svg',
         tagline: 'Stable color. Natural food. Zero crashes.',
         shortDescription: 'Plankton bloom regulator that promotes stable diatom & green algae growth.',
         description: 'BLOOMER is a plankton bloom regulator that promotes stable diatom and green algae populations while preventing sudden phytoplankton die-offs. The stable bloom provides natural feed for early-stage stock, buffers pH through photosynthetic activity, and maintains healthy dissolved oxygen levels. Proper bloom management reduces dependency on artificial feed during early nursery phases.',
@@ -534,8 +547,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Best paired with FARM-PS for long-term bloom stability & water clarity.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Bloom Color Guide', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/feed-pond-preparers/bloomer/' },
+          { label: 'Bloom Color Guide', href: '/brochures/feed-pond-preparers/bloomer/bloom-color-guide' },
         ],
         faqs: [
           { question: 'How long does it take to see bloom development?', answer: 'Initial bloom development is visible within 3–5 days in sunny conditions. Full establishment takes 7–10 days.' },
@@ -558,6 +571,7 @@ export const categories: ProductCategory[] = [
         name: 'OXY-FARM',
         slug: 'oxy-farm',
         icon: 'capsule',
+        image: '/images/products/oxy-farm.svg',
         tagline: 'More oxygen. Cleaner water. Safer nights.',
         shortDescription: 'DO & nitrification support with Paracoccus spp. + denitrifying bacteria for oxygen crashes.',
         description: 'OXY-FARM is a specialized microbial blend of Paracoccus spp. and denitrifying bacteria that naturally boosts dissolved oxygen levels through balanced microbial respiration. It converts toxic nitrites into safe nitrogen gas, prevents night-time oxygen crashes, and works efficiently in both brackish and freshwater systems. Critical during high-biomass weeks when oxygen demand peaks.',
@@ -583,8 +597,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Critical during high biomass months (Week 6+). Pair with GASO CLEAN for full nitrogen cycle control.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'DO Management Calendar', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/water-quality-ammonia-control/oxy-farm/' },
+          { label: 'DO Management Calendar', href: '/brochures/water-quality-ammonia-control/oxy-farm/do-management-calendar' },
         ],
         faqs: [
           { question: 'When is the best time to apply OXY-FARM?', answer: 'Apply before dusk or after heavy feeding when DO levels begin to drop. Morning application is also effective.' },
@@ -595,6 +609,7 @@ export const categories: ProductCategory[] = [
         name: 'GASO CLEAN',
         slug: 'gaso-clean',
         icon: 'flask',
+        image: '/images/products/gaso-clean.svg',
         tagline: 'Zero spikes. Clear water. Stress-free stock.',
         shortDescription: 'Ammonia & nitrite remover with herbal + nitrifying bacteria blend for toxic gas control.',
         description: 'GASO CLEAN is a liquid microbial blend combining Nitrosococcus sp. and Nitrococcus sp. with herbal extracts to rapidly eliminate toxic ammonia and nitrite from pond water. The dual-action formula works efficiently across 5–65 ppt salinity and 5–45°C temperature range, with best performance at pH 7.0–8.0. Essential after heavy feeding, rain runoff events, or when biomass exceeds system carrying capacity.',
@@ -623,8 +638,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Critical after heavy feeding, rain runoff, or high biomass. Pair with PRO PLUS for full nitrogen cycle management.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Ammonia Response Flowchart', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/water-quality-ammonia-control/gaso-clean/' },
+          { label: 'Ammonia Response Flowchart', href: '/brochures/water-quality-ammonia-control/gaso-clean/ammonia-response-flowchart' },
         ],
         faqs: [
           { question: 'How quickly does GASO CLEAN reduce ammonia?', answer: 'Initial ammonia reduction is measurable within 24 hours. Full control is typically achieved within 48 hours.' },
@@ -635,6 +650,7 @@ export const categories: ProductCategory[] = [
         name: 'W-SOFTENER',
         slug: 'w-softener',
         icon: 'powder',
+        image: '/images/products/w-softener.svg',
         tagline: 'Stable pH. Soft water. Stress-free stock.',
         shortDescription: 'Water conditioner & alkalinity balancer that neutralizes hard water shocks and buffers pH swings.',
         description: 'W-SOFTENER is a powdered water conditioner that neutralizes high alkalinity, buffers pH swings during rain or tidal influx, and improves osmoregulation in shrimp and fish. By creating stable water chemistry, it enhances the effectiveness of probiotics and mineral treatments. Essential before stocking and during monsoon transitions when water parameters fluctuate most.',
@@ -657,8 +673,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Essential before stocking & during monsoon transitions. Always test total alkalinity first.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Water Parameter Checklist', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/water-quality-ammonia-control/w-softener/' },
+          { label: 'Water Parameter Checklist', href: '/brochures/water-quality-ammonia-control/w-softener/water-parameter-checklist' },
         ],
         faqs: [
           { question: 'What alkalinity level should I target?', answer: 'Target 120–180 mg/L for shrimp and 100–200 mg/L for fish. Always test before and after application.' },
@@ -669,6 +685,7 @@ export const categories: ProductCategory[] = [
         name: 'EASY LITE',
         slug: 'easy-lite',
         icon: 'capsule',
+        image: '/images/products/easy-lite.svg',
         tagline: 'Lighter load on ponds. Heavier harvests.',
         shortDescription: 'Metabolic & oxygen utilization support that enhances cellular oxygen uptake and reduces metabolic stress.',
         description: 'EASY LITE is a metabolic support formula that enhances cellular oxygen uptake efficiency, reducing metabolic stress during high-temperature periods and low-DO nights. It supports liver and hepatopancreas function, helping shrimp and fish cope with the physiological demands of rapid growth. Regular use during grow-out improves survival rates and harvest weights.',
@@ -691,8 +708,8 @@ export const categories: ProductCategory[] = [
         ],
         farmerTip: 'Best paired with OXY-FARM during pre-molt & sudden weather drops.',
         resources: [
-          { label: 'Download Brochure', href: '#' },
-          { label: 'Stress Management Guide', href: '#' },
+          { label: 'Download Brochure', href: '/brochures/water-quality-ammonia-control/easy-lite/' },
+          { label: 'Stress Management Guide', href: '/brochures/water-quality-ammonia-control/easy-lite/stress-management-guide' },
         ],
         faqs: [
           { question: 'When should I start using EASY LITE?', answer: 'Start from Week 4 of grow-out when metabolic load increases. Use 2x/week through harvest.' },
