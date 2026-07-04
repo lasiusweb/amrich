@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  schema?: object;
+}
+
+const { title, description = 'Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, and more.', ogImage = '/images/og-default.jpg', schema } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AMRich Aquaculture" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <title>{title}</title>
+
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer base {
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      @apply text-gray-900 antialiased font-sans;
+    }
+  }
+
+  @layer components {
+    .btn-primary {
+      @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-800 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+    }
+    .btn-secondary {
+      @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary-800 bg-white border-2 border-primary-800 rounded-lg shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
+    }
+    .section-padding {
+      @apply px-4 py-16 sm:px-6 lg:px-8;
+    }
+    .container-wide {
+      @apply max-w-7xl mx-auto;
+    }
+  }
+</style>

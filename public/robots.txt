@@ -1,0 +1,39 @@
+# AMRich Aquaculture Solutions - Robots.txt
+# Allow all AI crawlers and search engines
+
+User-agent: *
+Allow: /
+
+# AI Crawlers - Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemap
+Sitemap: https://amrich.netlify.app/sitemap-index.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1

@@ -1,0 +1,51 @@
+# AMRich Aquaculture Solutions
+
+> Premium aquaculture products for healthier farms and better yields
+
+## About
+
+AMRich Aquaculture Solutions provides scientifically formulated products for aquaculture operations across Southeast Asia. Founded in 2020, we serve over 500 farms with disease management, water quality, probiotics, and feed optimization solutions.
+
+## Products
+
+### Disease & Stress Management
+- Immuno-Boost Pro - Immune system stimulant
+- Vibrio Shield - Targeted antimicrobial solution
+- Stress-Away Plus - Natural stress reducer
+- WSSV Prevention Kit - Comprehensive virus prevention
+
+### Feed & Pond Preparers
+- Growth-Boost Formula - High-performance feed supplement
+- Pond Prep Elite - Complete pond preparation
+- Feed Enzyme Plus - Digestive enzyme supplement
+- Starter Feed Premix - Larval nutrition package
+
+### Probiotics & Soil Care
+- AquaBio Pro - Multi-strain probiotic blend
+- Soil Renew - Comprehensive soil treatment
+- BioFloc Starter - Biofloc technology catalyst
+- NitriGuard - Nitrifying bacteria supplement
+
+### Water Quality & Ammonia Control
+- AmmoniClear Pro - Fast-acting ammonia neutralizer
+- OxyBoost - Dissolved oxygen enhancer
+- pH Balance Plus - pH stabilization system
+- ClarityMax - Water clarifier
+
+## Contact
+
+- Website: https://amrich.netlify.app
+- Email: info@amrich.netlify.app
+- Location: Southeast Asia
+
+## Technical Information
+
+All products are:
+- Lab-tested and certified
+- Environmentally safe
+- Formulated by aquaculture scientists
+- Backed by technical support
+
+## API/Integration
+
+For bulk orders or partnership inquiries, contact our team at info@amrich.netlify.app.

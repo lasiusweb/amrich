@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import CTABanner from '../../../components/CTABanner.astro';
+import Footer from '../../../components/Footer.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Probiotics & Soil Care Products",
+  "description": "Beneficial microorganism formulations and soil treatment solutions for healthier pond ecosystems in aquaculture.",
+  "url": "https://amrich.netlify.app/products/probiotics-soil-care/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "AMRich Aquaculture",
+    "url": "https://amrich.netlify.app"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are the benefits of probiotics in aquaculture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Probiotics improve gut health, enhance immune function, suppress pathogenic bacteria, and improve water quality by breaking down organic waste. They lead to better growth rates and survival."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I apply soil care products?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Soil care products should be applied during pond preparation, 7-10 days before stocking. Distribute evenly across the pond bottom and maintain water depth for optimal activation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can probiotics be used with antibiotics?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We recommend avoiding simultaneous use. Allow 48-72 hours between antibiotic treatment and probiotic application to ensure the beneficial bacteria can establish properly."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Probiotics & Soil Care Products | AMRich Aquaculture"
+  description="Beneficial microorganism formulations and soil treatment solutions for healthier pond ecosystems and improved aquaculture productivity."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-aqua-600 to-aqua-800 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-white mb-4">
+            🦠 Probiotics & Soil Care
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Healthy Ecosystems
+          </h1>
+          <p class="text-lg text-gray-100 leading-relaxed">
+            Beneficial microorganism formulations and soil treatment solutions that create thriving pond ecosystems for optimal aquaculture productivity.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section-padding">
+      <div class="container-wide">
+        <h2 class="text-3xl font-extrabold text-primary-800 mb-8">Our Solutions</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+            <div class="text-3xl mb-3">🧬</div>
+            <h3 class="text-xl font-bold text-primary-800 mb-2">AquaBio Pro</h3>
+            <p class="text-gray-600 text-sm mb-4">
+              Multi-strain probiotic blend specifically designed for aquaculture. Contains billions of CFU per gram for maximum efficacy.
+            </p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>✓ 5 billion CFU/g</li>
+              <li>✓ Multi-strain formula</li>
+              <li>✓ Heat stable</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+            <div class="text-3xl mb-3">🌍</div>
+            <h3 class="text-xl font-bold text-primary-800 mb-2">Soil Renew</h3>
+            <p class="text-gray-600 text-sm mb-4">
+              Comprehensive soil treatment that breaks down organic matter, reduces toxic gases, and restores pond bottom health.
+            </p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>✓ Organic matter分解</li>
+              <li>✓ Gas reduction</li>
+              <li>✓ pH neutralizer</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+            <div class="text-3xl mb-3">🌿</div>
+            <h3 class="text-xl font-bold text-primary-800 mb-2">BioFloc Starter</h3>
+            <p class="text-gray-600 text-sm mb-4">
+              Biofloc technology starter that promotes beneficial bacterial growth for improved water quality and supplemental nutrition.
+            </p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>✓ Carbon source</li>
+              <li>✓ Floc formation</li>
+              <li>✓ Protein rich</li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+            <div class="text-3xl mb-3">🦠</div>
+            <h3 class="text-xl font-bold text-primary-800 mb-2">NitriGuard</h3>
+            <p class="text-gray-600 text-sm mb-4">
+              Nitrifying bacteria supplement that establishes and maintains the biological filter in aquaculture systems.
+            </p>
+            <ul class="text-sm text-gray-500 space-y-1">
+              <li>✓ Ammonia oxidizer</li>
+              <li>✓ Nitrite reducer</li>
+              <li>✓ System stabilizer</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section-padding bg-gray-50">
+      <div class="container-wide max-w-3xl">
+        <h2 class="text-3xl font-extrabold text-primary-800 mb-8">Frequently Asked Questions</h2>
+
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-primary-800 mb-2">What are the benefits of probiotics in aquaculture?</h3>
+            <p class="text-gray-600 text-sm">
+              Probiotics improve gut health, enhance immune function, suppress pathogenic bacteria, and improve water quality by breaking down organic waste. They lead to better growth rates and survival.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-primary-800 mb-2">How do I apply soil care products?</h3>
+            <p class="text-gray-600 text-sm">
+              Soil care products should be applied during pond preparation, 7-10 days before stocking. Distribute evenly across the pond bottom and maintain water depth for optimal activation.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-primary-800 mb-2">Can probiotics be used with antibiotics?</h3>
+            <p class="text-gray-600 text-sm">
+              We recommend avoiding simultaneous use. Allow 48-72 hours between antibiotic treatment and probiotic application to ensure the beneficial bacteria can establish properly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
