@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.ts';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Resources & Guides | AMRich Aquaculture Solutions",
+  "description": "Free aquaculture resources, farming guides, and technical documentation from AMRich Aquaculture Solutions.",
+  "url": `${site.url}/resources`,
+};
+
+const resources = [
+  {
+    category: 'Farming Guides',
+    icon: '📘',
+    items: [
+      { title: 'Shrimp Disease Prevention Guide', href: '/blog/shrimp-disease-prevention-guide/', description: 'Complete strategies for preventing WSSV, EMS, and Vibrio infections.' },
+      { title: 'Ammonia Control Manual', href: '/blog/control-ammonia-shrimp-ponds/', description: 'Understanding and managing ammonia levels in aquaculture ponds.' },
+      { title: 'Biofloc Technology Handbook', href: '/blog/biofloc-technology-beginners-guide/', description: 'Getting started with biofloc systems for higher productivity.' },
+    ],
+  },
+  {
+    category: 'Product Information',
+    icon: '🧪',
+    items: [
+      { title: 'Disease & Stress Management', href: '/products/disease-stress-management/', description: 'Immune boosters, antimicrobials, and stress reducers.' },
+      { title: 'Feed & Pond Preparers', href: '/products/feed-pond-preparers/', description: 'Growth supplements, pond prep, and larval nutrition.' },
+      { title: 'Probiotics & Soil Care', href: '/products/probiotics-soil-care/', description: 'Beneficial bacteria, soil treatment, and biofloc starters.' },
+      { title: 'Water Quality & Ammonia Control', href: '/products/water-quality-ammonia-control/', description: 'Ammonia neutralizers, oxygen enhancers, and pH buffers.' },
+    ],
+  },
+  {
+    category: 'Quick Reference',
+    icon: '📋',
+    items: [
+      { title: 'Water Quality Parameters', href: '#', description: 'Optimal ranges for temperature, pH, DO, ammonia, and alkalinity.' },
+      { title: 'Feed Conversion Ratios', href: '#', description: 'Expected FCR benchmarks by species and grow-out stage.' },
+      { title: 'Disease Identification Chart', href: '#', description: 'Visual guide to common shrimp and fish diseases.' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Resources & Guides | AMRich Aquaculture Solutions"
+  description="Free aquaculture resources, farming guides, and technical documentation from AMRich Aquaculture Solutions."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Resources' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Resources & Guides
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Free knowledge to help you succeed in aquaculture. From beginner guides to advanced management techniques.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Grid -->
+    <section class="section-padding">
+      <div class="container-wide max-w-5xl">
+        <div class="space-y-12">
+          {resources.map((section) => (
+            <div>
+              <div class="flex items-center space-x-3 mb-6">
+                <span class="text-3xl">{section.icon}</span>
+                <h2 class="text-2xl font-bold text-primary-800">{section.category}</h2>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {section.items.map((item) => (
+                  <a
+                    href={item.href}
+                    class="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-primary-300 transition-all duration-300"
+                  >
+                    <h3 class="text-lg font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-2">
+                      {item.title}
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                      {item.description}
+                    </p>
+                    <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+                      {item.href === '#' ? 'Coming Soon' : 'View Resource'}
+                      <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="bg-aqua-50 py-16">
+      <div class="container-wide max-w-3xl text-center">
+        <h2 class="text-2xl font-bold text-primary-800 mb-4">
+          Need Technical Support?
+        </h2>
+        <p class="text-gray-600 mb-6">
+          Our team of aquaculture scientists is ready to help with any questions about product application, disease management, or water quality.
+        </p>
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-primary-800 rounded-lg shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200"
+        >
+          Contact Our Team
+          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

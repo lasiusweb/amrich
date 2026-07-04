@@ -1,4 +1,21 @@
 ---
+interface Props {
+  badge?: string;
+  heading?: string;
+  subtext?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
+  trustIndicators?: string[];
+}
+
+const {
+  badge = 'Trusted by 500+ Farms Across Southeast Asia',
+  heading = 'Premium <span class="text-aqua-400">Aquaculture</span> Solutions',
+  subtext = 'Scientifically formulated products for healthier farms and better yields. From disease management to water quality — we deliver proven results.',
+  primaryCta = { label: 'View Products', href: '/products/' },
+  secondaryCta = { label: 'Contact Us', href: '/contact' },
+  trustIndicators = ['Lab-Tested Formulas', 'Environmentally Safe', 'Expert Support'],
+} = Astro.props;
 ---
 
 <section class="relative bg-gradient-to-br from-primary-800 via-primary-900 to-gray-900 text-white overflow-hidden">
@@ -12,58 +29,46 @@
       <!-- Badge -->
       <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm text-sm font-medium text-aqua-300 mb-6">
         <span class="w-2 h-2 bg-aqua-400 rounded-full mr-2 animate-pulse"></span>
-        Trusted by 500+ Farms Across Southeast Asia
+        {badge}
       </div>
 
       <!-- Heading -->
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-        Premium <span class="text-aqua-400">Aquaculture</span> Solutions
-      </h1>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6" set:html={heading} />
 
       <!-- Subtext -->
       <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-8 max-w-2xl">
-        Scientifically formulated products for healthier farms and better yields. From disease management to water quality — we deliver proven results.
+        {subtext}
       </p>
 
       <!-- CTA Buttons -->
       <div class="flex flex-col sm:flex-row gap-4">
         <a
-          href="/products/"
+          href={primaryCta.href}
           class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-primary-800 bg-white rounded-lg shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-all duration-200"
         >
-          View Products
+          {primaryCta.label}
           <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
         <a
-          href="/contact"
+          href={secondaryCta.href}
           class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white border-2 border-white/30 rounded-lg hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-all duration-200"
         >
-          Contact Us
+          {secondaryCta.label}
         </a>
       </div>
 
       <!-- Trust Indicators -->
       <div class="mt-12 flex flex-wrap gap-8 text-sm text-gray-400">
-        <div class="flex items-center space-x-2">
-          <svg class="w-5 h-5 text-aqua-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span>Lab-Tested Formulas</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <svg class="w-5 h-5 text-aqua-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span>Environmentally Safe</span>
-        </div>
-        <div class="flex items-center space-x-2">
-          <svg class="w-5 h-5 text-aqua-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span>Expert Support</span>
-        </div>
+        {trustIndicators.map((indicator) => (
+          <div class="flex items-center space-x-2">
+            <svg class="w-5 h-5 text-aqua-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>{indicator}</span>
+          </div>
+        ))}
       </div>
     </div>
   </div>

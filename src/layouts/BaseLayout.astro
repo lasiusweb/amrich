@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title: string;
   description?: string;
@@ -6,7 +8,7 @@ interface Props {
   schema?: object;
 }
 
-const { title, description = 'Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, and more.', ogImage = '/images/og-default.jpg', schema } = Astro.props;
+const { title, description = 'Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, and more.', ogImage = '/images/og-default.svg', schema } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -16,6 +18,9 @@ const { title, description = 'Premium aquaculture products for healthier farms a
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
@@ -28,6 +33,7 @@ const { title, description = 'Premium aquaculture products for healthier farms a
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,33 +50,3 @@ const { title, description = 'Premium aquaculture products for healthier farms a
     <slot />
   </body>
 </html>
-
-<style is:global>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-
-  @layer base {
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      @apply text-gray-900 antialiased font-sans;
-    }
-  }
-
-  @layer components {
-    .btn-primary {
-      @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-800 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
-    }
-    .btn-secondary {
-      @apply inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-primary-800 bg-white border-2 border-primary-800 rounded-lg shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
-    }
-    .section-padding {
-      @apply px-4 py-16 sm:px-6 lg:px-8;
-    }
-    .container-wide {
-      @apply max-w-7xl mx-auto;
-    }
-  }
-</style>

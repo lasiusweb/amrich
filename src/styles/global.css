@@ -7,17 +7,11 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-gray-900 antialiased;
+    @apply text-gray-900 antialiased font-sans;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary-800 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
-  }
-  .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 text-base font-medium text-primary-800 bg-white border-2 border-primary-800 rounded-lg shadow-sm hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200;
-  }
   .section-padding {
     @apply px-4 py-16 sm:px-6 lg:px-8;
   }

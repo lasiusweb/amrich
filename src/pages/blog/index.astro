@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Footer from '../../components/Footer.astro';
+import { site } from '../../data/site.ts';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "AMRich Aquaculture Blog",
+  "description": "Expert insights on aquaculture management, shrimp farming, water quality, and feed optimization.",
+  "url": `${site.url}/blog`,
+};
+
+const posts = [
+  {
+    title: 'Complete Guide to Shrimp Disease Prevention',
+    slug: 'shrimp-disease-prevention-guide',
+    description: 'Learn the essential strategies for preventing common shrimp diseases including WSSV, EMS, and Vibrio infections.',
+    category: 'Disease Management',
+    date: '2026-07-01',
+    readTime: '8 min read',
+  },
+  {
+    title: 'How to Control Ammonia in Shrimp Ponds',
+    slug: 'control-ammonia-shrimp-ponds',
+    description: 'Understanding ammonia dynamics and practical strategies for maintaining safe levels in your aquaculture ponds.',
+    category: 'Water Quality',
+    date: '2026-06-25',
+    readTime: '6 min read',
+  },
+  {
+    title: 'Biofloc Technology: A Beginner\'s Guide',
+    slug: 'biofloc-technology-beginners-guide',
+    description: 'Everything you need to know about starting and maintaining a successful biofloc system in your farm.',
+    category: 'Probiotics & Systems',
+    date: '2026-06-18',
+    readTime: '10 min read',
+  },
+];
+---
+
+<BaseLayout
+  title="Blog | AMRich Aquaculture Solutions"
+  description="Expert insights on aquaculture management, shrimp farming, water quality, and feed optimization from AMRich Aquaculture."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Blog' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Aquaculture Insights
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Expert knowledge on shrimp farming, water quality management, probiotics, and feed optimization.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="section-padding">
+      <div class="container-wide max-w-4xl">
+        <div class="space-y-8">
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.slug}/`}
+              class="group block bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300"
+            >
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-aqua-100 text-aqua-800 text-xs font-semibold uppercase tracking-wider">
+                  {post.category}
+                </span>
+                <time class="text-sm text-gray-500" datetime={post.date}>
+                  {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span class="text-sm text-gray-400">{post.readTime}</span>
+              </div>
+              <h2 class="text-2xl font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-3">
+                {post.title}
+              </h2>
+              <p class="text-gray-600 leading-relaxed mb-4">
+                {post.description}
+              </p>
+              <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+                Read Article
+                <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

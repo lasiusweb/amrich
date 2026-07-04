@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FAQSection from '../components/FAQSection.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.ts';
+
+const faqItems = [
+  {
+    question: 'What is AMRich Aquaculture Solutions?',
+    answer: 'AMRich Aquaculture Solutions provides scientifically formulated products for aquaculture operations across Southeast Asia. Founded in 2020, we serve over 500 farms with disease management, water quality, probiotics, and feed optimization solutions.',
+  },
+  {
+    question: 'What products does AMRich offer?',
+    answer: 'We offer 16 specialized products across four categories: Disease & Stress Management, Feed & Pond Preparers, Probiotics & Soil Care, and Water Quality & Ammonia Control. Each product is formulated by aquaculture scientists and tested under real farming conditions.',
+  },
+  {
+    question: 'How do I choose the right products for my farm?',
+    answer: 'Start by identifying your primary challenge — whether it\'s disease prevention, water quality, growth optimization, or pond preparation. Our product pages include detailed descriptions, application instructions, and dosage guides. You can also contact our technical team for personalized recommendations.',
+  },
+  {
+    question: 'Are AMRich products safe for all aquaculture species?',
+    answer: 'Yes, our products are designed to be safe for all aquaculture species including shrimp, prawns, tilapia, catfish, and other freshwater and marine species. Each product page lists specific target species.',
+  },
+  {
+    question: 'How do I place an order?',
+    answer: 'You can place an order by contacting us via email at info@amrich.netlify.app or by phone at +60 (0) 12-345-6789. Our team will assist with product selection, pricing, and delivery arrangements.',
+  },
+  {
+    question: 'Do you offer technical support?',
+    answer: 'Yes, we provide free technical consultation to all customers. Our team of aquaculture scientists can help with product application, disease identification, water quality management, and farm optimization strategies.',
+  },
+  {
+    question: 'What is your delivery area?',
+    answer: 'We currently serve farms across Southeast Asia including Vietnam, Malaysia, Thailand, Indonesia, and the Philippines. Contact us for delivery availability to your specific location.',
+  },
+  {
+    question: 'Can I get product samples before ordering?',
+    answer: 'Yes, we offer sample packs for most products so you can evaluate them on your farm before committing to a full order. Contact our sales team to request samples.',
+  },
+  {
+    question: 'How should I store AMRich products?',
+    answer: 'Most products should be stored in a cool, dry place away from direct sunlight. Probiotics like AquaBio Pro are heat stable and don\'t require refrigeration. Always check the product label for specific storage instructions.',
+  },
+  {
+    question: 'Do you offer bulk pricing for large farms?',
+    answer: 'Yes, we offer competitive bulk pricing for large-scale operations. Contact our sales team with your requirements for a custom quote.',
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "name": "Frequently Asked Questions | AMRich Aquaculture Solutions",
+      "description": "Common questions about AMRich aquaculture products, ordering, technical support, and delivery.",
+      "url": `${site.url}/faq`,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url },
+        { "@type": "ListItem", "position": 2, "name": "FAQ" },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Frequently Asked Questions | AMRich Aquaculture Solutions"
+  description="Common questions about AMRich aquaculture products, ordering, technical support, delivery, and farm optimization."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'FAQ' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Frequently Asked Questions
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Find answers to common questions about our products, ordering process, and technical support.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <FAQSection items={faqItems} />
+
+    <!-- Additional CTA -->
+    <section class="section-padding">
+      <div class="container-wide max-w-3xl text-center">
+        <h2 class="text-2xl font-bold text-primary-800 mb-4">
+          Still Have Questions?
+        </h2>
+        <p class="text-gray-600 mb-6">
+          Our team is ready to help with any questions about product selection, application, or farm optimization.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact/"
+            class="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-primary-800 rounded-lg shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200"
+          >
+            Contact Us
+          </a>
+          <a
+            href="/resources/"
+            class="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-primary-800 bg-white border-2 border-primary-800 rounded-lg hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200"
+          >
+            Browse Resources
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

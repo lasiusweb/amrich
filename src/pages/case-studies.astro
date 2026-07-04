@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.ts';
+
+const caseStudies = [
+  {
+    title: 'Mekong Delta Shrimp Farm — 40% Loss Recovery',
+    location: 'Mekong Delta, Vietnam',
+    date: 'March 2024',
+    challenge: 'Severe WSSV outbreak causing 40% mortality across 12 ponds. Previous treatments from other suppliers were ineffective.',
+    solution: 'Implemented WSSV Prevention Kit combined with Immuno-Boost Pro and AmmoniClear Pro for water quality management.',
+    results: ['Mortality dropped to under 5% within 3 weeks', 'Harvest yield exceeded projections by 15%', 'Feed conversion ratio improved from 1.8 to 1.4', 'Annual revenue increased by $45,000'],
+    products: ['WSSV Prevention Kit', 'Immuno-Boost Pro', 'AmmoniClear Pro'],
+    quote: 'AMRich\'s WSSV Prevention Kit was a game-changer. We went from losing nearly half our stock to having our best harvest in three years.',
+    quoteAuthor: 'Nguyen Van Hai, Farm Manager',
+    icon: '🦐',
+  },
+  {
+    title: 'Malaysian Tilapia Operation — Growth Optimization',
+    location: 'Perak, Malaysia',
+    date: 'August 2023',
+    challenge: 'Stunted growth rates and poor FCR (2.1) in a 50-hectare intensive tilapia operation. Feed costs were eating into margins.',
+    solution: 'Introduced Growth-Boost Formula and Feed Enzyme Plus to improve nutrition absorption. AquaBio Pro added for gut health.',
+    results: ['FCR improved from 2.1 to 1.5 within 60 days', 'Average harvest weight increased by 22%', 'Feed costs reduced by 28%', 'ROI on AMRich products: 8:1'],
+    products: ['Growth-Boost Formula', 'Feed Enzyme Plus', 'AquaBio Pro'],
+    quote: 'The improvement in FCR alone paid for the AMRich products many times over. Our profit margins are healthier than ever.',
+    quoteAuthor: 'Tan Wei Ling, Operations Director',
+    icon: '🐟',
+  },
+  {
+    title: 'Thai Biofloc Startup — Zero Water Exchange System',
+    location: 'Chanthaburi, Thailand',
+    date: 'January 2024',
+    challenge: 'New 5-hectare farm needed to establish biofloc technology from scratch. Zero water exchange required precise microbial management.',
+    solution: 'Used BioFloc Starter to establish beneficial floc communities, NitriGuard for biological filtration, and pH Balance Plus for stability.',
+    results: ['Biofloc system operational in 14 days', 'Zero water exchange achieved from week 3', 'Shrimp survival rate: 92%', 'Water usage reduced by 95% compared to traditional farming'],
+    products: ['BioFloc Starter', 'NitriGuard', 'pH Balance Plus'],
+    quote: 'As a new farm, getting the biofloc system right from day one was critical. AMRich\'s team guided us through every step.',
+    quoteAuthor: 'Somchai Prasert, Farm Owner',
+    icon: '🧬',
+  },
+  {
+    title: 'Indonesian Catfish Farm — Disease Elimination',
+    location: 'West Java, Indonesia',
+    date: 'November 2023',
+    challenge: 'Recurring Aeromonas infections causing 25% annual losses across 8 ponds. Antibiotic use was creating resistance concerns.',
+    solution: 'Replaced antibiotics with Vibrio Shield and Immuno-Boost Pro. Added AmmoniClear Pro to reduce stress triggers.',
+    results: ['Disease incidence reduced by 90%', 'Complete elimination of antibiotic use', 'Mortality dropped from 25% to 3%', 'Products passed organic certification standards'],
+    products: ['Vibrio Shield', 'Immuno-Boost Pro', 'AmmoniClear Pro'],
+    quote: 'We were trapped in an antibiotic cycle. AMRich helped us break free and our fish are healthier than ever.',
+    quoteAuthor: 'Budi Santoso, Farm Manager',
+    icon: '🐠',
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Case Studies | AMRich Aquaculture Solutions",
+      "description": "Real-world success stories from farms using AMRich aquaculture products across Southeast Asia.",
+      "url": `${site.url}/case-studies/`,
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url },
+        { "@type": "ListItem", "position": 2, "name": "Case Studies" },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title="Case Studies | AMRich Aquaculture Solutions"
+  description="Real-world success stories from farms across Southeast Asia using AMRich aquaculture products to improve yields and reduce losses."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Case Studies' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            Case Studies
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Real results from real farms. See how AMRich products have transformed aquaculture operations across Southeast Asia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="section-padding">
+      <div class="container-wide max-w-4xl space-y-16">
+        {caseStudies.map((study, index) => (
+          <article class={`border-b border-gray-200 pb-12 ${index === caseStudies.length - 1 ? 'border-b-0' : ''}`}>
+            <!-- Header -->
+            <div class="flex items-start gap-4 mb-6">
+              <div class="text-5xl">{study.icon}</div>
+              <div>
+                <div class="flex items-center gap-3 mb-1">
+                  <span class="text-sm text-gray-500">{study.location}</span>
+                  <span class="text-gray-300">|</span>
+                  <span class="text-sm text-gray-500">{study.date}</span>
+                </div>
+                <h2 class="text-2xl font-bold text-primary-800">{study.title}</h2>
+              </div>
+            </div>
+
+            <!-- Challenge -->
+            <div class="mb-4">
+              <h3 class="text-sm font-bold text-red-600 uppercase tracking-wider mb-2">Challenge</h3>
+              <p class="text-gray-600 leading-relaxed">{study.challenge}</p>
+            </div>
+
+            <!-- Solution -->
+            <div class="mb-4">
+              <h3 class="text-sm font-bold text-aqua-600 uppercase tracking-wider mb-2">Solution</h3>
+              <p class="text-gray-600 leading-relaxed">{study.solution}</p>
+            </div>
+
+            <!-- Results -->
+            <div class="mb-6">
+              <h3 class="text-sm font-bold text-green-600 uppercase tracking-wider mb-2">Results</h3>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {study.results.map((result) => (
+                  <li class="flex items-start space-x-2">
+                    <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-gray-600 text-sm">{result}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Products Used -->
+            <div class="mb-6">
+              <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-2">Products Used</h3>
+              <div class="flex flex-wrap gap-2">
+                {study.products.map((product) => (
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                    {product}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="bg-gray-50 rounded-xl p-6 border-l-4 border-aqua-500">
+              <p class="text-gray-700 italic leading-relaxed mb-2">"{study.quote}"</p>
+              <p class="text-sm text-gray-500 font-medium">— {study.quoteAuthor}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>

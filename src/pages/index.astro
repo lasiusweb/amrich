@@ -4,48 +4,38 @@ import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import ProductCard from '../components/ProductCard.astro';
 import Features from '../components/Features.astro';
+import Stats from '../components/Stats.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Newsletter from '../components/Newsletter.astro';
 import CTABanner from '../components/CTABanner.astro';
 import Footer from '../components/Footer.astro';
-
-const products = [
-  {
-    title: 'Disease & Stress Management',
-    description: 'Advanced treatments and preventive solutions to protect your stock from common aquaculture diseases and environmental stress.',
-    href: '/products/disease-stress-management/',
-    icon: '🛡️',
-  },
-  {
-    title: 'Feed & Pond Preparers',
-    description: 'Premium feed supplements and pond preparation products to optimize growth conditions and nutritional intake.',
-    href: '/products/feed-pond-preparers/',
-    icon: '🐟',
-  },
-  {
-    title: 'Probiotics & Soil Care',
-    description: 'Beneficial microorganism formulations and soil treatment solutions for healthier pond ecosystems.',
-    href: '/products/probiotics-soil-care/',
-    icon: '🦠',
-  },
-  {
-    title: 'Water Quality & Ammonia Control',
-    description: 'Professional-grade water treatment products to maintain optimal quality and control ammonia levels.',
-    href: '/products/water-quality-ammonia-control/',
-    icon: '💧',
-  },
-];
+import { productCategories, site } from '../data/site.ts';
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "AMRich Aquaculture Solutions",
-  "url": "https://amrich.netlify.app",
-  "description": "Premium aquaculture products for healthier farms and better yields",
-  "sameAs": [],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "info@amrich.netlify.app",
-    "contactType": "customer service"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": site.name,
+      "url": site.url,
+      "description": site.description,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": site.email,
+        "contactType": "customer service",
+      },
+      "sameAs": [
+        "https://www.facebook.com/amrichaquaculture",
+        "https://www.linkedin.com/company/amrich-aquaculture",
+        "https://www.youtube.com/@amrichaquaculture",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "name": site.name,
+      "url": site.url,
+    },
+  ],
 };
 ---
 
@@ -60,8 +50,11 @@ const schema = {
     <!-- Hero -->
     <Hero />
 
+    <!-- Stats -->
+    <Stats />
+
     <!-- Products Section -->
-    <section class="section-padding">
+    <section class="section-padding bg-gray-50">
       <div class="container-wide">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-extrabold text-primary-800 mb-4">
@@ -73,8 +66,13 @@ const schema = {
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <ProductCard {...product} />
+          {productCategories.map((product) => (
+            <ProductCard
+              title={product.name}
+              description={product.description}
+              href={product.href}
+              icon={product.icon}
+            />
           ))}
         </div>
       </div>
@@ -83,8 +81,14 @@ const schema = {
     <!-- Features -->
     <Features />
 
+    <!-- Testimonials -->
+    <Testimonials />
+
     <!-- CTA Banner -->
     <CTABanner />
+
+    <!-- Newsletter -->
+    <Newsletter />
   </main>
 
   <Footer />

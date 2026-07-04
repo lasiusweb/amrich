@@ -36,7 +36,24 @@ AMRich Aquaculture Solutions provides scientifically formulated products for aqu
 
 - Website: https://amrich.netlify.app
 - Email: info@amrich.netlify.app
+- Phone: +60 (0) 12-345-6789
 - Location: Southeast Asia
+
+## Blog
+
+Expert insights on aquaculture management:
+- /blog/shrimp-disease-prevention-guide - Complete Guide to Shrimp Disease Prevention
+- /blog/control-ammonia-shrimp-ponds - How to Control Ammonia in Shrimp Ponds
+- /blog/biofloc-technology-beginners-guide - Biofloc Technology: A Beginner's Guide
+
+## Resources
+
+- /resources - Farming guides, product information, and quick reference materials
+
+## Legal
+
+- /privacy - Privacy Policy
+- /terms - Terms of Service
 
 ## Technical Information
 

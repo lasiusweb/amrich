@@ -1,12 +1,7 @@
 ---
-const currentPath = Astro.url.pathname;
+import { productCategories } from '../data/site.ts';
 
-const products = [
-  { name: 'Disease & Stress Management', href: '/products/disease-stress-management/' },
-  { name: 'Feed & Pond Preparers', href: '/products/feed-pond-preparers/' },
-  { name: 'Probiotics & Soil Care', href: '/products/probiotics-soil-care/' },
-  { name: 'Water Quality & Ammonia Control', href: '/products/water-quality-ammonia-control/' },
-];
+const currentPath = Astro.url.pathname;
 ---
 
 <header class="sticky top-0 z-50 bg-white shadow-md">
@@ -32,19 +27,32 @@ const products = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+          <div class="absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200" role="menu">
             <div class="py-2">
-              {products.map((product) => (
+              {productCategories.map((cat) => (
                 <a
-                  href={product.href}
+                  href={cat.href}
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-800 transition-colors"
+                  role="menuitem"
                 >
-                  {product.name}
+                  {cat.name}
                 </a>
               ))}
             </div>
           </div>
         </div>
+
+        <a href="/blog" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath.includes('/blog') ? 'text-primary-800' : 'text-gray-600'}`}>
+          Blog
+        </a>
+
+        <a href="/case-studies" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/case-studies' ? 'text-primary-800' : 'text-gray-600'}`}>
+          Case Studies
+        </a>
+
+        <a href="/resources" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/resources' ? 'text-primary-800' : 'text-gray-600'}`}>
+          Resources
+        </a>
 
         <a href="/about" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/about' ? 'text-primary-800' : 'text-gray-600'}`}>
           About
@@ -74,14 +82,17 @@ const products = [
       <div class="flex flex-col space-y-2">
         <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Home</a>
         <div class="px-3 py-2 text-sm font-medium text-gray-500">Products</div>
-        {products.map((product) => (
+        {productCategories.map((cat) => (
           <a
-            href={product.href}
+            href={cat.href}
             class="pl-6 pr-3 py-2 rounded-md text-sm text-gray-600 hover:bg-primary-50 hover:text-primary-800"
           >
-            {product.name}
+            {cat.name}
           </a>
         ))}
+        <a href="/blog" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Blog</a>
+        <a href="/case-studies" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Case Studies</a>
+        <a href="/resources" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Resources</a>
         <a href="/about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">About</a>
         <a href="/contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Contact</a>
       </div>
@@ -96,8 +107,9 @@ const products = [
   const iconClose = document.getElementById('menu-icon-close');
 
   btn?.addEventListener('click', () => {
-    const isOpen = menu?.classList.toggle('hidden') === false;
-    btn.setAttribute('aria-expanded', String(isOpen));
+    const isHidden = menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(isHidden));
     iconOpen?.classList.toggle('hidden');
     iconClose?.classList.toggle('hidden');
   });

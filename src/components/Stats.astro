@@ -1,0 +1,31 @@
+---
+const stats = [
+  { value: '500+', label: 'Farms Served', icon: '🏭' },
+  { value: '85%', label: 'Avg. Survival Improvement', icon: '📈' },
+  { value: '16', label: 'Specialized Products', icon: '🧪' },
+  { value: '5+', label: 'Countries Served', icon: '🌏' },
+];
+---
+
+<section class="section-padding">
+  <div class="container-wide">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-primary-800 mb-4">
+        Proven Results Across Southeast Asia
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Our products are backed by real data from farms just like yours.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {stats.map((stat) => (
+        <div class="text-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+          <div class="text-3xl mb-2">{stat.icon}</div>
+          <div class="text-4xl font-extrabold text-primary-800 mb-1">{stat.value}</div>
+          <div class="text-sm text-gray-500 font-medium">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

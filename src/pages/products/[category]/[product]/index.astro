@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import Header from '../../../../components/Header.astro';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import FAQSection from '../../../../components/FAQSection.astro';
+import CTABanner from '../../../../components/CTABanner.astro';
+import Footer from '../../../../components/Footer.astro';
+import { categories } from '../../../../data/products.ts';
+import { site } from '../../../../data/site.ts';
+
+export function getStaticPaths() {
+  const paths: { params: { category: string; product: string }; props: { category: typeof categories[0]; product: typeof categories[0]['products'][0] } }[] = [];
+
+  for (const category of categories) {
+    for (const product of category.products) {
+      paths.push({
+        params: { category: category.slug, product: product.slug },
+        props: { category, product },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { category, product } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Product",
+      "name": product.name,
+      "description": product.description,
+      "url": `${site.url}/products/${category.slug}/${product.slug}/`,
+      "brand": {
+        "@type": "Organization",
+        "name": site.name,
+      },
+      "category": category.name,
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": site.url },
+        { "@type": "ListItem", "position": 2, "name": "Products", "item": `${site.url}/products/` },
+        { "@type": "ListItem", "position": 3, "name": category.name, "item": `${site.url}/products/${category.slug}/` },
+        { "@type": "ListItem", "position": 4, "name": product.name },
+      ],
+    },
+  ],
+};
+
+const relatedProducts = category.products.filter((p) => p.slug !== product.slug).slice(0, 3);
+---
+
+<BaseLayout
+  title={`${product.name} | ${site.name}`}
+  description={product.shortDescription}
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Products', href: '/products/' },
+      { label: category.name, href: `/products/${category.slug}/` },
+      { label: product.name },
+    ]} />
+
+    <!-- Product Hero -->
+    <section class={`bg-gradient-to-br ${category.gradient} text-white py-16`}>
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl">
+          <div class={`inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium ${category.badgeText} mb-4`}>
+            {category.icon} {category.name}
+          </div>
+          <div class="text-6xl mb-4">{product.icon}</div>
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            {product.name}
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed max-w-2xl">
+            {product.shortDescription}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Details -->
+    <section class="section-padding">
+      <div class="container-wide max-w-5xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <!-- Main Content -->
+          <div class="lg:col-span-2 space-y-10">
+            <!-- Description -->
+            <div>
+              <h2 class="text-2xl font-bold text-primary-800 mb-4">About This Product</h2>
+              <p class="text-gray-600 leading-relaxed">{product.description}</p>
+            </div>
+
+            <!-- Features -->
+            <div>
+              <h2 class="text-2xl font-bold text-primary-800 mb-4">Key Features</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {product.features.map((feature) => (
+                  <div class="flex items-center space-x-3 bg-gray-50 rounded-lg p-4">
+                    <svg class="w-5 h-5 text-aqua-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="text-gray-700 text-sm font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Application -->
+            <div>
+              <h2 class="text-2xl font-bold text-primary-800 mb-4">Application Instructions</h2>
+              <div class="bg-blue-50 border border-blue-100 rounded-xl p-6">
+                <p class="text-gray-700 leading-relaxed">{product.application}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="space-y-6">
+            <!-- Quick Specs -->
+            <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm sticky top-24">
+              <h3 class="text-lg font-bold text-primary-800 mb-4">Product Specifications</h3>
+
+              <div class="space-y-4">
+                <div class="border-b border-gray-100 pb-4">
+                  <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Dosage</span>
+                  <p class="text-gray-800 font-medium mt-1">{product.dosage}</p>
+                </div>
+
+                <div class="border-b border-gray-100 pb-4">
+                  <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Target Species</span>
+                  <div class="flex flex-wrap gap-2 mt-2">
+                    {product.targetSpecies.map((species) => (
+                      <span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-100 text-primary-800 text-xs font-medium">
+                        {species}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="border-b border-gray-100 pb-4">
+                  <span class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Packaging</span>
+                  <p class="text-gray-800 font-medium mt-1">{product.packaging}</p>
+                </div>
+
+                <div>
+                  <a
+                    href="/contact"
+                    class="w-full inline-flex items-center justify-center px-6 py-3 text-base font-semibold text-white bg-primary-800 border border-transparent rounded-lg shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-colors duration-200"
+                  >
+                    Request Quote
+                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product FAQ -->
+    {product.faqs.length > 0 && (
+      <FAQSection items={product.faqs} />
+    )}
+
+    <!-- Related Products -->
+    {relatedProducts.length > 0 && (
+      <section class="section-padding bg-gray-50">
+        <div class="container-wide">
+          <h2 class="text-2xl font-bold text-primary-800 mb-8">Related Products</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedProducts.map((rp) => (
+              <a
+                href={`/products/${category.slug}/${rp.slug}/`}
+                class="group block bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300 overflow-hidden"
+              >
+                <div class="p-6">
+                  <div class="text-3xl mb-3">{rp.icon}</div>
+                  <h3 class="text-lg font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-2">
+                    {rp.name}
+                  </h3>
+                  <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                    {rp.shortDescription}
+                  </p>
+                  <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+                    View Details
+                    <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>

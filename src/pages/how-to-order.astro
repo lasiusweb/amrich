@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.ts';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Identify Your Needs',
+    description: 'Browse our product categories or take our quick assessment to find the right solutions for your farm.',
+    icon: '🔍',
+    link: '/products/',
+    linkText: 'View Products',
+  },
+  {
+    number: '02',
+    title: 'Request a Quote',
+    description: 'Contact our sales team with your product selection, farm size, and delivery location for a personalized quote.',
+    icon: '📋',
+    link: '/contact/',
+    linkText: 'Contact Sales',
+  },
+  {
+    number: '03',
+    title: 'Confirm & Pay',
+    description: 'Review your quote, confirm your order, and choose from our flexible payment options.',
+    icon: '✅',
+    link: null,
+    linkText: null,
+  },
+  {
+    number: '04',
+    title: 'Delivery & Support',
+    description: 'Receive your products with full technical documentation. Our team provides ongoing support for product application.',
+    icon: '🚚',
+    link: '/resources/',
+    linkText: 'View Resources',
+  },
+];
+
+const benefits = [
+  { icon: '🌱', title: 'Farm-Tested Products', description: 'Every product is field-tested across hundreds of farms in Southeast Asia.' },
+  { icon: '🔬', title: 'Scientific Formulation', description: 'Developed by aquaculture scientists with decades of combined experience.' },
+  { icon: '📞', title: 'Technical Support', description: 'Free consultation on product application, disease management, and water quality.' },
+  { icon: '🌏', title: 'Regional Delivery', description: 'Fast delivery across Vietnam, Malaysia, Thailand, Indonesia, and the Philippines.' },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "How to Order | AMRich Aquaculture Solutions",
+  "description": "Step-by-step guide to ordering AMRich aquaculture products for your farm.",
+  "url": `${site.url}/how-to-order`,
+};
+---
+
+<BaseLayout
+  title="How to Order | AMRich Aquaculture Solutions"
+  description="Step-by-step guide to ordering AMRich aquaculture products for your farm."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'How to Order' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            How to Order
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Getting started with AMRich products is simple. Follow these four steps to improve your farm.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps -->
+    <section class="section-padding">
+      <div class="container-wide max-w-4xl">
+        <div class="space-y-12">
+          {steps.map((step, index) => (
+            <div class="flex gap-6 items-start">
+              <!-- Step Number -->
+              <div class="flex-shrink-0 w-16 h-16 bg-aqua-100 rounded-full flex items-center justify-center">
+                <span class="text-2xl font-extrabold text-aqua-700">{step.number}</span>
+              </div>
+
+              <!-- Step Content -->
+              <div class="flex-1">
+                <div class="text-3xl mb-2">{step.icon}</div>
+                <h2 class="text-2xl font-bold text-primary-800 mb-2">{step.title}</h2>
+                <p class="text-gray-600 leading-relaxed mb-3">{step.description}</p>
+                {step.link && (
+                  <a
+                    href={step.link}
+                    class="inline-flex items-center text-sm font-semibold text-aqua-600 hover:text-aqua-800 transition-colors"
+                  >
+                    {step.linkText}
+                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                )}
+              </div>
+
+              {/* Connector line */}
+              {index < steps.length - 1 && (
+                <div class="hidden md:block absolute mt-20 ml-8 w-0.5 h-12 bg-gray-200" />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section-padding bg-gray-50">
+      <div class="container-wide">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-primary-800 mb-4">
+            Why Order from AMRich?
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map((benefit) => (
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div class="text-4xl mb-3">{benefit.icon}</div>
+              <h3 class="text-lg font-bold text-primary-800 mb-2">{benefit.title}</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>

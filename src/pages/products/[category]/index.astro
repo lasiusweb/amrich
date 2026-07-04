@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import FAQSection from '../../../components/FAQSection.astro';
+import CTABanner from '../../../components/CTABanner.astro';
+import Footer from '../../../components/Footer.astro';
+import { categories } from '../../../data/products.ts';
+import { getFaqByCategory } from '../../../data/faq.ts';
+import { site } from '../../../data/site.ts';
+
+export function getStaticPaths() {
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { category: cat },
+  }));
+}
+
+const { category } = Astro.props;
+const faqItems = getFaqByCategory(category.slug);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": category.metaTitle,
+      "description": category.metaDescription,
+      "url": `${site.url}/products/${category.slug}/`,
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": site.name,
+        "url": site.url,
+      },
+    },
+    ...(faqItems.length > 0
+      ? [
+          {
+            "@type": "FAQPage",
+            "mainEntity": faqItems.map((item) => ({
+              "@type": "Question",
+              "name": item.question,
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": item.answer,
+              },
+            })),
+          },
+        ]
+      : []),
+  ],
+};
+---
+
+<BaseLayout
+  title={category.metaTitle}
+  description={category.metaDescription}
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'Products', href: '/products/' },
+      { label: category.name },
+    ]} />
+
+    <!-- Hero -->
+    <section class={`bg-gradient-to-br ${category.gradient} text-white py-16`}>
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <div class={`inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium ${category.badgeText} mb-4`}>
+            {category.icon} {category.name}
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            {category.heroTitle}
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            {category.heroDescription}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section-padding">
+      <div class="container-wide">
+        <h2 class="text-3xl font-extrabold text-primary-800 mb-8">Our Solutions</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {category.products.map((product) => (
+            <a
+              href={`/products/${category.slug}/${product.slug}/`}
+              class="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300"
+            >
+              <div class="text-3xl mb-3">{product.icon}</div>
+              <h3 class="text-xl font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-2">{product.name}</h3>
+              <p class="text-gray-600 text-sm mb-4">
+                {product.shortDescription}
+              </p>
+              <ul class="text-sm text-gray-500 space-y-1 mb-4">
+                {product.features.slice(0, 3).map((feature) => (
+                  <li>✓ {feature}</li>
+                ))}
+              </ul>
+              <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+                View Details
+                <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    {faqItems.length > 0 && <FAQSection items={faqItems} />}
+
+    <!-- CTA -->
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.ts';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About AMRich Aquaculture Solutions",
+  "description": "Learn about AMRich Aquaculture Solutions — our mission, values, and commitment to healthier farms across Southeast Asia.",
+  "url": `${site.url}/about`,
+};
+---
+
+<BaseLayout
+  title="About Us | AMRich Aquaculture Solutions"
+  description="Learn about AMRich Aquaculture Solutions — our mission, values, and commitment to healthier farms across Southeast Asia."
+  schema={schema}
+>
+  <Header />
+
+  <main class="flex-1">
+    <Breadcrumbs items={[
+      { label: 'Home', href: '/' },
+      { label: 'About' },
+    ]} />
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl">
+          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+            About AMRich
+          </h1>
+          <p class="text-lg text-gray-300 leading-relaxed">
+            Dedicated to advancing aquaculture through science-driven solutions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section-padding">
+      <div class="container-wide max-w-4xl">
+        <div class="prose prose-lg max-w-none">
+          <h2 class="text-2xl font-bold text-primary-800 mb-4">Our Mission</h2>
+          <p class="text-gray-600 mb-8">
+            AMRich Aquaculture Solutions is committed to providing scientifically formulated products that help aquaculture farms achieve healthier stock, better yields, and sustainable operations. We serve farming communities across Southeast Asia with reliable, eco-friendly solutions.
+          </p>
+
+          <h2 class="text-2xl font-bold text-primary-800 mb-4">What We Do</h2>
+          <p class="text-gray-600 mb-8">
+            We develop and supply specialized products across four key areas of aquaculture management: disease prevention and stress management, feed supplements and pond preparation, probiotics and soil care, and water quality control. Each product is formulated by aquaculture scientists and rigorously tested for efficacy and safety.
+          </p>
+
+          <h2 class="text-2xl font-bold text-primary-800 mb-4">Why Choose Us</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-primary-800 mb-2">Science-Backed</h3>
+              <p class="text-gray-600 text-sm">Every product is developed using the latest aquaculture research and tested under real farming conditions.</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-primary-800 mb-2">Proven Results</h3>
+              <p class="text-gray-600 text-sm">Trusted by over 500 farms across Southeast Asia with documented improvements in yield and survival rates.</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-primary-800 mb-2">Eco-Friendly</h3>
+              <p class="text-gray-600 text-sm">Sustainable formulations that protect aquatic ecosystems while maximizing farm productivity.</p>
+            </div>
+            <div class="bg-gray-50 rounded-xl p-6">
+              <h3 class="font-bold text-primary-800 mb-2">Full Support</h3>
+              <p class="text-gray-600 text-sm">Technical consultation and ongoing support to help you achieve optimal results with every product.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTABanner />
+  </main>
+
+  <Footer />
+</BaseLayout>
