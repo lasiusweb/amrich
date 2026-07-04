@@ -18,7 +18,7 @@ test.describe('Navigation', () => {
         await expect(anchor).toBeVisible();
 
         await anchor.click();
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Verify we landed on the expected page
         expect(page.url()).toContain(link.href === '/' ? page.url().endsWith('/') || page.url().endsWith('/index') : link.href);
@@ -81,7 +81,7 @@ test.describe('Navigation', () => {
 
       const href = await firstProductLink.getAttribute('href');
       await firstProductLink.click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       expect(page.url()).toContain(href!);
       const h1 = page.locator('h1').first();
@@ -149,7 +149,7 @@ test.describe('Navigation', () => {
       await page.locator('#mobileMenuBtn').click();
 
       await page.locator('#mobileDrawer a[href="/contact"]').click();
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       expect(page.url()).toContain('/contact');
       const h1 = page.locator('h1').first();

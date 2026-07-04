@@ -31,7 +31,7 @@ test.describe('Product Pages', () => {
     for (const cat of categories) {
       test(`category page for "${cat.name}" loads and renders products`, async ({ page }) => {
         await page.goto(`/products/${cat.slug}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // H1 should contain the category name
         await expect(page.locator('h1').first()).toContainText(cat.name);
@@ -56,7 +56,7 @@ test.describe('Product Pages', () => {
     for (const prod of products) {
       test(`product page for "${prod.slug}" loads with h1 content`, async ({ page }) => {
         await page.goto(`/products/${prod.category}/${prod.slug}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         const h1 = page.locator('h1').first();
         await expect(h1).toBeVisible();
@@ -71,7 +71,7 @@ test.describe('Product Pages', () => {
   test.describe('Sticky CTA bar', () => {
     test('sticky CTA bar exists on product page', async ({ page }) => {
       await page.goto('/products/probiotics-soil-care/pro-plus');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const stickyCTA = page.locator('#stickyCTA');
       await expect(stickyCTA).toBeAttached();
@@ -88,7 +88,7 @@ test.describe('Product Pages', () => {
 
     test('sticky CTA bar becomes visible on scroll', async ({ page }) => {
       await page.goto('/products/probiotics-soil-care/pro-plus');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const stickyCTA = page.locator('#stickyCTA');
       // Initially hidden (transformed off-screen)
@@ -107,7 +107,7 @@ test.describe('Product Pages', () => {
     for (const prod of products) {
       test(`product schema JSON-LD present for "${prod.slug}"`, async ({ page }) => {
         await page.goto(`/products/${prod.category}/${prod.slug}`);
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('domcontentloaded');
 
         // Find the Product schema
         const scripts = page.locator('script[type="application/ld+json"]');
@@ -145,7 +145,7 @@ test.describe('Product Pages', () => {
   test.describe('Products index page', () => {
     test('products index page loads all 4 category links', async ({ page }) => {
       await page.goto('/products');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       await expect(page.locator('h1').first()).toContainText('Amrich Pharma Product Range');
 
@@ -158,7 +158,7 @@ test.describe('Product Pages', () => {
 
     test('products index page has CollectionPage schema', async ({ page }) => {
       await page.goto('/products');
-      await page.waitForLoadState('networkidle');
+      await page.waitForLoadState('domcontentloaded');
 
       const scripts = page.locator('script[type="application/ld+json"]');
       let foundCollectionPage = false;

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Quote Form', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test('modal opens via data-modal trigger button', async ({ page }) => {
