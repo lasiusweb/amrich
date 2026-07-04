@@ -3,8 +3,24 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "22"
 
+# ── Production ──────────────────────────────────────────────
+[context.production]
+  command = "npm run build"
+  environment = { NODE_VERSION = "22" }
+
+# ── Branch deploys (feature/*) ──────────────────────────────
+[context.branch-deploy]
+  command = "npm run build"
+  environment = { NODE_VERSION = "22" }
+
+# ── Deploy previews (PRs) ──────────────────────────────────
+[context.deploy-preview]
+  command = "npm run build"
+  environment = { NODE_VERSION = "22" }
+
+# ── Security headers ────────────────────────────────────────
 [[headers]]
   for = "/*"
   [headers.values]
@@ -12,8 +28,9 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
 
+# ── Asset caching ──────────────────────────────────────────
 [[headers]]
   for = "/_astro/*"
   [headers.values]
@@ -22,8 +39,14 @@
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=2592000"
+    Cache-Control = "public, max-age=2592000, immutable"
 
+[[headers]]
+  for = "/brochures/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+# ── Trailing-slash redirects ───────────────────────────────
 [[redirects]]
   from = "/products/disease-stress-management"
   to = "/products/disease-stress-management/"
@@ -42,4 +65,9 @@
 [[redirects]]
   from = "/products/water-quality-ammonia-control"
   to = "/products/water-quality-ammonia-control/"
+  status = 301
+
+[[redirects]]
+  from = "/brochures/*"
+  to = "/brochures/:splat/"
   status = 301
