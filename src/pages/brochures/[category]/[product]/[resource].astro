@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { categories } from '../../../../data/products.ts';
+import { site } from '../../../../data/site.ts';
+import { resourceCatalog, type ResourceContent } from '../../../../data/resource-catalog.ts';
+
+export function getStaticPaths() {
+  const paths: { params: { category: string; product: string; resource: string }; props: { categorySlug: string; productSlug: string; resourceSlug: string; resourceContent: ResourceContent; productName: string } }[] = [];
+
+  for (const category of categories) {
+    for (const product of category.products) {
+      const resourceKey = product.resources[1]?.href?.split('/').filter(Boolean).pop();
+      if (resourceKey && resourceCatalog[resourceKey]) {
+        paths.push({
+          params: { category: category.slug, product: product.slug, resource: resourceKey },
+          props: { categorySlug: category.slug, productSlug: product.slug, resourceSlug: resourceKey, resourceContent: resourceCatalog[resourceKey], productName: product.name },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { categorySlug, productSlug, resourceSlug, resourceContent, productName } = Astro.props;
+const productUrl = `${site.url}/products/${categorySlug}/${productSlug}/`;
+const brochureUrl = `${site.url}/brochures/${categorySlug}/${productSlug}/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "name": `${productName} — ${resourceContent.title}`,
+  "description": resourceContent.description,
+  "url": `${site.url}/brochures/${categorySlug}/${productSlug}/${resourceSlug}`,
+  "about": { "@type": "Product", "name": productName },
+};
+---
+
+<BaseLayout
+  title={`${productName} — ${resourceContent.title} | ${site.name}`}
+  description={resourceContent.description}
+  schema={schema}
+>
+  <main id="main-content" class="brochure-page">
+    <div class="brochure-controls">
+      <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-4">
+          <a href={brochureUrl} class="back-link">&larr; Back to {productName} Brochure</a>
+          <button onclick="window.print()" class="print-btn">Print</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="brochure-content">
+      <header class="brochure-header">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="brochure-header-inner">
+            <span class="brochure-category">{productName}</span>
+            <h1 class="brochure-title">{resourceContent.title}</h1>
+            <p class="brochure-description">{resourceContent.description}</p>
+          </div>
+        </div>
+      </header>
+
+      {resourceContent.sections.map((section) => (
+        <section class="brochure-section">
+          <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="brochure-section-title">{section.heading}</h2>
+            <p class="brochure-body-text">{section.body}</p>
+          </div>
+        </section>
+      ))}
+
+      <footer class="brochure-footer">
+        <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
+          <p><strong>{site.name}</strong> &mdash; {site.tagline}</p>
+          <p>{site.address} | {site.phone} | {site.email}</p>
+          <p class="brochure-footer-note">For the full product brochure, visit <a href={brochureUrl}>{brochureUrl}</a></p>
+        </div>
+      </footer>
+    </div>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .brochure-body-text {
+    font-size: 0.9375rem;
+    color: #334155;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .brochure-page {
+    background: #fff;
+    color: #1a1a1a;
+    font-family: "Inter Variable", system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+  }
+
+  .brochure-controls {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: #fff;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .back-link {
+    color: #059669;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .back-link:hover {
+    color: #047857;
+  }
+
+  .print-btn {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .print-btn:hover {
+    background: #059669;
+  }
+
+  .brochure-content {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .brochure-header {
+    padding: 3rem 0 2rem;
+    border-bottom: 2px solid #10b981;
+    margin-bottom: 2rem;
+  }
+
+  .brochure-header-inner {
+    text-align: center;
+  }
+
+  .brochure-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #059669;
+    margin-bottom: 0.75rem;
+  }
+
+  .brochure-title {
+    font-family: "Outfit Variable", system-ui, -apple-system, sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #064e3b;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+
+  .brochure-description {
+    font-size: 0.9375rem;
+    color: #334155;
+    line-height: 1.7;
+    max-width: 40rem;
+    margin: 0 auto;
+  }
+
+  .brochure-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .brochure-section-title {
+    font-family: "Outfit Variable", system-ui, -apple-system, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #064e3b;
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #10b981;
+    display: inline-block;
+  }
+
+  .brochure-footer {
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 0.8125rem;
+    color: #64748b;
+    line-height: 1.8;
+  }
+
+  .brochure-footer strong { color: #064e3b; }
+  .brochure-footer a { color: #059669; text-decoration: none; }
+  .brochure-footer-note { margin-top: 0.5rem; font-size: 0.75rem; color: #94a3b8; }
+
+  @media print {
+    body { background: #fff !important; }
+    .brochure-page { background: #fff !important; color: #000 !important; }
+    .brochure-controls { display: none; }
+    .brochure-header { padding-top: 0; }
+    .brochure-section { break-inside: avoid; }
+  }
+</style>
