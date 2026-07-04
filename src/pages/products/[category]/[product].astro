@@ -1,0 +1,365 @@
+---
+import ProductLayout from '../../../layouts/ProductLayout.astro';
+import products from '../../../data/products';
+import type { Product } from '../../../data/products';
+import Icon from '../../../components/icons/Icon.astro';
+import ProductImage from '../../../components/ProductImage.astro';
+
+export async function getStaticPaths() {
+  return products.map(p => ({
+    params: { category: p.categorySlug, product: p.slug },
+    props: { product: p },
+  }));
+}
+
+const { product } = Astro.props as { product: Product };
+const nameShort = product.name.split('–')[0]?.trim() || product.name;
+const productSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: nameShort,
+  description: product.tagline + ' ' + product.benefits.map(b => b.desc).join('. '),
+  sku: product.sku,
+  brand: { '@type': 'Brand', name: 'Amrich Pharma' },
+  manufacturer: {
+    '@type': 'Organization',
+    name: 'Amrich Pharma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
+  },
+  offers: { '@type': 'Offer', availability: 'https://schema.org/InStock', priceCurrency: 'INR' },
+  category: product.category,
+};
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'How to Apply ' + nameShort,
+  step: product.applySteps.map((s, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    text: s,
+  })),
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: product.faq.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)}></script>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(howToSchema)}></script>
+<script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
+
+<ProductLayout
+  title={product.name + ' | Amrich Pharma'}
+  description={product.tagline + ' ' + product.benefits.map(b => b.desc).join('. ')}
+  category={product.category}
+  categorySlug={product.categorySlug}
+  productSlug={product.slug}
+>
+  <div slot="specs" class="product-hero">
+    <div class="hero-layout">
+      <div class="hero-text">
+        <h1>{product.name}</h1>
+        <p class="tagline">{product.tagline}</p>
+        <div class="badges">
+          {product.badges.map(badge => <span class="badge">{badge}</span>)}
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" data-modal="quote-form" data-product={nameShort}>Get a Quote</button>
+          <a href="/files/amrich-brochure.pdf" class="btn-secondary" download>Download Brochure</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <ProductImage slug={product.slug} name={nameShort} width={500} height={400} class="product-img" loading="eager" />
+      </div>
+    </div>
+
+    <div class="specs-card card">
+      <h2>Quick Specs</h2>
+      <div class="specs-grid">
+        <div class="spec-item"><span class="spec-label">Form</span><span class="spec-value">{product.form}</span></div>
+        {product.specRows.map(row => (
+          <div class="spec-item"><span class="spec-label">{row.label}</span><span class="spec-value">{row.value}</span></div>
+        ))}
+        <div class="spec-item"><span class="spec-label">Dosage</span><span class="spec-value">{product.dosage}</span></div>
+        <div class="spec-item"><span class="spec-label">Pack Size</span><span class="spec-value">{product.packSize}</span></div>
+        <div class="spec-item"><span class="spec-label">Shelf Life</span><span class="spec-value">{product.shelfLife}</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div slot="benefits" class="benefits-section section-padding">
+    <h2>Why Farmers Use {nameShort}</h2>
+    <div class="benefits-grid">
+      {product.benefits.map(b => (
+        <div class="benefit-card card">
+          <div class="benefit-icon">
+            <Icon name="check" size={20} />
+          </div>
+          <h3>{b.title}</h3>
+          <p>{b.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div slot="application" class="application-section">
+    <h2>How to Apply</h2>
+    <div class="steps-visual">
+      {product.applySteps.map((step, i) => (
+        <div class="step-card card">
+          <div class="step-header">
+            <span class="step-num">{i + 1}</span>
+            <span class="step-label">Step {i + 1}</span>
+          </div>
+          <p>{step}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div slot="tip" class="tip-section">
+    <div class="tip-card card" style="background: var(--primary); color: var(--on-primary); border: none;">
+      <div class="tip-icon">
+        <Icon name="farmer" size={24} />
+      </div>
+      <h3>Farmer Tip</h3>
+      <p>{product.farmerTip}</p>
+    </div>
+  </div>
+
+  <div slot="resources" class="resources-section">
+    <h2>Resources</h2>
+    <div class="resource-links">
+      <a href="/files/amrich-brochure.pdf" class="btn-secondary" download><Icon name="brochure" size={16} /> Download Full Brochure</a>
+      <button class="btn-primary" data-modal="quote-form" data-product={nameShort}><Icon name="quote" size={16} /> Get a Quote</button>
+    </div>
+  </div>
+
+  <div slot="cta" class="cta-section hero-band-dark section-padding" style="border-radius: var(--rounded-xl);">
+    <div class="cta-content">
+      <Icon name="whatsapp" size={48} style="margin-bottom: var(--space-base); opacity: 0.8;" />
+      <h2>Need Pond-Specific Advice?</h2>
+      <p>Our aquaculture specialist will create a customized dosage plan for your farm size, species, and local conditions.</p>
+      <button class="btn-primary" style="background: #25D366;" data-modal="quote-form" data-product={nameShort}>Chat on WhatsApp</button>
+    </div>
+  </div>
+</ProductLayout>
+
+<style>
+  .product-hero h1 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.5px;
+  }
+  .tagline {
+    font-size: 1.05rem;
+    color: var(--primary);
+    font-weight: 500;
+    margin-bottom: var(--space-base);
+  }
+  .hero-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+  .hero-image .product-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--rounded-xl);
+    object-fit: cover;
+    aspect-ratio: 5/4;
+  }
+  .hero-actions {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-top: var(--space-base);
+  }
+  .badges {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-sm);
+  }
+  .badge {
+    display: inline-block;
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--rounded-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .specs-card {
+    margin-bottom: var(--space-lg);
+  }
+  .specs-card h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-base);
+    color: var(--ink);
+  }
+  .specs-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--hairline-soft);
+  }
+  .spec-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .spec-value {
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+  .benefits-section h2,
+  .application-section h2,
+  .resources-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: var(--space-lg);
+    color: var(--ink);
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+  }
+  .benefit-card {
+    position: relative;
+    padding-left: 60px;
+  }
+  .benefit-icon {
+    position: absolute;
+    left: var(--space-lg);
+    top: var(--space-lg);
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--rounded-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .benefit-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+  .benefit-card p {
+    font-size: 0.9rem;
+    color: var(--body);
+  }
+  .steps-visual {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+  }
+  .step-card {
+    border-left: 3px solid var(--primary);
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xs);
+  }
+  .step-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--rounded-full);
+    background: var(--primary);
+    color: var(--on-primary);
+    font-size: 14px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .step-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .step-card p {
+    font-size: 0.9rem;
+    color: var(--body);
+    margin: 0;
+  }
+  .tip-section {
+    margin: var(--space-xl) 0;
+  }
+  .tip-card {
+    position: relative;
+    padding-left: 60px;
+  }
+  .tip-icon {
+    position: absolute;
+    left: var(--space-lg);
+    top: var(--space-lg);
+  }
+  .tip-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+  }
+  .tip-card p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+  .resource-links {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+  .cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    margin-bottom: var(--space-sm);
+  }
+  .cta-content p {
+    color: var(--on-dark-soft);
+    margin-bottom: var(--space-lg);
+    font-size: 1.05rem;
+  }
+  @media (min-width: 768px) {
+    .product-hero h1 { font-size: 2.5rem; }
+    .hero-layout { grid-template-columns: 1fr 1fr; align-items: start; }
+    .benefits-grid { grid-template-columns: 1fr 1fr; }
+    .steps-visual { grid-template-columns: 1fr 1fr; }
+    .specs-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>

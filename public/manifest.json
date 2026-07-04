@@ -1,0 +1,49 @@
+{
+  "name": "Amrich Pharma - Aquaculture Health Solutions",
+  "short_name": "Amrich Pharma",
+  "description": "Premium probiotics, water quality solutions, disease control & feed support for shrimp and fish farming",
+  "theme_color": "#0052ff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en-IN",
+  "categories": ["business", "health", "agriculture"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Products",
+      "short_name": "Products",
+      "description": "Browse our aquaculture products",
+      "url": "/products/probiotics-soil-care",
+      "icons": [{ "src": "/icons/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Get a Quote",
+      "short_name": "Quote",
+      "description": "Request a product quote",
+      "url": "/contact"
+    },
+    {
+      "name": "Resources",
+      "short_name": "Resources",
+      "description": "Aquaculture guides and articles",
+      "url": "/resources/seasonal-guides/monsoon-aquaculture-stress-guide"
+    }
+  ]
+}

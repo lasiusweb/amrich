@@ -1,0 +1,283 @@
+<div id="quoteModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle">
+  <div class="modal-container">
+    <header class="modal-header">
+      <h2 id="quoteModalTitle">Get Your Custom Pond Plan</h2>
+      <button class="modal-close" id="quoteModalClose" aria-label="Close quote form">&times;</button>
+    </header>
+
+    <form id="quoteForm" class="quote-form" novalidate>
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="e.g., Ramesh K.…" aria-describedby="error-fullName">
+        <span class="error-msg" aria-live="polite" id="error-fullName"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">WhatsApp/Mobile Number *</label>
+        <input type="tel" id="phone" name="phone" required inputmode="numeric" pattern="[6-9][0-9]{9}" placeholder="98765 43210…" autocomplete="tel" aria-describedby="error-phone">
+        <span class="error-msg" aria-live="polite" id="error-phone"></span>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="location">Farm Location (State/District) *</label>
+          <input type="text" id="location" name="location" required placeholder="e.g., Kakinada, AP" aria-describedby="error-location">
+        </div>
+        <div class="form-group">
+          <label for="pondSize">Pond Size (Acres) *</label>
+          <input type="number" id="pondSize" name="pondSize" required min="0.1" step="0.1" placeholder="e.g., 12…" aria-describedby="error-pondSize">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="species">Target Species *</label>
+          <select id="species" name="species" required aria-describedby="error-species">
+            <option value="">Select species</option>
+            <option value="Shrimp">Shrimp / Prawn</option>
+            <option value="Fish">Fish</option>
+            <option value="Both">Both</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="productInterest">Product of Interest *</label>
+          <input type="text" id="productInterest" name="productInterest" required placeholder="Auto-filled or type here…" aria-describedby="error-productInterest">
+          <small class="hint">Pre-filled from current page. Edit if needed.</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="challenge">Current Pond Challenge</label>
+        <select id="challenge" name="challenge" aria-describedby="error-challenge">
+          <option value="">Select primary challenge</option>
+          <option value="Ammonia/Nitrite Spikes">Ammonia/Nitrite Spikes</option>
+          <option value="Low Dissolved Oxygen">Low Dissolved Oxygen</option>
+          <option value="Black Soil / Sludge">Black Soil / Sludge</option>
+          <option value="Disease / Gill Rot">Disease / Gill Rot</option>
+          <option value="Poor Feed Conversion">Poor Feed Conversion (FCR)</option>
+          <option value="Other">Other / General Inquiry</option>
+        </select>
+      </div>
+
+      <fieldset class="form-group">
+        <legend>Preferred Contact Method *</legend>
+        <div class="radio-group">
+          <label><input type="radio" name="contactMethod" value="WhatsApp" checked> WhatsApp</label>
+          <label><input type="radio" name="contactMethod" value="Call"> Phone Call</label>
+          <label><input type="radio" name="contactMethod" value="Email"> Email</label>
+        </div>
+      </fieldset>
+
+      <div id="formErrorSummary" class="form-error-summary" role="alert" aria-live="polite" style="display:none;"></div>
+      <button type="submit" class="btn-primary full-width">Get My Custom Quote & Dosage Plan</button>
+      <p class="form-footer">Your data is secure. Our aquaculture specialist responds within 2 hours (Mon-Sat).</p>
+    </form>
+
+    <div id="quoteSuccess" class="success-state" role="status" aria-live="polite" style="display:none;"></div>
+  </div>
+</div>
+
+<style>
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: var(--z-modal);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; }
+  .modal-container {
+    background: var(--canvas); width: 100%; max-width: 500px; max-height: 90vh;
+    border-radius: var(--rounded-md) var(--rounded-md) 0 0; padding: 20px;
+    transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    overflow-y: auto; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);
+  }
+  .modal-overlay.active .modal-container { transform: translateY(0); }
+  @media (min-width: 768px) {
+    .modal-overlay { align-items: center; }
+    .modal-container { border-radius: var(--rounded-md); transform: scale(0.95); max-height: 85vh; }
+    .modal-overlay.active .modal-container { transform: scale(1); }
+  }
+  .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .modal-header h2 { font-size: 1.25rem; margin: 0; color: var(--ink); }
+  .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 10px; min-width: 44px; min-height: 44px; color: var(--body); }
+  .quote-form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  label { font-weight: 500; font-size: 1rem; color: var(--ink); }
+  input, select { padding: 10px; border: 1px solid var(--hairline); border-radius: var(--rounded-md); font-size: 1rem; font-family: var(--font-sans); }
+  input:focus, select:focus { outline: 2px solid var(--primary); border-color: transparent; }
+  .error-msg { color: var(--semantic-down); font-size: 0.8rem; min-height: 1.2em; }
+  .radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+  .radio-group label { font-weight: normal; display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 8px 12px; border: 1px solid var(--hairline); border-radius: var(--rounded-pill); transition: border-color 0.2s, background 0.2s; }
+  .radio-group label:has(input:checked) { border-color: var(--primary); background: rgba(0,82,255,0.06); }
+  .full-width { width: 100%; }
+  .form-footer { font-size: 0.8rem; color: var(--muted); margin-top: 8px; text-align: center; }
+  .form-error-summary { background: #fef2f2; border: 1px solid #fca5a5; border-radius: var(--rounded-md); padding: 10px 14px; font-size: 0.85rem; color: var(--semantic-down); }
+  .hint { font-size: 0.85rem; color: var(--muted); }
+  .success-state { text-align: center; padding: 24px 0; }
+  .success-state h3 { color: var(--semantic-up); margin-bottom: 8px; }
+  .success-state p { color: var(--body); line-height: 1.5; }
+  .whatsapp-btn { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: white; padding: 10px 16px; border-radius: var(--rounded-md); text-decoration: none; font-weight: 500; margin-top: 12px; }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: spin 0.6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const { submitQuote, getWhatsAppLink, trackQuoteGA4, retryQueuedQuotes } = await import('../lib/quoteService.ts');
+
+    retryQueuedQuotes();
+
+    const modal = document.getElementById('quoteModal')!;
+    const form = document.getElementById('quoteForm') as HTMLFormElement | null;
+    const successDiv = document.getElementById('quoteSuccess');
+    const closeBtn = document.getElementById('quoteModalClose');
+    const productInput = document.getElementById('productInterest') as HTMLInputElement | null;
+
+    const pageProduct = document.querySelector('h1')?.textContent?.split('–')[0]?.trim();
+    if (pageProduct && productInput) productInput.value = pageProduct;
+
+    let lastFocusedElement: HTMLElement | null = null;
+
+    window.openQuoteModal = () => {
+      if (!modal) return;
+      lastFocusedElement = document.activeElement as HTMLElement | null;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const firstInput = modal?.querySelector('input, select, button') as HTMLElement | null;
+      if (firstInput) setTimeout(() => firstInput.focus(), 100);
+    };
+
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (!modal?.classList.contains('active')) return;
+      const focusable = modal.querySelectorAll(focusableSelector);
+      const first = focusable[0] as HTMLElement | null;
+      const last = focusable[focusable.length - 1] as HTMLElement | null;
+      if (e.key === 'Tab') {
+        if (e.shiftKey && document.activeElement === first && last) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last && first) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    };
+
+    const closeModal = () => {
+      modal?.classList.remove('active');
+      modal?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      form?.reset();
+      if (successDiv) successDiv.style.display = 'none';
+      if (form) form.style.display = 'flex';
+      if (lastFocusedElement) lastFocusedElement.focus();
+    };
+
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e: Event) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modal?.classList.contains('active')) closeModal();
+      trapFocus(e);
+    });
+
+    document.querySelectorAll('[data-modal="quote-form"]').forEach(btn => {
+      btn.addEventListener('click', (e: Event) => {
+        e.preventDefault();
+        const product = (btn as HTMLElement).dataset.product || document.querySelector('h1')?.textContent?.split('–')[0]?.trim() || '';
+        if (productInput) productInput.value = product;
+        window.openQuoteModal();
+      });
+    });
+
+    if (!form) return;
+    form.querySelectorAll('input, select').forEach(f => {
+      f.addEventListener('blur', () => {
+        const el = f as HTMLInputElement | HTMLSelectElement;
+        const errorEl = el.parentElement?.querySelector('.error-msg');
+        if (!errorEl) return;
+        let isValid = true;
+        let errorMsg = '';
+        if (el.required && !el.value.trim()) {
+          isValid = false; errorMsg = 'This field is required.';
+        } else if (el.id === 'phone') {
+          const cleaned = el.value.replace(/\D/g, '');
+          isValid = /^[6-9]\d{9}$/.test(cleaned);
+          if (!isValid) errorMsg = 'Enter a valid 10-digit Indian mobile number.';
+        } else if (el.id === 'pondSize') {
+          const acres = parseFloat(el.value);
+          isValid = !isNaN(acres) && acres > 0 && acres <= 1000;
+          if (!isValid) errorMsg = 'Enter a valid pond size (0.1 to 1000 acres).';
+        }
+        errorEl.textContent = errorMsg;
+      });
+    });
+
+    form.addEventListener('submit', async (e: Event) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+      if (!btn) return;
+
+      // Validate all required fields before submission
+      const errorSummary = document.getElementById('formErrorSummary');
+      const errors: string[] = [];
+      [...form.querySelectorAll('[required]')].forEach(f => {
+        f.dispatchEvent(new Event('blur'));
+        const errorEl = (f as HTMLElement).nextElementSibling;
+        if (errorEl?.textContent?.trim()) {
+          const label = form.querySelector(`label[for="${(f as HTMLInputElement).id}"]`);
+          errors.push(label?.textContent?.replace(' *', '') || (f as HTMLInputElement).id);
+        }
+      });
+      if (errors.length > 0) {
+        if (errorSummary) {
+          errorSummary.style.display = 'block';
+          errorSummary.textContent = `Please fix the following: ${errors.join(', ')}.`;
+          errorSummary.focus();
+        }
+        return;
+      }
+
+      btn.disabled = true; btn.innerHTML = '<span class="spinner" aria-hidden="true"></span> Sending…';
+
+      const raw = Object.fromEntries(new FormData(form).entries());
+      const quoteData = {
+        fullName: raw.fullName as string,
+        phone: raw.phone as string,
+        location: raw.location as string,
+        pondSize: raw.pondSize as string,
+        species: raw.species as string,
+        productInterest: (productInput?.value || raw.productInterest) as string,
+        challenge: raw.challenge as string,
+        contactMethod: raw.contactMethod as string,
+        referenceId: `QT-${Date.now().toString().slice(-6)}`,
+        pageUrl: window.location.pathname,
+      };
+
+      await submitQuote(quoteData);
+      trackQuoteGA4(quoteData);
+
+      const waLink = getWhatsAppLink(quoteData);
+
+      if (form) form.style.display = 'none';
+      if (successDiv) successDiv.style.display = 'block';
+      if (successDiv) {
+        successDiv.innerHTML = `
+          <h3 tabindex="-1">Quote Request Received!</h3>
+          <p>Thank you, <strong>${quoteData.fullName}</strong>. Our aquaculture specialist will share a <strong>customized dosage & pricing plan</strong> for your ${quoteData.pondSize}-acre pond within 2 hours.</p>
+          <p>Need immediate assistance? Chat directly on WhatsApp:</p>
+          <a href="${waLink}" class="whatsapp-btn" target="_blank" rel="noopener">Open WhatsApp Chat</a>
+          <p style="margin:16px 0; font-size:0.85rem; color:var(--muted);">Reference ID: ${quoteData.referenceId}</p>
+          <button class="btn-secondary" data-action="close-quote">Submit Another Quote</button>
+        `;
+        // attach non-inline handler
+        setTimeout(() => {
+          successDiv.querySelector('.btn-secondary')?.addEventListener('click', () => document.getElementById('quoteModalClose')?.click());
+        }, 0);
+        const successHeading = successDiv.querySelector('h3');
+        if (successHeading) successHeading.setAttribute('tabindex', '-1');
+        if (successHeading) successHeading.focus();
+      }
+    });
+  });
+</script>

@@ -1,0 +1,142 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import ConsentBanner from '../components/ConsentBanner.astro';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = 'Amrich Pharma – Healthier Ponds. Higher Yields.', description = 'ISO-certified aquaculture health solutions for shrimp & fish ponds. Probiotics, water quality, disease control, and feed support trusted by Indian coastal farmers.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-IN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="shrimp pond probiotic, ammonia remover for aquaculture, eco-friendly fish farm water treatment, water quality stabilizer for shrimp farming, Bacillus pond cleaner India, ISO certified aquaculture products" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Amrich Pharma" />
+    <meta property="og:image" content="https://amrichpharma.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://amrichpharma.com/og-image.jpg" />
+    <link rel="canonical" href={`https://amrich-pharma.netlify.app${Astro.url.pathname}`} />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://imgs.mongabay.com" />
+    <link rel="preconnect" href="https://www.globalseafood.org" />
+    <link rel="preconnect" href="https://undark.org" />
+    <link rel="preconnect" href="https://sharangaaqua.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://www.aquaculturealliance.org" />
+    <meta name="theme-color" content="#0052ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0b0d" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Amrich Pharma" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ window.dataLayer!.push(Array.from(arguments)); };
+      window.gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied'});
+      (function() {
+        const stored = localStorage.getItem('amrich_theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'dark' || (!stored && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <QuoteForm />
+    <ConsentBanner />
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const startTime = Date.now();
+        const scrollState: Record<number, boolean> = {25:false, 50:false, 75:false, 100:false};
+        let ctaClicked = false;
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+        const getProduct = () => document.querySelector('h1')?.textContent?.split('–')[0]?.trim() || 'Unknown';
+
+        document.querySelectorAll('.btn-primary, [data-modal="quote-form"]').forEach(b => {
+          b.addEventListener('click', () => {
+            ctaClicked = true;
+            gtag?.('event', 'quote_form_open', {
+              product_name: getProduct(),
+              page_url: window.location.pathname,
+              device_type: isMobile
+            });
+          });
+        });
+
+        document.querySelectorAll('a[download], .btn-secondary[download]').forEach(link => {
+          link.addEventListener('click', () => {
+            gtag?.('event', 'brochure_download', {
+              brochure_type: 'master',
+              product_name: getProduct(),
+              page_url: window.location.pathname,
+              device_type: isMobile
+            });
+          });
+        });
+
+        window.addEventListener('scroll', () => {
+          const scrollPct = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+          [25, 50, 75, 100].forEach(th => {
+            if (scrollPct >= th && !scrollState[th]) {
+              scrollState[th] = true;
+              gtag?.('event', 'scroll_depth', {depth_percent: th, page_url: window.location.pathname});
+            }
+          });
+        });
+
+        const sendEngagement = () => {
+          const timeOnPage = Math.round((Date.now() - startTime) / 1000);
+          const maxScroll = Math.max(...Object.keys(scrollState).filter(k => scrollState[Number(k)]).map(Number));
+          if (timeOnPage >= 60 || maxScroll >= 50 || ctaClicked) {
+            gtag?.('event', 'product_page_engagement', {
+              product_name: getProduct(),
+              time_on_page_seconds: timeOnPage,
+              scroll_depth_max: maxScroll,
+              cta_clicked: ctaClicked,
+              page_url: window.location.pathname
+            });
+          }
+        };
+
+        document.addEventListener('visibilitychange', () => { if (document.hidden) sendEngagement(); });
+        window.addEventListener('beforeunload', sendEngagement);
+        setTimeout(sendEngagement, 120000);
+      });
+
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        });
+      }
+    </script>
+  </body>
+</html>

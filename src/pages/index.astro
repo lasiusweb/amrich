@@ -1,0 +1,425 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/icons/Icon.astro';
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Amrich Pharma – Healthier Ponds. Higher Yields. Lower Input Costs.',
+  description: 'Scientifically formulated, eco-safe aquaculture solutions trusted by coastal farmers across India. From ammonia control to stress-free molting.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Amrich Pharma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar', addressLocality: 'Mumbai', addressRegion: 'Maharashtra', postalCode: '400068', addressCountry: 'IN' },
+    email: 'amrichpharma@gmail.com',
+    telephone: '+919712335338',
+  },
+};
+---
+
+<Layout title="Amrich Pharma – Healthier Ponds. Higher Yields. Lower Input Costs.">
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+
+  <!-- Hero Section -->
+  <section class="home-hero">
+    <div class="hero-bg">
+      <img src="https://undark.org/wp-content/uploads/2022/01/IMG_7849_edit.jpg" alt="Aerial view of shrimp farming ponds" class="hero-bg-img" width="1600" height="900" fetchpriority="high" decoding="async" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-content">
+      <h1>Healthier Ponds. Higher Yields. Lower Input Costs.</h1>
+      <p class="hero-sub">Scientifically formulated, eco-safe aquaculture solutions trusted by coastal farmers across India. From ammonia control to stress-free molting, we deliver field-tested results per acre.</p>
+      <div class="hero-ctas">
+        <a href="/products" class="btn-primary">Explore Products</a>
+        <a href="/files/amrich-brochure.pdf" class="btn-secondary" download>Download Free Brochure</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition Grid -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="value-grid">
+        <div class="card value-card">
+          <div class="value-icon"><Icon name="water" size={24} /></div>
+          <h3>Rapid Water Stabilization</h3>
+          <p>Balance pH, DO &amp; plankton blooms in 48 hours</p>
+        </div>
+        <div class="card value-card">
+          <div class="value-icon"><Icon name="leaf" size={24} /></div>
+          <h3>Eco-Safe &amp; ISO Certified</h3>
+          <p>Zero chemical runoff, biodegradable packaging</p>
+        </div>
+        <div class="card value-card">
+          <div class="value-icon"><Icon name="harvest" size={24} /></div>
+          <h3>Cost-Per-Acre Efficiency</h3>
+          <p>Proven ROI with precise dosing &amp; long shelf life</p>
+        </div>
+        <div class="card value-card">
+          <div class="value-icon"><Icon name="pond" size={24} /></div>
+          <h3>Field-Tested Across Indian Coasts</h3>
+          <p>Andhra to Gujarat, Odisha to Tamil Nadu</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Answer / AEO Block -->
+  <section class="surface-soft section-padding">
+    <div class="container">
+      <div class="qa-card">
+        <h2>Quick Answer for Farmers</h2>
+        <div class="q"><Icon name="search" size={18} class="qa-icon" /> <strong>Q:</strong> What is the best probiotic for shrimp pond soil?</div>
+        <p class="a"><strong>A:</strong> Amrich PRO PLUS contains &gt;1.2B CFU/g of Bacillus &amp; Paracoccus strains that break down detritus, prevent black soil, and boost dissolved oxygen. Apply 5kg/acre for stable, high-yield ponds.</p>
+        <a href="/products/probiotics-soil-care/pro-plus" class="qa-link">Learn more about PRO PLUS <Icon name="arrow-right" size={14} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Video Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="video-section">
+        <h2>See How Amrich Products Work</h2>
+        <p class="video-sub">Watch our application guides and farmer success stories</p>
+        <div class="video-grid">
+          <div class="video-card">
+            <div class="video-thumb">
+              <img src="https://imgs.mongabay.com/wp-content/uploads/sites/30/2023/03/30152930/shrimp_farm_NSS04247-1.jpg" alt="Probiotic application guide" loading="lazy" decoding="async" width="1200" height="675" />
+              <div class="play-btn">&#9654;</div>
+            </div>
+            <h3>PRO PLUS Application Guide</h3>
+            <p>Step-by-step soil probiotic application</p>
+          </div>
+          <div class="video-card">
+            <div class="video-thumb">
+              <img src="https://www.globalseafood.org/wp-content/uploads/2019/10/India-shrimp-ponds_1500.jpg" alt="Farmer testimonial" loading="lazy" decoding="async" width="1200" height="675" />
+              <div class="play-btn">&#9654;</div>
+            </div>
+            <h3>Farmer Success Story</h3>
+            <p>Kakinada farmer shares his results</p>
+          </div>
+          <div class="video-card">
+            <div class="video-thumb">
+              <img src="https://sharangaaqua.com/images/operation4.jpg" alt="Monsoon preparation guide" loading="lazy" decoding="async" width="1200" height="675" />
+              <div class="play-btn">&#9654;</div>
+            </div>
+            <h3>Monsoon Pond Preparation</h3>
+            <p>Protect your stock during heavy rains</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust & Stats Section -->
+  <section class="hero-band-dark section-padding">
+    <div class="container">
+      <div class="trust-section">
+        <div class="trust-stats">
+          <div class="trust-stat"><span class="trust-num">ISO</span><span class="trust-desc">Certified Manufacturing</span></div>
+          <div class="trust-stat"><span class="trust-num">10K+</span><span class="trust-desc">Acres Treated Annually</span></div>
+          <div class="trust-stat"><span class="trust-num">16</span><span class="trust-desc">Aquaculture Products</span></div>
+          <div class="trust-stat"><span class="trust-num">5+</span><span class="trust-desc">Coastal States Served</span></div>
+        </div>
+        <div class="trust-cta">
+          <h3>Ready to Improve Your Pond Yields?</h3>
+          <p>Get a customized pond plan with product recommendations tailored to your farm size, species, and water conditions.</p>
+          <button class="btn-primary" data-modal="quote-form">Get a Custom Pond Plan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Phone CTA Bar -->
+  <section class="phone-cta">
+    <div class="container phone-cta-inner">
+      <Icon name="phone" size={20} />
+      <span>Speak to an aquaculture expert:</span>
+      <a href="tel:+919712335338" class="phone-number">97123 35338</a>
+      <span class="phone-sep">|</span>
+      <a href="https://wa.me/919712335338" class="whatsapp-link" target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={18} /> WhatsApp Us
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .home-hero {
+    position: relative;
+    min-height: 70dvh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.6) 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-xxl) 0;
+  }
+  .hero-content h1 {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 400;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: var(--space-lg);
+    color: var(--on-dark);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--on-dark-soft);
+    margin-bottom: var(--space-xl);
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
+  .value-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+  }
+  .value-card {
+    position: relative;
+    padding-left: 72px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .value-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .value-icon {
+    position: absolute;
+    left: var(--space-lg);
+    top: var(--space-lg);
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--rounded-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .value-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+  .value-card p {
+    color: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .qa-card {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .qa-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-lg);
+  }
+  .q {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    color: var(--ink);
+    font-size: 1rem;
+  }
+  .qa-icon {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  .a {
+    color: var(--body);
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin-bottom: var(--space-base);
+  }
+  .qa-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .qa-link:hover {
+    text-decoration: underline;
+  }
+
+  .video-section {
+    text-align: center;
+  }
+  .video-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: var(--space-xs);
+  }
+  .video-sub {
+    color: var(--body);
+    margin-bottom: var(--space-xl);
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-base);
+  }
+  .video-card {
+    text-align: left;
+    cursor: pointer;
+  }
+  .video-thumb {
+    position: relative;
+    border-radius: var(--rounded-xl);
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+    aspect-ratio: 16/10;
+    background: var(--surface-strong);
+  }
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    background: rgba(0,0,0,0.2);
+    transition: background 0.2s;
+  }
+  .video-card:hover .play-btn {
+    background: rgba(0,0,0,0.4);
+  }
+  .video-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .video-card p {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .trust-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xxl);
+    align-items: center;
+    text-align: center;
+  }
+  .trust-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl) var(--space-xxl);
+  }
+  .trust-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .trust-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--on-dark);
+  }
+  .trust-desc {
+    font-size: 13px;
+    color: var(--on-dark-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .trust-cta h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--on-dark);
+    margin-bottom: var(--space-sm);
+  }
+  .trust-cta p {
+    color: var(--on-dark-soft);
+    margin-bottom: var(--space-lg);
+    max-width: 500px;
+  }
+
+  .phone-cta {
+    background: var(--surface-strong);
+    padding: var(--space-base) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .phone-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--body);
+  }
+  .phone-number {
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .phone-sep {
+    color: var(--muted-soft);
+    display: none;
+  }
+  .whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #25D366;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    .hero-content h1 { font-size: 3.25rem; }
+    .value-grid { grid-template-columns: 1fr 1fr; }
+    .video-grid { grid-template-columns: 1fr 1fr 1fr; }
+    .trust-stats { grid-template-columns: repeat(4, 1fr); }
+    .trust-section { flex-direction: row; justify-content: space-between; text-align: left; }
+    .phone-sep { display: inline; }
+  }
+</style>
