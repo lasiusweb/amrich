@@ -24,11 +24,14 @@ const schema = {
         "email": site.email,
         "contactType": "customer service",
       },
-      "sameAs": [
-        "https://www.facebook.com/amrichaquaculture",
-        "https://www.linkedin.com/company/amrich-aquaculture",
-        "https://www.youtube.com/@amrichaquaculture",
-      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar",
+        "addressLocality": "Mumbai",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400068",
+        "addressCountry": "IN",
+      },
     },
     {
       "@type": "WebSite",
@@ -40,28 +43,25 @@ const schema = {
 ---
 
 <BaseLayout
-  title="AMRich Aquaculture Solutions | Premium Fish & Shrimp Farm Products"
-  description="Premium aquaculture products for healthier farms and better yields. Scientifically formulated solutions for disease management, water quality, probiotics, and feed supplements."
+  title={`${site.name} — ${site.tagline}`}
+  description={site.description}
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
-    <!-- Hero -->
+  <main id="main-content" class="flex-1">
     <Hero />
 
-    <!-- Stats -->
     <Stats />
 
-    <!-- Products Section -->
-    <section class="section-padding bg-gray-50">
+    <section class="section-padding">
       <div class="container-wide">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-primary-800 mb-4">
+        <div class="text-center mb-14">
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-ink mb-4 text-balance">
             Our Product Range
           </h2>
-          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-            Comprehensive solutions for every aspect of aquaculture management.
+          <p class="text-lg text-ink-light max-w-2xl mx-auto">
+            Comprehensive solutions for every aspect of aquaculture management — probiotics, disease control, feed supplements, and water quality.
           </p>
         </div>
 
@@ -78,16 +78,12 @@ const schema = {
       </div>
     </section>
 
-    <!-- Features -->
     <Features />
 
-    <!-- Testimonials -->
     <Testimonials />
 
-    <!-- CTA Banner -->
     <CTABanner />
 
-    <!-- Newsletter -->
     <Newsletter />
   </main>
 

@@ -1,0 +1,126 @@
+<section id="quote-modal" class="fixed inset-0 z-50 hidden" aria-modal="true" role="dialog">
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" data-close-modal></div>
+  <div class="absolute right-0 top-0 bottom-0 w-full max-w-lg bg-surface shadow-2xl overflow-y-auto">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="font-display text-xl font-bold text-ink">Get a Quote</h2>
+        <button
+          id="close-modal-btn"
+          class="size-9 flex items-center justify-center rounded-lg text-ink-light hover:text-ink hover:bg-surface-muted transition-colors focus-ring"
+          aria-label="Close modal"
+          data-close-modal
+        >
+          <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <form
+        action="https://formspree.io/f/xeojqvak"
+        method="POST"
+        class="space-y-4"
+      >
+        <input type="hidden" name="_subject" value="Quote Request - Amrich Pharma" />
+
+        <div>
+          <label for="modal-name" class="block text-sm font-medium text-ink mb-1.5">Your Name</label>
+          <input
+            id="modal-name"
+            type="text"
+            name="name"
+            required
+            placeholder="Enter your name"
+            class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-shadow text-sm"
+          />
+        </div>
+
+        <div>
+          <label for="modal-email" class="block text-sm font-medium text-ink mb-1.5">Email</label>
+          <input
+            id="modal-email"
+            type="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-shadow text-sm"
+          />
+        </div>
+
+        <div>
+          <label for="modal-phone" class="block text-sm font-medium text-ink mb-1.5">Phone</label>
+          <input
+            id="modal-phone"
+            type="tel"
+            name="phone"
+            placeholder="+91 XXXXX XXXXX"
+            class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-shadow text-sm"
+          />
+        </div>
+
+        <div>
+          <label for="modal-product" class="block text-sm font-medium text-ink mb-1.5">Product Interested In</label>
+          <input
+            id="modal-product"
+            type="text"
+            name="product"
+            placeholder="Product name"
+            class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-shadow text-sm"
+          />
+        </div>
+
+        <div>
+          <label for="modal-message" class="block text-sm font-medium text-ink mb-1.5">Message</label>
+          <textarea
+            id="modal-message"
+            name="message"
+            rows="4"
+            placeholder="Tell us about your pond size, species, and requirements..."
+            class="w-full px-4 py-2.5 rounded-xl border border-border bg-surface text-ink placeholder:text-ink-light/50 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-shadow text-sm resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors focus-ring"
+        >
+          Send Request
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const modal = document.getElementById('quote-modal');
+  const closeBtns = modal?.querySelectorAll('[data-close-modal]');
+  const openLinks = document.querySelectorAll('a[href="#quote-modal"]');
+
+  function openModal() {
+    modal?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  openLinks.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  closeBtns?.forEach((btn) => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

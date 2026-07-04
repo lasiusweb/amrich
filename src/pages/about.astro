@@ -5,81 +5,139 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CTABanner from '../components/CTABanner.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site.ts';
+import { getIcon } from '../data/icons.ts';
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
-  "name": "About AMRich Aquaculture Solutions",
-  "description": "Learn about AMRich Aquaculture Solutions — our mission, values, and commitment to healthier farms across Southeast Asia.",
+  "name": "About Amrich Pharma",
+  "description": "ISO-certified aquaculture health company providing eco-safe probiotics, water quality solutions, and disease management for shrimp and fish farming across India.",
   "url": `${site.url}/about`,
 };
 ---
 
 <BaseLayout
-  title="About Us | AMRich Aquaculture Solutions"
-  description="Learn about AMRich Aquaculture Solutions — our mission, values, and commitment to healthier farms across Southeast Asia."
+  title="About Amrich Pharma | Built for Farmers. Backed by Science."
+  description="We are an ISO-certified aquaculture health company dedicated to making pond farming predictable, profitable, and planet-friendly."
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'About' },
     ]} />
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
-            About AMRich
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-brand-300 mb-4">
+            <span class="size-4" set:html={getIcon('iso')} />
+            ISO 9001:2015 Certified
+          </div>
+          <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
+            Built for Farmers. Backed by Science.
           </h1>
-          <p class="text-lg text-gray-300 leading-relaxed">
-            Dedicated to advancing aquaculture through science-driven solutions.
+          <p class="text-lg text-white/70 leading-relaxed">
+            We are Amrich Pharma, an ISO-certified aquaculture health company dedicated to making pond farming predictable, profitable, and planet-friendly. Born from field research along India's coastal belt, we formulate eco-safe probiotics, water stabilizers, and disease control solutions that work where it matters: in your pond.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Content -->
     <section class="section-padding">
       <div class="container-wide max-w-4xl">
-        <div class="prose prose-lg max-w-none">
-          <h2 class="text-2xl font-bold text-primary-800 mb-4">Our Mission</h2>
-          <p class="text-gray-600 mb-8">
-            AMRich Aquaculture Solutions is committed to providing scientifically formulated products that help aquaculture farms achieve healthier stock, better yields, and sustainable operations. We serve farming communities across Southeast Asia with reliable, eco-friendly solutions.
-          </p>
+        <div class="mb-16">
+          <h2 class="font-display text-2xl font-bold text-ink mb-4">Our Promise</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { label: 'No Hidden Chemicals', desc: 'Every ingredient is disclosed. What you see is what goes in your pond.' },
+              { label: 'Transparent Dosing', desc: 'Clear dosage charts for every pond size, stocking density, and growth stage.' },
+              { label: 'Real Yield Data', desc: 'We publish field results. Our products work — and we prove it.' },
+              { label: 'Farmer-First Support', desc: 'Technical team available for pond-specific advice, not generic recommendations.' },
+            ].map((item) => (
+              <div class="flex items-start gap-3 bg-surface-muted rounded-xl p-4 border border-border">
+                <span class="mt-0.5 shrink-0 text-brand-500" set:html={getIcon('check')} />
+                <div>
+                  <h3 class="text-sm font-bold text-ink">{item.label}</h3>
+                  <p class="text-sm text-ink-light/80">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <h2 class="text-2xl font-bold text-primary-800 mb-4">What We Do</h2>
-          <p class="text-gray-600 mb-8">
-            We develop and supply specialized products across four key areas of aquaculture management: disease prevention and stress management, feed supplements and pond preparation, probiotics and soil care, and water quality control. Each product is formulated by aquaculture scientists and rigorously tested for efficacy and safety.
+        <div class="mb-16">
+          <h2 class="font-display text-2xl font-bold text-ink mb-4">Our Reach</h2>
+          <p class="text-ink-light leading-relaxed mb-6">
+            From Andhra's brackish waters to Kerala's freshwater systems, we have helped thousands of growers reduce mortality, cut input costs, and harvest healthier stock. Our R&D team continuously tests strains, optimizes shelf life, and validates field performance so you can farm with confidence.
           </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-sm font-medium">Andhra Pradesh</span>
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-sm font-medium">Tamil Nadu</span>
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-sm font-medium">Odisha</span>
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-sm font-medium">Gujarat</span>
+            <span class="inline-flex items-center px-4 py-2 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-sm font-medium">Kerala</span>
+          </div>
+        </div>
 
-          <h2 class="text-2xl font-bold text-primary-800 mb-4">Why Choose Us</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div class="bg-gray-50 rounded-xl p-6">
-              <h3 class="font-bold text-primary-800 mb-2">Science-Backed</h3>
-              <p class="text-gray-600 text-sm">Every product is developed using the latest aquaculture research and tested under real farming conditions.</p>
+        <div class="mb-16">
+          <h2 class="font-display text-2xl font-bold text-ink mb-4">Why Choose Amrich Pharma</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-surface border border-border rounded-2xl p-6">
+              <h3 class="font-bold text-ink mb-2">Science-Backed</h3>
+              <p class="text-sm text-ink-light">Every product is developed using the latest aquaculture research and tested under real farming conditions along the Indian coast.</p>
             </div>
-            <div class="bg-gray-50 rounded-xl p-6">
-              <h3 class="font-bold text-primary-800 mb-2">Proven Results</h3>
-              <p class="text-gray-600 text-sm">Trusted by over 500 farms across Southeast Asia with documented improvements in yield and survival rates.</p>
+            <div class="bg-surface border border-border rounded-2xl p-6">
+              <h3 class="font-bold text-ink mb-2">Proven Results</h3>
+              <p class="text-sm text-ink-light">Trusted by thousands of Indian coastal farmers with documented improvements in survival rates and yield per acre.</p>
             </div>
-            <div class="bg-gray-50 rounded-xl p-6">
-              <h3 class="font-bold text-primary-800 mb-2">Eco-Friendly</h3>
-              <p class="text-gray-600 text-sm">Sustainable formulations that protect aquatic ecosystems while maximizing farm productivity.</p>
+            <div class="bg-surface border border-border rounded-2xl p-6">
+              <h3 class="font-bold text-ink mb-2">Eco-Friendly</h3>
+              <p class="text-sm text-ink-light">Microbial and herbal blends that break down safely. No harsh chemical residues in your pond or your harvest.</p>
             </div>
-            <div class="bg-gray-50 rounded-xl p-6">
-              <h3 class="font-bold text-primary-800 mb-2">Full Support</h3>
-              <p class="text-gray-600 text-sm">Technical consultation and ongoing support to help you achieve optimal results with every product.</p>
+            <div class="bg-surface border border-border rounded-2xl p-6">
+              <h3 class="font-bold text-ink mb-2">Farmer-First Support</h3>
+              <p class="text-sm text-ink-light">Free pond management guidance, dosing plans, and technical support from aquaculture experts who know Indian conditions.</p>
             </div>
           </div>
         </div>
+
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ink mb-6">Farming Forward. Without Compromise.</h2>
+          <p class="text-ink-light leading-relaxed mb-6">
+            Healthy ponds should not cost the earth. At Amrich Pharma, sustainability is built into every formula, package, and delivery.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { label: 'Biodegradable Packaging', desc: 'Recyclable pouches and reduced plastic waste across our supply chain.' },
+              { label: 'Zero Harmful Runoff', desc: 'Microbial and herbal blends that break down safely in aquatic ecosystems.' },
+              { label: 'Carbon-Neutral Logistics', desc: 'Optimized routing for coastal distribution to minimize fuel consumption.' },
+              { label: 'Water Conservation Tech', desc: 'Formulations that maintain DO and reduce flush cycles in farming operations.' },
+            ].map((item) => (
+              <div class="flex items-start gap-3 bg-ocean-50 dark:bg-ocean-900/10 border border-ocean-100 dark:border-ocean-800/30 rounded-xl p-4">
+                <span class="mt-0.5 shrink-0 text-ocean-600" set:html={getIcon('check')} />
+                <div>
+                  <h3 class="text-sm font-bold text-ocean-800 dark:text-ocean-300">{item.label}</h3>
+                  <p class="text-sm text-ocean-700/80 dark:text-ocean-400/80">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p class="mt-6 text-sm text-ink-light leading-relaxed">
+            We partner with local fisheries departments, research institutes, and coastal cooperatives to ensure every product supports long-term aquatic ecosystem balance. Because profitable farms start with healthy waters.
+          </p>
+        </div>
       </div>
     </section>
 
-    <CTABanner />
+    <CTABanner
+      heading="Farm with Confidence"
+      description="Contact our aquaculture experts for product recommendations and pond management advice."
+      ctaLabel="Contact Us"
+      ctaHref="/contact"
+    />
   </main>
 
   <Footer />

@@ -8,8 +8,8 @@ import { site } from '../data/site.ts';
 const schema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Resources & Guides | AMRich Aquaculture Solutions",
-  "description": "Free aquaculture resources, farming guides, and technical documentation from AMRich Aquaculture Solutions.",
+  "name": "Resources & Guides | Amrich Pharma",
+  "description": "Free aquaculture resources, farming guides, and technical documentation from Amrich Pharma.",
   "url": `${site.url}/resources`,
 };
 
@@ -46,57 +46,55 @@ const resources = [
 ---
 
 <BaseLayout
-  title="Resources & Guides | AMRich Aquaculture Solutions"
-  description="Free aquaculture resources, farming guides, and technical documentation from AMRich Aquaculture Solutions."
+  title="Resources & Guides | Amrich Pharma"
+  description="Free aquaculture resources, farming guides, and technical documentation from Amrich Pharma."
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Resources' },
     ]} />
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+          <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
             Resources & Guides
           </h1>
-          <p class="text-lg text-gray-300 leading-relaxed">
+          <p class="text-lg text-white/70 leading-relaxed">
             Free knowledge to help you succeed in aquaculture. From beginner guides to advanced management techniques.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Resources Grid -->
     <section class="section-padding">
       <div class="container-wide max-w-5xl">
         <div class="space-y-12">
           {resources.map((section) => (
             <div>
-              <div class="flex items-center space-x-3 mb-6">
-                <span class="text-3xl">{section.icon}</span>
-                <h2 class="text-2xl font-bold text-primary-800">{section.category}</h2>
+              <div class="flex items-center gap-3 mb-6">
+                <span class="text-2xl">{section.icon}</span>
+                <h2 class="font-display text-2xl font-bold text-ink">{section.category}</h2>
               </div>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {section.items.map((item) => (
                   <a
                     href={item.href}
-                    class="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-primary-300 transition-all duration-300"
+                    class="group block bg-surface border border-border rounded-2xl p-6 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/5 transition-all duration-300"
                   >
-                    <h3 class="text-lg font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-2">
+                    <h3 class="text-lg font-bold text-ink mb-2 group-hover:text-brand-600 transition-colors">
                       {item.title}
                     </h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                    <p class="text-sm text-ink-light leading-relaxed mb-3">
                       {item.description}
                     </p>
-                    <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+                    <div class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
                       {item.href === '#' ? 'Coming Soon' : 'View Resource'}
-                      <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="size-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -109,21 +107,20 @@ const resources = [
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="bg-aqua-50 py-16">
+    <section class="section-padding border-t border-border bg-surface-muted">
       <div class="container-wide max-w-3xl text-center">
-        <h2 class="text-2xl font-bold text-primary-800 mb-4">
+        <h2 class="font-display text-2xl font-bold text-ink mb-4">
           Need Technical Support?
         </h2>
-        <p class="text-gray-600 mb-6">
+        <p class="text-ink-light mb-6">
           Our team of aquaculture scientists is ready to help with any questions about product application, disease management, or water quality.
         </p>
         <a
           href="/contact/"
-          class="inline-flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-primary-800 rounded-lg shadow-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 transition-all duration-200"
+          class="inline-flex items-center justify-center gap-2 px-8 py-3 text-base font-semibold text-white bg-brand-600 rounded-xl hover:bg-brand-700 transition-colors focus-ring"
         >
           Contact Our Team
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>

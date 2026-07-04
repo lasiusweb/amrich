@@ -8,20 +8,20 @@ import { site } from '../data/site.ts';
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Terms of Service | AMRich Aquaculture Solutions",
-  "description": "Terms and conditions governing the use of AMRich Aquaculture Solutions website and services.",
+  "name": "Terms of Service | Amrich Pharma",
+  "description": "Terms and conditions governing the use of Amrich Pharma website and services.",
   "url": `${site.url}/terms`,
 };
 ---
 
 <BaseLayout
-  title="Terms of Service | AMRich Aquaculture Solutions"
-  description="Terms and conditions governing the use of AMRich Aquaculture Solutions website and services."
+  title="Terms of Service | Amrich Pharma"
+  description="Terms and conditions governing the use of Amrich Pharma website and services."
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Terms of Service' },
@@ -29,86 +29,63 @@ const schema = {
 
     <section class="section-padding">
       <div class="container-wide max-w-4xl">
-        <h1 class="text-4xl font-extrabold text-primary-800 mb-8">Terms of Service</h1>
+        <h1 class="font-display text-4xl font-bold text-ink mb-8">Terms of Service</h1>
 
-        <div class="prose prose-lg max-w-none space-y-8">
+        <div class="space-y-8">
           <div>
-            <p class="text-gray-600 leading-relaxed">
-              Welcome to AMRich Aquaculture Solutions. By accessing or using our website and services, you agree to be bound by the following terms and conditions.
+            <p class="text-sm text-ink-light leading-relaxed">
+              Welcome to Amrich Pharma. By accessing or using our website and services, you agree to be bound by the following terms and conditions.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">1. Use of Website</h2>
-            <p class="text-gray-600 leading-relaxed">
+            <h2 class="font-display text-xl font-bold text-ink mb-3">1. Use of Website</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
               This website is provided for informational purposes about our aquaculture products and services. You may browse the site and download information for personal, non-commercial use. You may not modify, distribute, or republish any content from this site without our written permission.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">2. Product Information</h2>
-            <p class="text-gray-600 leading-relaxed">
-              While we strive to provide accurate product information, descriptions, and specifications, we do not warrant that the information on this site is complete, reliable, or current. Product details are subject to change without notice. Always refer to the product label and technical data sheet for the most current information.
+            <h2 class="font-display text-xl font-bold text-ink mb-3">2. Product Information</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
+              While we strive to provide accurate product information, descriptions, and specifications, we do not warrant that the information on this site is complete, reliable, or current. Product details are subject to change without notice.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">3. Product Use</h2>
-            <p class="text-gray-600 leading-relaxed">
-              Our products are designed for professional aquaculture use. Users are responsible for ensuring proper use, storage, and handling of all products in accordance with label instructions and applicable regulations. AMRich Aquaculture Solutions is not liable for damages resulting from improper use of products.
-            </p>
-          </div>
-
-          <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">4. Orders and Pricing</h2>
-            <p class="text-gray-600 leading-relaxed">
+            <h2 class="font-display text-xl font-bold text-ink mb-3">3. Orders and Pricing</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
               Product availability and pricing are subject to change without notice. All orders are subject to acceptance and availability. We reserve the right to refuse or cancel any order for any reason.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">5. Limitation of Liability</h2>
-            <p class="text-gray-600 leading-relaxed">
-              AMRich Aquaculture Solutions shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or our products. Our total liability shall not exceed the purchase price of the product in question.
+            <h2 class="font-display text-xl font-bold text-ink mb-3">4. Limitation of Liability</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
+              Amrich Pharma shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or our products.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">6. Intellectual Property</h2>
-            <p class="text-gray-600 leading-relaxed">
-              All content on this website, including text, graphics, logos, and trademarks, is the property of AMRich Aquaculture Solutions and is protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
+            <h2 class="font-display text-xl font-bold text-ink mb-3">5. Intellectual Property</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
+              All content on this website, including text, graphics, logos, and trademarks, is the property of Amrich Pharma and is protected by applicable intellectual property laws.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">7. Privacy</h2>
-            <p class="text-gray-600 leading-relaxed">
-              Your use of this website is also governed by our <a href="/privacy">Privacy Policy</a>, which is incorporated into these terms by reference.
+            <h2 class="font-display text-xl font-bold text-ink mb-3">6. Privacy</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
+              Your use of this website is also governed by our <a href="/privacy" class="text-brand-600 hover:text-brand-700">Privacy Policy</a>.
             </p>
           </div>
 
           <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">8. Governing Law</h2>
-            <p class="text-gray-600 leading-relaxed">
-              These terms shall be governed by and construed in accordance with the laws of Malaysia, without regard to conflict of law principles.
-            </p>
-          </div>
-
-          <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">9. Changes to Terms</h2>
-            <p class="text-gray-600 leading-relaxed">
-              We reserve the right to modify these terms at any time. Changes will be effective upon posting to this page. Your continued use of the site constitutes acceptance of the modified terms.
-            </p>
-          </div>
-
-          <div>
-            <h2 class="text-2xl font-bold text-primary-800 mb-4">10. Contact</h2>
-            <p class="text-gray-600 leading-relaxed">
-              For questions about these terms, please contact us at:
-            </p>
-            <p class="text-gray-600 leading-relaxed">
-              <strong>AMRich Aquaculture Solutions</strong><br />
-              Email: <a href={`mailto:${site.email}`}>{site.email}</a><br />
+            <h2 class="font-display text-xl font-bold text-ink mb-3">7. Contact</h2>
+            <p class="text-sm text-ink-light leading-relaxed">
+              For questions about these terms, please contact us at:<br />
+              <strong class="text-ink">Amrich Pharma</strong><br />
+              Email: <a href={`mailto:${site.email}`} class="text-brand-600 hover:text-brand-700">{site.email}</a><br />
               Location: {site.location}
             </p>
           </div>

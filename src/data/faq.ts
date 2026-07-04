@@ -10,19 +10,36 @@ export interface CategoryFaq {
 
 export const faqs: CategoryFaq[] = [
   {
+    categorySlug: 'probiotics-soil-care',
+    items: [
+      {
+        question: 'What are the benefits of probiotics in aquaculture?',
+        answer: 'Probiotics improve water quality, break down organic waste, suppress pathogenic bacteria, and enhance growth. Our products like FARM PRO and PRO PLUS help create stable pond ecosystems with better DO and lower toxic gas levels.',
+      },
+      {
+        question: 'How do I apply soil probiotics?',
+        answer: 'PRO PLUS should be applied during pond preparation and every 15 days during grow-out. Mix 5 kg in 20–30 L water, let settle for 30 minutes, then broadcast evenly across the pond bottom with aerators running.',
+      },
+      {
+        question: 'Can probiotics be used with chemical treatments?',
+        answer: 'We recommend avoiding simultaneous use. Allow 48 hours between chemical treatment and probiotic application to ensure beneficial bacteria can establish properly.',
+      },
+    ],
+  },
+  {
     categorySlug: 'disease-stress-management',
     items: [
       {
         question: 'What are the most common diseases in shrimp farming?',
-        answer: 'The most common diseases include White Spot Syndrome Virus (WSSV), Early Mortality Syndrome (EMS), and Vibrio infections. Our products target these specific pathogens with proven formulations.',
+        answer: 'Common diseases include Blackgill, Browngill, White Spot Syndrome Virus (WSSV), and Vibrio infections. Our products target these pathogens with proven formulations including FARMADINE for gill rot and FARM 80% for surface infections.',
       },
       {
-        question: 'How do AMRich disease prevention products work?',
-        answer: 'Our products use a combination of immune stimulants, antimicrobial agents, and stress-reducing compounds to strengthen fish and shrimp natural defenses against common aquaculture pathogens.',
+        question: 'How do I manage stress in my stock?',
+        answer: 'Use FARM-C+ before and after handling, transport, or weather changes. Apply for 3 consecutive days during stress events. Maintain proper aeration and monitor feeding response during recovery.',
       },
       {
-        question: 'Can I use disease management products with probiotics?',
-        answer: 'Yes, our disease management products are designed to work synergistically with our probiotic range. We recommend consulting our technical team for an integrated treatment plan.',
+        question: 'What is the best approach for disease prevention?',
+        answer: 'We recommend a integrated approach: maintain water quality with regular testing, use probiotics for beneficial bacteria, apply immune boosters before anticipated stress, and keep disease control products on hand for early intervention.',
       },
     ],
   },
@@ -30,33 +47,16 @@ export const faqs: CategoryFaq[] = [
     categorySlug: 'feed-pond-preparers',
     items: [
       {
-        question: 'How often should I apply pond preparers?',
-        answer: 'We recommend applying pond preparers 7-14 days before stocking. This allows sufficient time for the beneficial microorganisms to establish and create optimal conditions.',
+        question: 'How can I improve my Feed Conversion Ratio?',
+        answer: 'Use GRO-BIND to prevent pellet disintegration and GUT-X for better nutrient absorption. OMEGA-BOOSTER also helps accelerate metabolism. Farms typically see 15–25% FCR improvement with our combined approach.',
       },
       {
-        question: 'What is the best feed supplement for faster growth?',
-        answer: 'Our Growth-Boost formula contains essential amino acids and vitamins that accelerate growth rates. Combined with our probiotics for better feed conversion ratios.',
+        question: 'When should I start using feed supplements?',
+        answer: 'Start probiotics like GUT-X from Week 2 post-stocking. Use growth supplements like OMEGA-BOOSTER from Week 3–4 during active growth phases. Pond preparers like FARMAMIN should be applied during pond preparation and pre-molt stages.',
       },
       {
-        question: 'Can feed supplements replace regular feed?',
-        answer: 'No, our feed supplements are designed to enhance the nutritional value of your regular feed, not replace it. They work best when used as part of a comprehensive feeding program.',
-      },
-    ],
-  },
-  {
-    categorySlug: 'probiotics-soil-care',
-    items: [
-      {
-        question: 'What are the benefits of probiotics in aquaculture?',
-        answer: 'Probiotics improve gut health, enhance immune function, suppress pathogenic bacteria, and improve water quality by breaking down organic waste. They lead to better growth rates and survival.',
-      },
-      {
-        question: 'How do I apply soil care products?',
-        answer: 'Soil care products should be applied during pond preparation, 7-10 days before stocking. Distribute evenly across the pond bottom and maintain water depth for optimal activation.',
-      },
-      {
-        question: 'Can probiotics be used with antibiotics?',
-        answer: 'We recommend avoiding simultaneous use. Allow 48-72 hours between antibiotic treatment and probiotic application to ensure the beneficial bacteria can establish properly.',
+        question: 'How do I prepare my pond before stocking?',
+        answer: 'Apply FARMAMIN for mineral balance 7–10 days before stocking. For natural feed chains, use BLOOMER to establish stable plankton blooms. Proper pond preparation reduces early-stage mortality significantly.',
       },
     ],
   },
@@ -65,15 +65,15 @@ export const faqs: CategoryFaq[] = [
     items: [
       {
         question: 'What is the ideal ammonia level for shrimp farming?',
-        answer: 'For optimal shrimp health, maintain ammonia levels below 0.5 ppm. Our ammonia control products help reduce toxic ammonia to safe levels quickly and maintain them throughout the production cycle.',
+        answer: 'For optimal shrimp health, maintain total ammonia below 0.5 ppm and nitrite below 0.1 ppm. Our GASO CLEAN product reduces toxic ammonia to safe levels within 48 hours through biological nitrification.',
       },
       {
         question: 'How often should I test water quality?',
-        answer: 'We recommend daily testing during the first 2 weeks after stocking, then every 2-3 days during grow-out. Critical parameters include ammonia, nitrite, pH, dissolved oxygen, and alkalinity.',
+        answer: 'We recommend daily testing during the first 2 weeks after stocking, then every 2–3 days during grow-out. Critical parameters include ammonia, nitrite, pH, dissolved oxygen, alkalinity, and salinity.',
       },
       {
-        question: 'Can water quality products be used in biofloc systems?',
-        answer: 'Yes, our water quality products are compatible with biofloc technology. In fact, they help maintain the delicate balance needed for successful biofloc systems by controlling ammonia without disrupting beneficial bacteria.',
+        question: 'What causes low dissolved oxygen at night?',
+        answer: 'Night-time DO crashes occur when phytoplankton respiration consumes oxygen without photosynthetic production. OXY-FARM supports microbial balance that stabilizes DO levels, while EASY LITE enhances oxygen utilization efficiency in your stock.',
       },
     ],
   },

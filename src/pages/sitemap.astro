@@ -9,20 +9,20 @@ import { categories } from '../data/products.ts';
 const schema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Sitemap | AMRich Aquaculture Solutions",
-  "description": "Complete sitemap of AMRich Aquaculture Solutions website.",
+  "name": "Sitemap | Amrich Pharma",
+  "description": "Complete sitemap of Amrich Pharma website.",
   "url": `${site.url}/sitemap/`,
 };
 ---
 
 <BaseLayout
-  title="Sitemap | AMRich Aquaculture Solutions"
-  description="Complete sitemap of AMRich Aquaculture Solutions website."
+  title="Sitemap | Amrich Pharma"
+  description="Complete sitemap of Amrich Pharma website."
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Sitemap' },
@@ -30,33 +30,29 @@ const schema = {
 
     <section class="section-padding">
       <div class="container-wide max-w-4xl">
-        <h1 class="text-4xl font-extrabold text-primary-800 mb-8">Sitemap</h1>
+        <h1 class="font-display text-4xl font-bold text-ink mb-8">Sitemap</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Main Pages -->
           <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">Main Pages</h2>
+            <h2 class="text-sm font-bold text-ink uppercase tracking-wider mb-4">Main Pages</h2>
             <ul class="space-y-2">
-              <li><a href="/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Home</a></li>
-              <li><a href="/about/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">About Us</a></li>
-              <li><a href="/contact/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Contact</a></li>
-              <li><a href="/how-to-order/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">How to Order</a></li>
-              <li><a href="/faq/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">FAQ</a></li>
-              <li><a href="/case-studies/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Case Studies</a></li>
-              <li><a href="/resources/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Resources</a></li>
+              <li><a href="/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Home</a></li>
+              <li><a href="/about/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">About Us</a></li>
+              <li><a href="/contact/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Contact</a></li>
+              <li><a href="/how-to-order/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">How to Order</a></li>
+              <li><a href="/faq/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">FAQ</a></li>
+              <li><a href="/case-studies/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Case Studies</a></li>
+              <li><a href="/resources/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Resources</a></li>
             </ul>
           </div>
 
-          <!-- Products -->
           <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">Products</h2>
+            <h2 class="text-sm font-bold text-ink uppercase tracking-wider mb-4">Products</h2>
             <ul class="space-y-2">
-              <li><a href="/products/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">All Products</a></li>
-              <li><a href="/species/shrimp/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Shrimp Products</a></li>
-              <li><a href="/species/fish/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Fish Products</a></li>
+              <li><a href="/products/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">All Products</a></li>
               {categories.map((cat) => (
                 <li>
-                  <a href={`/products/${cat.slug}/`} class="text-gray-600 hover:text-primary-800 text-sm transition-colors">
+                  <a href={`/products/${cat.slug}/`} class="text-sm text-ink-light hover:text-brand-600 transition-colors">
                     {cat.name}
                   </a>
                 </li>
@@ -64,50 +60,29 @@ const schema = {
             </ul>
           </div>
 
-          <!-- Individual Products -->
           <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">Product Details</h2>
+            <h2 class="text-sm font-bold text-ink uppercase tracking-wider mb-4">Blog</h2>
             <ul class="space-y-2">
-              {categories.map((cat) => (
-                <>
-                  {cat.products.map((p) => (
-                    <li>
-                      <a href={`/products/${cat.slug}/${p.slug}/`} class="text-gray-600 hover:text-primary-800 text-sm transition-colors">
-                        {p.name}
-                      </a>
-                    </li>
-                  ))}
-                </>
-              ))}
+              <li><a href="/blog/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">All Articles</a></li>
+              <li><a href="/blog/shrimp-disease-prevention-guide/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Shrimp Disease Prevention Guide</a></li>
+              <li><a href="/blog/control-ammonia-shrimp-ponds/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">How to Control Ammonia</a></li>
+              <li><a href="/blog/biofloc-technology-beginners-guide/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Biofloc Technology Guide</a></li>
             </ul>
           </div>
 
-          <!-- Blog -->
           <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">Blog</h2>
+            <h2 class="text-sm font-bold text-ink uppercase tracking-wider mb-4">Legal</h2>
             <ul class="space-y-2">
-              <li><a href="/blog/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">All Articles</a></li>
-              <li><a href="/blog/shrimp-disease-prevention-guide/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Shrimp Disease Prevention Guide</a></li>
-              <li><a href="/blog/control-ammonia-shrimp-ponds/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">How to Control Ammonia</a></li>
-              <li><a href="/blog/biofloc-technology-beginners-guide/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Biofloc Technology Guide</a></li>
+              <li><a href="/privacy/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Terms of Service</a></li>
             </ul>
           </div>
 
-          <!-- Legal -->
           <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">Legal</h2>
+            <h2 class="text-sm font-bold text-ink uppercase tracking-wider mb-4">By Species</h2>
             <ul class="space-y-2">
-              <li><a href="/privacy/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Terms of Service</a></li>
-            </ul>
-          </div>
-
-          <!-- Species -->
-          <div>
-            <h2 class="text-lg font-bold text-primary-800 mb-4">By Species</h2>
-            <ul class="space-y-2">
-              <li><a href="/species/shrimp/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Shrimp Farming</a></li>
-              <li><a href="/species/fish/" class="text-gray-600 hover:text-primary-800 text-sm transition-colors">Fish Farming</a></li>
+              <li><a href="/species/shrimp/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Shrimp Farming</a></li>
+              <li><a href="/species/fish/" class="text-sm text-ink-light hover:text-brand-600 transition-colors">Fish Farming</a></li>
             </ul>
           </div>
         </div>

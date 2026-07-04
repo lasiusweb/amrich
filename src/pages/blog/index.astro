@@ -8,7 +8,7 @@ import { site } from '../../data/site.ts';
 const schema = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  "name": "AMRich Aquaculture Blog",
+  "name": "Amrich Pharma Blog",
   "description": "Expert insights on aquaculture management, shrimp farming, water quality, and feed optimization.",
   "url": `${site.url}/blog`,
 };
@@ -42,59 +42,57 @@ const posts = [
 ---
 
 <BaseLayout
-  title="Blog | AMRich Aquaculture Solutions"
-  description="Expert insights on aquaculture management, shrimp farming, water quality, and feed optimization from AMRich Aquaculture."
+  title="Blog | Amrich Pharma"
+  description="Expert insights on aquaculture management, shrimp farming, water quality, and feed optimization from Amrich Pharma."
   schema={schema}
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Blog' },
     ]} />
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+          <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
             Aquaculture Insights
           </h1>
-          <p class="text-lg text-gray-300 leading-relaxed">
+          <p class="text-lg text-white/70 leading-relaxed">
             Expert knowledge on shrimp farming, water quality management, probiotics, and feed optimization.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Blog Posts -->
     <section class="section-padding">
       <div class="container-wide max-w-4xl">
-        <div class="space-y-8">
+        <div class="grid gap-6">
           {posts.map((post) => (
             <a
               href={`/blog/${post.slug}/`}
-              class="group block bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300"
+              class="group block bg-surface border border-border rounded-2xl p-8 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/5 transition-all duration-300"
             >
               <div class="flex items-center gap-3 mb-3">
-                <span class="inline-flex items-center px-3 py-1 rounded-full bg-aqua-100 text-aqua-800 text-xs font-semibold uppercase tracking-wider">
+                <span class="inline-flex items-center px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-xs font-semibold uppercase tracking-wider">
                   {post.category}
                 </span>
-                <time class="text-sm text-gray-500" datetime={post.date}>
+                <time class="text-sm text-ink-light/60" datetime={post.date}>
                   {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
-                <span class="text-sm text-gray-400">{post.readTime}</span>
+                <span class="text-sm text-ink-light/40">{post.readTime}</span>
               </div>
-              <h2 class="text-2xl font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-3">
+              <h2 class="font-display text-2xl font-bold text-ink mb-3 group-hover:text-brand-600 transition-colors">
                 {post.title}
               </h2>
-              <p class="text-gray-600 leading-relaxed mb-4">
+              <p class="text-ink-light leading-relaxed mb-4">
                 {post.description}
               </p>
-              <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+              <div class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
                 Read Article
-                <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="size-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </div>

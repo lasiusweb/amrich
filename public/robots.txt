@@ -1,4 +1,4 @@
-# AMRich Aquaculture Solutions - Robots.txt
+# Amrich Pharma - Robots.txt
 # Allow all AI crawlers and search engines
 
 User-agent: *
@@ -32,8 +32,8 @@ Allow: /
 User-agent: DuckDuckBot
 Allow: /
 
+# Crawl-delay
+Crawl-delay: 1
+
 # Sitemap
 Sitemap: https://amrich.netlify.app/sitemap-index.xml
-
-# Crawl-delay (optional)
-Crawl-delay: 1

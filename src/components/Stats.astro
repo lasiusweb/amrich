@@ -1,29 +1,28 @@
 ---
 const stats = [
-  { value: '500+', label: 'Farms Served', icon: '🏭' },
-  { value: '85%', label: 'Avg. Survival Improvement', icon: '📈' },
-  { value: '16', label: 'Specialized Products', icon: '🧪' },
-  { value: '5+', label: 'Countries Served', icon: '🌏' },
+  { value: '3,000+', label: 'Farmers Served Across India' },
+  { value: '85%', label: 'Avg. Survival Improvement' },
+  { value: '16', label: 'Specialized Products' },
+  { value: '5', label: 'Coastal States Served' },
 ];
 ---
 
-<section class="section-padding">
+<section class="section-padding bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white">
   <div class="container-wide">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-primary-800 mb-4">
-        Proven Results Across Southeast Asia
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-balance">
+        Proven Results Across Coastal India
       </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Our products are backed by real data from farms just like yours.
+      <p class="text-lg text-white/60 max-w-2xl mx-auto mt-3">
+        Our products are backed by real data from farms across Andhra Pradesh, Tamil Nadu, Odisha, Gujarat, and Kerala.
       </p>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       {stats.map((stat) => (
-        <div class="text-center p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
-          <div class="text-3xl mb-2">{stat.icon}</div>
-          <div class="text-4xl font-extrabold text-primary-800 mb-1">{stat.value}</div>
-          <div class="text-sm text-gray-500 font-medium">{stat.label}</div>
+        <div class="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
+          <div class="font-display text-4xl font-bold text-brand-300 mb-1">{stat.value}</div>
+          <div class="text-sm text-white/60 font-medium">{stat.label}</div>
         </div>
       ))}
     </div>

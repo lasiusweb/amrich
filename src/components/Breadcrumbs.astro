@@ -22,22 +22,22 @@ const schema = {
 };
 ---
 
-<nav aria-label="Breadcrumb" class="bg-gray-50 border-b border-gray-100">
+<nav aria-label="Breadcrumb" class="border-b border-border bg-surface-muted/50">
   <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-3">
-    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-gray-500">
+    <ol class="flex flex-wrap items-center gap-1.5 text-sm text-ink-light">
       {items.map((item, index) => (
         <li class="flex items-center gap-1.5">
           {index > 0 && (
-            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="size-3.5 text-ink-light/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           )}
           {item.href ? (
-            <a href={item.href} class="hover:text-primary-800 transition-colors">
+            <a href={item.href} class="hover:text-brand-600 transition-colors">
               {item.label}
             </a>
           ) : (
-            <span class="text-primary-800 font-medium">{item.label}</span>
+            <span class="text-ink font-medium">{item.label}</span>
           )}
         </li>
       ))}

@@ -8,6 +8,7 @@ import Footer from '../../../components/Footer.astro';
 import { categories } from '../../../data/products.ts';
 import { getFaqByCategory } from '../../../data/faq.ts';
 import { site } from '../../../data/site.ts';
+import { getIcon } from '../../../data/icons.ts';
 
 export function getStaticPaths() {
   return categories.map((cat) => ({
@@ -59,56 +60,60 @@ const schema = {
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Products', href: '/products/' },
       { label: category.name },
     ]} />
 
-    <!-- Hero -->
-    <section class={`bg-gradient-to-br ${category.gradient} text-white py-16`}>
+    <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <div class={`inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium ${category.badgeText} mb-4`}>
-            {category.icon} {category.name}
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sm font-medium text-brand-300 mb-4">
+            <span class="size-4" set:html={getIcon(category.icon)} />
+            <span>{category.name}</span>
           </div>
-          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+          <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
             {category.heroTitle}
           </h1>
-          <p class="text-lg text-gray-300 leading-relaxed">
+          <p class="text-lg text-white/70 leading-relaxed">
             {category.heroDescription}
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Products -->
     <section class="section-padding">
       <div class="container-wide">
-        <h2 class="text-3xl font-extrabold text-primary-800 mb-8">Our Solutions</h2>
+        <h2 class="font-display text-3xl font-bold text-ink mb-8">Our Solutions</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {category.products.map((product) => (
             <a
               href={`/products/${category.slug}/${product.slug}/`}
-              class="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-lg hover:border-primary-300 transition-all duration-300"
+              class="group block bg-surface border border-border rounded-2xl p-8 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/5 transition-all duration-300"
             >
-              <div class="text-3xl mb-3">{product.icon}</div>
-              <h3 class="text-xl font-bold text-primary-800 group-hover:text-primary-600 transition-colors mb-2">{product.name}</h3>
-              <p class="text-gray-600 text-sm mb-4">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="size-12 rounded-xl bg-brand-50 dark:bg-brand-900/20 flex items-center justify-center p-2.5 group-hover:scale-110 transition-transform duration-300">
+                  <span class="text-brand-600" set:html={getIcon(product.icon)} />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-ink mb-2 group-hover:text-brand-600 transition-colors">{product.name}</h3>
+              <p class="text-sm text-ink-light mb-4">
                 {product.shortDescription}
               </p>
-              <ul class="text-sm text-gray-500 space-y-1 mb-4">
-                {product.features.slice(0, 3).map((feature) => (
-                  <li>✓ {feature}</li>
+              <ul class="text-sm text-ink-light/70 space-y-1.5 mb-4">
+                {product.benefits.slice(0, 3).map((benefit) => (
+                  <li class="flex items-center gap-2">
+                    <span class="size-4 text-brand-500 shrink-0" set:html={getIcon('check')} />
+                    {benefit}
+                  </li>
                 ))}
               </ul>
-              <div class="flex items-center text-sm font-semibold text-primary-800 group-hover:text-primary-600 transition-colors">
+              <div class="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 group-hover:text-brand-700 transition-colors">
                 View Details
-                <svg class="ml-1 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
+                <span class="size-4 group-hover:translate-x-0.5 transition-transform" set:html={getIcon('arrow')} />
               </div>
             </a>
           ))}
@@ -116,11 +121,14 @@ const schema = {
       </div>
     </section>
 
-    <!-- FAQ -->
     {faqItems.length > 0 && <FAQSection items={faqItems} />}
 
-    <!-- CTA -->
-    <CTABanner />
+    <CTABanner
+      heading="Not Sure Which Product Is Right?"
+      description="Contact our aquaculture experts for personalized recommendations based on your pond conditions and goals."
+      ctaLabel="Get Advice"
+      ctaHref="/contact"
+    />
   </main>
 
   <Footer />

@@ -4,35 +4,50 @@ import { productCategories } from '../data/site.ts';
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 bg-white shadow-md">
+<header class="sticky top-0 z-50 border-b border-border bg-surface/80 backdrop-blur-md">
   <nav class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-2">
-        <span class="text-2xl font-extrabold text-primary-800 tracking-tight">AMRich</span>
-        <span class="hidden sm:inline text-sm font-medium text-gray-500">Aquaculture</span>
+      <a href="/" class="flex items-center gap-2">
+        <div class="size-8 rounded-lg bg-gradient-to-br from-brand-500 to-ocean-600 flex items-center justify-center">
+          <span class="text-white font-bold text-sm">A</span>
+        </div>
+        <span class="text-lg font-bold text-ink -tracking-1">Amrich</span>
       </a>
 
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/' ? 'text-primary-800' : 'text-gray-600'}`}>
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="/"
+          class={`text-sm font-medium transition-colors hover:text-brand-600 ${
+            currentPath === '/' ? 'text-brand-600' : 'text-ink-light'
+          }`}
+        >
           Home
         </a>
 
-        <!-- Products Dropdown -->
         <div class="relative group">
-          <button class={`inline-flex items-center text-sm font-medium transition-colors hover:text-primary-800 ${currentPath.includes('/products/') ? 'text-primary-800' : 'text-gray-600'}`}>
+          <button
+            class={`inline-flex items-center text-sm font-medium transition-colors hover:text-brand-600 ${
+              currentPath.includes('/products/')
+                ? 'text-brand-600'
+                : 'text-ink-light'
+            }`}
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             Products
-            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="ml-1 size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="absolute left-0 mt-2 w-72 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200" role="menu">
+          <div
+            class="absolute left-0 mt-2 w-72 bg-surface rounded-xl shadow-lg border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200"
+            role="menu"
+          >
             <div class="py-2">
               {productCategories.map((cat) => (
                 <a
                   href={cat.href}
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-800 transition-colors"
+                  class="block px-4 py-2.5 text-sm text-ink-light hover:text-brand-600 hover:bg-brand-50 dark:hover:bg-brand-900/20 transition-colors"
                   role="menuitem"
                 >
                   {cat.name}
@@ -42,59 +57,90 @@ const currentPath = Astro.url.pathname;
           </div>
         </div>
 
-        <a href="/blog" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath.includes('/blog') ? 'text-primary-800' : 'text-gray-600'}`}>
+        <a
+          href="/blog"
+          class={`text-sm font-medium transition-colors hover:text-brand-600 ${
+            currentPath.includes('/blog') ? 'text-brand-600' : 'text-ink-light'
+          }`}
+        >
           Blog
         </a>
 
-        <a href="/case-studies" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/case-studies' ? 'text-primary-800' : 'text-gray-600'}`}>
+        <a
+          href="/case-studies"
+          class={`text-sm font-medium transition-colors hover:text-brand-600 ${
+            currentPath === '/case-studies' ? 'text-brand-600' : 'text-ink-light'
+          }`}
+        >
           Case Studies
         </a>
 
-        <a href="/resources" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/resources' ? 'text-primary-800' : 'text-gray-600'}`}>
-          Resources
-        </a>
-
-        <a href="/about" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/about' ? 'text-primary-800' : 'text-gray-600'}`}>
+        <a
+          href="/about"
+          class={`text-sm font-medium transition-colors hover:text-brand-600 ${
+            currentPath === '/about' ? 'text-brand-600' : 'text-ink-light'
+          }`}
+        >
           About
         </a>
 
-        <a href="/contact" class={`text-sm font-medium transition-colors hover:text-primary-800 ${currentPath === '/contact' ? 'text-primary-800' : 'text-gray-600'}`}>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-white bg-brand-600 rounded-lg hover:bg-brand-700 transition-colors focus-ring"
+        >
           Contact
+          <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden p-2 rounded-md text-gray-600 hover:text-primary-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary-500"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" class="hidden" />
-        </svg>
-      </button>
+      <div class="flex items-center gap-3">
+        <button
+          id="theme-toggle"
+          class="size-9 flex items-center justify-center rounded-lg text-ink-light hover:text-ink hover:bg-surface-muted transition-colors focus-ring"
+          aria-label="Toggle theme"
+        >
+          <svg class="size-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg class="size-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
+
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden size-9 flex items-center justify-center rounded-lg text-ink-light hover:text-ink hover:bg-surface-muted transition-colors focus-ring"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          <svg class="size-5 menu-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="size-5 menu-close hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden pb-4">
-      <div class="flex flex-col space-y-2">
-        <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Home</a>
-        <div class="px-3 py-2 text-sm font-medium text-gray-500">Products</div>
+    <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-border pt-4">
+      <div class="flex flex-col gap-1">
+        <a href="/" class="px-3 py-2 rounded-lg text-sm font-medium text-ink-light hover:text-brand-600 hover:bg-surface-muted transition-colors">Home</a>
+        <div class="px-3 py-2 text-sm font-medium text-ink-light">Products</div>
         {productCategories.map((cat) => (
           <a
             href={cat.href}
-            class="pl-6 pr-3 py-2 rounded-md text-sm text-gray-600 hover:bg-primary-50 hover:text-primary-800"
+            class="pl-6 pr-3 py-2 rounded-lg text-sm text-ink-light hover:text-brand-600 hover:bg-surface-muted transition-colors"
           >
             {cat.name}
           </a>
         ))}
-        <a href="/blog" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Blog</a>
-        <a href="/case-studies" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Case Studies</a>
-        <a href="/resources" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Resources</a>
-        <a href="/about" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">About</a>
-        <a href="/contact" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-primary-50 hover:text-primary-800">Contact</a>
+        <a href="/blog" class="px-3 py-2 rounded-lg text-sm font-medium text-ink-light hover:text-brand-600 hover:bg-surface-muted transition-colors">Blog</a>
+        <a href="/case-studies" class="px-3 py-2 rounded-lg text-sm font-medium text-ink-light hover:text-brand-600 hover:bg-surface-muted transition-colors">Case Studies</a>
+        <a href="/about" class="px-3 py-2 rounded-lg text-sm font-medium text-ink-light hover:text-brand-600 hover:bg-surface-muted transition-colors">About</a>
+        <a href="/contact" class="px-3 py-2 rounded-lg text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 transition-colors mt-2">Contact</a>
       </div>
     </div>
   </nav>
@@ -103,14 +149,21 @@ const currentPath = Astro.url.pathname;
 <script>
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
+  const iconOpen = document.querySelector('.menu-open');
+  const iconClose = document.querySelector('.menu-close');
 
   btn?.addEventListener('click', () => {
     const isHidden = menu?.classList.contains('hidden');
     menu?.classList.toggle('hidden');
-    btn.setAttribute('aria-expanded', String(isHidden));
+    btn?.setAttribute('aria-expanded', String(!isHidden));
     iconOpen?.classList.toggle('hidden');
     iconClose?.classList.toggle('hidden');
+  });
+
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>

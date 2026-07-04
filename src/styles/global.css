@@ -1,21 +1,108 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/outfit";
+
+@theme {
+  --color-brand-50: #ecfdf5;
+  --color-brand-100: #d1fae5;
+  --color-brand-200: #a7f3d0;
+  --color-brand-300: #6ee7b7;
+  --color-brand-400: #34d399;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+
+  --color-ocean-50: #f0fdfa;
+  --color-ocean-100: #ccfbf1;
+  --color-ocean-200: #99f6e4;
+  --color-ocean-300: #5eead4;
+  --color-ocean-400: #2dd4bf;
+  --color-ocean-500: #14b8a6;
+  --color-ocean-600: #0d9488;
+  --color-ocean-700: #0f766e;
+  --color-ocean-800: #115e59;
+  --color-ocean-900: #134e4a;
+
+  --color-ink: #0c1b1a;
+  --color-ink-light: #334155;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-border: #e2e8f0;
+
+  --font-sans: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit Variable", system-ui, -apple-system, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
+
   body {
-    @apply text-gray-900 antialiased font-sans;
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body,
+  body.dark {
+    --color-ink: #f1f5f9;
+    --color-ink-light: #94a3b8;
+    --color-surface: #0f172a;
+    --color-surface-muted: #1e293b;
+    --color-border: #334155;
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-brand-500);
+    color: white;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply px-4 py-16 sm:px-6 lg:px-8;
+    padding-inline: 1rem;
+    padding-block: 5rem;
   }
+
   .container-wide {
-    @apply max-w-7xl mx-auto;
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+
+  .focus-ring {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: outline-color 0.15s;
+  }
+
+  .focus-ring:focus-visible {
+    outline-color: var(--color-brand-500);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,81 +1,68 @@
-# AMRich Aquaculture Solutions
+# Amrich Pharma
 
-> Premium aquaculture products for healthier farms and better yields
+> Way to Go Ahead — Aquaculture Health & Care. Eco-safe probiotics, water quality solutions, and disease management for shrimp & fish farming across coastal India.
 
 ## About
 
-AMRich Aquaculture Solutions provides scientifically formulated products for aquaculture operations across Southeast Asia. Founded in 2020, we serve over 500 farms with disease management, water quality, probiotics, and feed optimization solutions.
+Amrich Pharma, based in Mumbai, India, provides scientifically formulated aquaculture products to shrimp and fish farmers across 5 coastal Indian states (AP, TN, Gujarat, Odisha, WB). Founded in 2015, trusted by 3,000+ farmers.
 
-## Products
-
-### Disease & Stress Management
-- Immuno-Boost Pro - Immune system stimulant
-- Vibrio Shield - Targeted antimicrobial solution
-- Stress-Away Plus - Natural stress reducer
-- WSSV Prevention Kit - Comprehensive virus prevention
-
-### Feed & Pond Preparers
-- Growth-Boost Formula - High-performance feed supplement
-- Pond Prep Elite - Complete pond preparation
-- Feed Enzyme Plus - Digestive enzyme supplement
-- Starter Feed Premix - Larval nutrition package
+## Products — 4 categories, 16 products
 
 ### Probiotics & Soil Care
-- AquaBio Pro - Multi-strain probiotic blend
-- Soil Renew - Comprehensive soil treatment
-- BioFloc Starter - Biofloc technology catalyst
-- NitriGuard - Nitrifying bacteria supplement
+- PRO PLUS — Soil probiotic, degrades detritus, prevents black soil (5 kg bucket)
+- FARM PRO — Liquid probiotic, stabilizes water color within 48 hours (1 L bottle)
+- FARM-PS — Phosphate-solubilizing probiotic, converts bound phosphates (1 L bottle)
+- GUT-X — Gut health probiotic, reduces FCR, suppresses Vibrio (500 g pouch)
+
+### Disease & Stress Management
+- SHRIMP CARE — All-in-one health pack, pre-measured doses (6 packs/box)
+- FARM-C+ — Stress recovery & immunity vitamin blend (500 g pouch)
+- FARMADINE — Iodine-based disease control, Blackgill/Browngill (1 L bottle)
+- FARM 80% — Pond disinfectant, Benzyl Konium Chloride 80% (5 L can)
+
+### Feed & Pond Preparers
+- GRO-BIND — Feed binding gel, prevents pellet disintegration (1 L bottle)
+- OMEGA-BOOSTER — Growth & immunity supplement (1 L / 1 kg)
+- FARMAMIN — Pond fertility & mineral balancer (1 kg pouch)
+- BLOOMER — Plankton bloom regulator, stable diatom/algae growth (5 kg pouch)
 
 ### Water Quality & Ammonia Control
-- AmmoniClear Pro - Fast-acting ammonia neutralizer
-- OxyBoost - Dissolved oxygen enhancer
-- pH Balance Plus - pH stabilization system
-- ClarityMax - Water clarifier
+- OXY-FARM — DO & nitrification support, Paracoccus spp. (1 kg)
+- GASO CLEAN — Ammonia & nitrite remover, herbal + nitrifying bacteria (1 L can)
+- W-SOFTENER — Water conditioner, alkalinity balancer (1 kg pouch)
+- EASY LITE — Metabolic & oxygen utilization support (500 g / 1 L)
 
-## Species
+## Key Pages
 
-- /species/shrimp/ - Products and solutions for shrimp farming
-- /species/fish/ - Products and solutions for fish farming
+- /products/ — Complete product catalog
+- /about/ — Company info, sustainability commitments
+- /case-studies/ — Indian farmer success stories with Before/After metrics
+- /faq/ — Frequently asked questions
+- /how-to-order/ — How to order products
+- /resources/ — Farming guides and reference materials
+
+## Species Pages
+
+- /species/shrimp/ — Shrimp farming product recommendations
+- /species/fish/ — Fish farming product recommendations
 
 ## Blog
 
-Expert insights on aquaculture management:
-- /blog/shrimp-disease-prevention-guide/ - Complete Guide to Shrimp Disease Prevention
-- /blog/control-ammonia-shrimp-ponds/ - How to Control Ammonia in Shrimp Ponds
-- /blog/biofloc-technology-beginners-guide/ - Biofloc Technology: A Beginner's Guide
+- /blog/shrimp-disease-prevention-guide/ — Complete Guide to Shrimp Disease Prevention
+- /blog/control-ammonia-shrimp-ponds/ — How to Control Ammonia in Shrimp Ponds
+- /blog/biofloc-technology-beginners-guide/ — Biofloc Technology: A Beginner's Guide
 
-## Case Studies
-
-Real results from farms using AMRich products:
-- /case-studies/ - Success stories from Vietnam, Malaysia, Thailand, and Indonesia
-
-## Resources
-
-- /resources/ - Farming guides, product information, and quick reference materials
-- /faq/ - Frequently asked questions
-- /how-to-order/ - Step-by-step ordering guide
-- /sitemap/ - Complete site sitemap
-
-## Legal
-
-- /privacy/ - Privacy Policy
-- /terms/ - Terms of Service
-
-## Technical Information
+## Technical
 
 All products are:
 - Lab-tested and certified
 - Environmentally safe
 - Formulated by aquaculture scientists
-- Backed by technical support
+- Backed by technical support across 5 coastal Indian states
 
 ## Contact
 
 - Website: https://amrich.netlify.app
-- Email: info@amrich.netlify.app
-- Phone: +60 (0) 12-345-6789
-- Location: Southeast Asia
-
-## API/Integration
-
-For bulk orders or partnership inquiries, contact our team at info@amrich.netlify.app.
+- Email: amrichpharma@gmail.com
+- Phone: +91 97123 35338
+- Address: Plot No. 2, Sainath Nagar, Shivaji Mandpeshwar Road, Dahisar, Mumbai-400068, India

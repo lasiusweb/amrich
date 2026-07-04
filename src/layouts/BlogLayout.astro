@@ -55,14 +55,14 @@ const articleSchema = customSchema ?? {
 ---
 
 <BaseLayout
-  title={`${title} | AMRich Aquaculture Blog`}
+  title={`${title} | Amrich Pharma`}
   description={description}
   schema={articleSchema}
   type="article"
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Blog', href: '/blog/' },
@@ -71,29 +71,27 @@ const articleSchema = customSchema ?? {
 
     <article class="section-padding">
       <div class="container-wide max-w-4xl">
-        <!-- Header -->
         <header class="mb-10">
           <div class="flex items-center gap-3 mb-4">
-            <span class="inline-flex items-center px-3 py-1 rounded-full bg-aqua-100 text-aqua-800 text-xs font-semibold uppercase tracking-wider">
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-brand-50 dark:bg-brand-900/20 text-brand-700 dark:text-brand-300 text-xs font-semibold uppercase tracking-wider">
               {category}
             </span>
-            <time class="text-sm text-gray-500" datetime={pubDate}>
+            <time class="text-sm text-ink-light/60" datetime={pubDate}>
               {new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
             {updatedDate && (
-              <span class="text-xs text-gray-400">(Updated {new Date(updatedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })})</span>
+              <span class="text-xs text-ink-light/40">(Updated {new Date(updatedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })})</span>
             )}
           </div>
-          <h1 class="text-4xl md:text-5xl font-extrabold text-primary-800 leading-tight">
+          <h1 class="font-display text-4xl md:text-5xl font-bold text-ink leading-tight text-balance">
             {title}
           </h1>
-          <p class="text-lg text-gray-600 mt-4 leading-relaxed">
+          <p class="text-lg text-ink-light mt-4 leading-relaxed">
             {description}
           </p>
         </header>
 
-        <!-- Content -->
-        <div class="prose prose-lg prose-primary max-w-none">
+        <div class="prose max-w-none">
           <slot />
         </div>
       </div>
@@ -105,24 +103,42 @@ const articleSchema = customSchema ?? {
 
 <style is:global>
   .prose h2 {
-    @apply text-2xl font-bold text-primary-800 mt-10 mb-4;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
   }
   .prose h3 {
-    @apply text-xl font-bold text-primary-800 mt-8 mb-3;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
   }
   .prose p {
-    @apply text-gray-600 leading-relaxed mb-4;
+    color: var(--color-ink-light);
+    line-height: 1.7;
+    margin-bottom: 1rem;
   }
   .prose ul {
-    @apply list-disc pl-6 mb-4 space-y-2;
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
   }
-  .prose li {
-    @apply text-gray-600;
+  .prose ul > li {
+    color: var(--color-ink-light);
+    margin-bottom: 0.25rem;
   }
   .prose strong {
-    @apply text-primary-800;
+    color: var(--color-ink);
   }
   .prose a {
-    @apply text-aqua-600 hover:text-aqua-800 underline;
+    color: var(--color-brand-600);
+    text-decoration: underline;
+  }
+  .prose a:hover {
+    color: var(--color-brand-700);
   }
 </style>

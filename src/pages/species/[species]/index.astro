@@ -7,6 +7,7 @@ import CTABanner from '../../../components/CTABanner.astro';
 import Footer from '../../../components/Footer.astro';
 import { categories } from '../../../data/products.ts';
 import { site } from '../../../data/site.ts';
+import { getIcon } from '../../../data/icons.ts';
 
 export function getStaticPaths() {
   return [
@@ -19,7 +20,6 @@ const { species } = Astro.props;
 
 const speciesData: Record<string, {
   name: string;
-  icon: string;
   heroDescription: string;
   metaTitle: string;
   metaDescription: string;
@@ -29,56 +29,54 @@ const speciesData: Record<string, {
 }> = {
   shrimp: {
     name: 'Shrimp',
-    icon: '🦐',
-    heroDescription: 'Specialized solutions for shrimp farming — from hatchery to harvest. Disease prevention, water quality, and growth optimization for vannamei and black tiger shrimp.',
-    metaTitle: 'Products for Shrimp Farming | AMRich Aquaculture',
-    metaDescription: 'AMRich products for shrimp farming: disease prevention, water quality management, probiotics, and feed supplements for vannamei and black tiger shrimp.',
+    heroDescription: 'Specialized solutions for shrimp farming in coastal India — from hatchery to harvest. Probiotics, disease prevention, and water quality for vannamei and black tiger shrimp.',
+    metaTitle: 'Products for Shrimp Farming | Amrich Pharma',
+    metaDescription: 'Amrich Pharma products for shrimp farming: probiotics, disease prevention, water quality management, and feed supplements for vannamei and black tiger shrimp.',
     challenges: [
-      'Viral diseases (WSSV, EMS/AHPND) can cause complete harvest loss',
-      'Ammonia and nitrite sensitivity in intensive systems',
-      'Stress from handling, transfer, and environmental changes',
-      'Biofloc system management complexity',
-      'Early mortality syndrome in post-larvae',
+      'Ammonia and nitrite spikes in intensive systems',
+      'Blackgill, Browngill, and bacterial infections',
+      'Stress from handling, weather changes, and transport',
+      'Unstable plankton blooms and water color crashes',
+      'Organic load buildup and black soil formation',
     ],
     recommendedProducts: [
-      { name: 'WSSV Prevention Kit', slug: 'wssv-prevention-kit', category: 'disease-stress-management', reason: 'Complete biosecurity system against White Spot Syndrome Virus' },
-      { name: 'Immuno-Boost Pro', slug: 'immuno-boost-pro', category: 'disease-stress-management', reason: 'Builds immune resistance against common shrimp pathogens' },
-      { name: 'AmmoniClear Pro', slug: 'ammoniclear-pro', category: 'water-quality-ammonia-control', reason: 'Critical for maintaining safe ammonia levels in intensive systems' },
-      { name: 'AquaBio Pro', slug: 'aquabio-pro', category: 'probiotics-soil-care', reason: 'Supports gut health and water quality in shrimp ponds' },
-      { name: 'BioFloc Starter', slug: 'biofloc-starter', category: 'probiotics-soil-care', reason: 'Establishes productive biofloc systems for higher density culture' },
-      { name: 'Starter Feed Premix', slug: 'starter-feed-premix', category: 'feed-pond-preparers', reason: 'Essential nutrition for post-larvae and juvenile stages' },
+      { name: 'FARM PRO', slug: 'farm-pro', category: 'probiotics-soil-care', reason: 'Stabilizes water color and suppresses pathogenic bacteria within 48 hours' },
+      { name: 'OXY-FARM', slug: 'oxy-farm', category: 'water-quality-ammonia-control', reason: 'Prevents night-time oxygen crashes and converts toxic nitrites' },
+      { name: 'SHRIMP CARE', slug: 'shrimp-care', category: 'disease-stress-management', reason: 'All-in-one health pack for uniform molting and shell hardening' },
+      { name: 'GASO CLEAN', slug: 'gaso-clean', category: 'water-quality-ammonia-control', reason: 'Eliminates toxic ammonia and nitrite within 48 hours' },
+      { name: 'PRO PLUS', slug: 'pro-plus', category: 'probiotics-soil-care', reason: 'Prevents black soil and boosts DO in shrimp ponds' },
+      { name: 'FARMADINE', slug: 'farmadine', category: 'disease-stress-management', reason: 'Controls Blackgill and Browngill in shrimp' },
     ],
     faqs: [
-      { question: 'What is the best disease prevention program for shrimp?', answer: 'A comprehensive program includes: pond preparation with Soil Renew, SPF post-larvae selection, Immuno-Boost Pro for immune support, WSSV Prevention Kit for viral protection, and AquaBio Pro for water quality. Contact our team for a customized plan.' },
-      { question: 'What stocking density is recommended for vannamei?', answer: 'For traditional ponds: 30-50 PL/m². For biofloc systems: 80-150 PL/m². For raceways: 200-500 PL/m². Higher densities require more intensive management and product support.' },
-      { question: 'How do I manage water quality in intensive shrimp ponds?', answer: 'Daily monitoring of ammonia, nitrite, pH, DO, and alkalinity is essential. Use AmmoniClear Pro for ammonia spikes, OxyBoost for low oxygen, and pH Balance Plus for pH stability. Regular probiotic application supports biological filtration.' },
+      { question: 'What is the best disease prevention program for shrimp?', answer: 'Use FARM PRO for water column probiotics, SHRIMP CARE for integrated health management, and FARM-C+ before and after stress events. Maintain DO above 4 mg/L and monitor ammonia levels weekly.' },
+      { question: 'What stocking density is recommended for vannamei?', answer: 'For traditional ponds: 30–50 PL/m². For higher densities, use PRO PLUS for soil health and OXY-FARM for DO support. Contact our team for a customized protocol.' },
+      { question: 'How do I manage water quality in intensive shrimp ponds?', answer: 'Monitor ammonia, nitrite, pH, DO, and alkalinity daily. Use GASO CLEAN for ammonia spikes, OXY-FARM for low oxygen, and W-SOFTENER for pH stability. Regular FARM PRO application supports biological balance.' },
     ],
   },
   fish: {
     name: 'Fish',
-    icon: '🐟',
-    heroDescription: 'Comprehensive solutions for freshwater and marine fish farming. Growth optimization, disease management, and water quality for tilapia, catfish, seabass, and more.',
-    metaTitle: 'Products for Fish Farming | AMRich Aquaculture',
-    metaDescription: 'AMRich products for fish farming: growth supplements, disease prevention, water quality management for tilapia, catfish, seabass, and other species.',
+    heroDescription: 'Comprehensive solutions for freshwater fish farming. Growth optimization, disease management, and water quality for tilapia, catfish, seabass, and more.',
+    metaTitle: 'Products for Fish Farming | Amrich Pharma',
+    metaDescription: 'Amrich Pharma products for fish farming: growth supplements, disease prevention, water quality management for tilapia, catfish, seabass, and other species.',
     challenges: [
-      'Bacterial infections (Aeromonas, Streptococcus) in intensive systems',
+      'Bacterial infections (Aeromonas) in intensive systems',
       'Poor feed conversion ratios affecting profitability',
-      'Parasitic diseases in pond culture',
-      'Water quality fluctuations causing stress and mortality',
+      'Ammonia spikes after heavy feeding',
+      'Stress from handling and seasonal temperature shifts',
       'Slow growth rates in suboptimal conditions',
     ],
     recommendedProducts: [
-      { name: 'Immuno-Boost Pro', slug: 'immuno-boost-pro', category: 'disease-stress-management', reason: 'Enhances natural defense against bacterial and parasitic infections' },
-      { name: 'Vibrio Shield', slug: 'vibrio-shield', category: 'disease-stress-management', reason: 'Targeted antimicrobial for Vibrio and bacterial infections' },
-      { name: 'Growth-Boost Formula', slug: 'growth-boost-formula', category: 'feed-pond-preparers', reason: 'Accelerates growth rates and improves FCR by up to 30%' },
-      { name: 'Feed Enzyme Plus', slug: 'feed-enzyme-plus', category: 'feed-pond-preparers', reason: 'Improves nutrient absorption and reduces feed waste' },
-      { name: 'AmmoniClear Pro', slug: 'ammoniclear-pro', category: 'water-quality-ammonia-control', reason: 'Fast-acting ammonia control for high-biomass systems' },
-      { name: 'NitriGuard', slug: 'nitriguard', category: 'probiotics-soil-care', reason: 'Establishes biological filtration for recirculating systems' },
+      { name: 'GUT-X', slug: 'gut-x', category: 'probiotics-soil-care', reason: 'Improves gut health and reduces FCR through better nutrient absorption' },
+      { name: 'FARMADINE', slug: 'farmadine', category: 'disease-stress-management', reason: 'Broad-spectrum disease control for bacterial and fungal infections' },
+      { name: 'OMEGA-BOOSTER', slug: 'omega-booster', category: 'feed-pond-preparers', reason: 'Accelerates growth and strengthens immune response' },
+      { name: 'GASO CLEAN', slug: 'gaso-clean', category: 'water-quality-ammonia-control', reason: 'Biological ammonia control for high-biomass fish ponds' },
+      { name: 'GRO-BIND', slug: 'gro-bind', category: 'feed-pond-preparers', reason: 'Reduces feed waste and improves water stability of pellets' },
+      { name: 'FARM-C+', slug: 'farm-c-plus', category: 'disease-stress-management', reason: 'Rapid stress recovery after handling, transport, or weather changes' },
     ],
     faqs: [
-      { question: 'How can I improve feed conversion ratio in my fish farm?', answer: 'Use Growth-Boost Formula for essential nutrients, Feed Enzyme Plus for better digestion, and ensure proper feeding management (3-4 times daily, 3-5% body weight). This combination can improve FCR by 20-30%.' },
-      { question: 'What are common fish diseases and how do I prevent them?', answer: 'Common diseases include Aeromonas infections, Streptococcus, and parasites. Prevention involves: Immuno-Boost Pro for immune support, Vibrio Shield for bacterial control, proper water quality management, and biosecurity measures.' },
-      { question: 'What water parameters are critical for fish farming?', answer: 'Key parameters: Temperature (species-dependent), pH 6.5-8.5, dissolved oxygen above 5 mg/L, ammonia below 0.5 ppm, nitrite below 1 ppm. Test regularly and use AMRich water quality products to maintain optimal ranges.' },
+      { question: 'How can I improve feed conversion ratio in my fish farm?', answer: 'Use GUT-X for better digestion and GRO-BIND to prevent pellet waste. OMEGA-BOOSTER accelerates metabolic rate. This combined approach typically improves FCR by 15–25%.' },
+      { question: 'What are common fish diseases and how do I prevent them?', answer: 'Common diseases include Aeromonas infections and fungal outbreaks. Prevention involves: FARM-C+ for immune support, FARMADINE for disease control, proper water quality management with GASO CLEAN, and regular water testing.' },
+      { question: 'What water parameters are critical for fish farming?', answer: 'Maintain temperature (species-dependent), pH 6.5–8.5, DO above 5 mg/L, ammonia below 0.5 ppm, and nitrite below 1 ppm. Test regularly and use GASO CLEAN and W-SOFTENER to maintain optimal ranges.' },
     ],
   },
 };
@@ -113,64 +111,67 @@ const schema = {
 >
   <Header />
 
-  <main class="flex-1">
+  <main id="main-content" class="flex-1">
     <Breadcrumbs items={[
       { label: 'Home', href: '/' },
       { label: 'Products', href: '/products/' },
       { label: data.name },
     ]} />
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-16">
+    <section class="bg-gradient-to-br from-brand-900 via-brand-800 to-ocean-900 text-white py-20">
       <div class="container-wide mx-auto px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl">
-          <div class="text-6xl mb-4">{data.icon}</div>
-          <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+          <div class="size-14 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center p-3 mb-4">
+            <svg class="size-full text-brand-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {species === 'shrimp' ? (
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              ) : (
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              )}
+            </svg>
+          </div>
+          <h1 class="font-display text-4xl md:text-5xl font-bold mb-4">
             Products for {data.name} Farming
           </h1>
-          <p class="text-lg text-gray-300 leading-relaxed">
+          <p class="text-lg text-white/70 leading-relaxed">
             {data.heroDescription}
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Common Challenges -->
     <section class="section-padding">
       <div class="container-wide max-w-4xl">
-        <h2 class="text-2xl font-bold text-primary-800 mb-6">Common Challenges in {data.name} Farming</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <h2 class="font-display text-2xl font-bold text-ink mb-6">Common Challenges in {data.name} Farming</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           {data.challenges.map((challenge) => (
-            <div class="flex items-start space-x-3 bg-red-50 rounded-lg p-4">
-              <svg class="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-start gap-3 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-xl p-4">
+              <svg class="size-5 text-red-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
-              <span class="text-gray-700 text-sm">{challenge}</span>
+              <span class="text-sm text-ink">{challenge}</span>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- Recommended Products -->
-    <section class="section-padding bg-gray-50">
+    <section class="section-padding bg-surface-muted border-t border-border">
       <div class="container-wide max-w-4xl">
-        <h2 class="text-2xl font-bold text-primary-800 mb-8">Recommended Products</h2>
+        <h2 class="font-display text-2xl font-bold text-ink mb-8">Recommended Products</h2>
         <div class="space-y-4">
           {data.recommendedProducts.map((rp) => (
             <a
               href={`/products/${rp.category}/${rp.slug}/`}
-              class="group block bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-primary-300 transition-all duration-300"
+              class="group block bg-surface border border-border rounded-2xl p-6 hover:border-brand-200 hover:shadow-lg hover:shadow-brand-500/5 transition-all duration-300"
             >
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div>
-                  <h3 class="text-lg font-bold text-primary-800 group-hover:text-primary-600 transition-colors">
-                    {rp.name}
-                  </h3>
-                  <p class="text-gray-500 text-xs mt-1 uppercase tracking-wider">{rp.category.replace(/-/g, ' ')}</p>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                <div class="sm:min-w-48">
+                  <h3 class="font-bold text-ink group-hover:text-brand-600 transition-colors">{rp.name}</h3>
+                  <p class="text-xs text-ink-light/60 uppercase tracking-wider mt-0.5">{rp.category.replace(/-/g, ' ')}</p>
                 </div>
-                <p class="text-gray-600 text-sm flex-1">{rp.reason}</p>
-                <svg class="w-5 h-5 text-gray-400 group-hover:text-primary-600 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <p class="text-sm text-ink-light flex-1">{rp.reason}</p>
+                <svg class="size-5 text-ink-light/40 group-hover:text-brand-600 transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </div>
@@ -180,7 +181,6 @@ const schema = {
       </div>
     </section>
 
-    <!-- FAQ -->
     <FAQSection items={data.faqs} />
 
     <CTABanner />

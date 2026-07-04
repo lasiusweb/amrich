@@ -1,76 +1,68 @@
 ---
+import { getIcon } from '../data/icons.ts';
+
 const testimonials = [
   {
-    quote: "AMRich products transformed our shrimp farm. After switching to their disease prevention program, our survival rates increased from 60% to over 85%.",
-    name: "Nguyen Van Minh",
-    role: "Farm Manager",
-    location: "Vietnam",
+    quote: 'After using PRO PLUS + GASO CLEAN, ammonia dropped from 2.1 to 0.4 ppm in 5 days. Survival rate improved by 18% this cycle.',
+    name: 'Ramesh K.',
+    role: 'Commercial Grower',
+    location: 'Kakinada, Andhra Pradesh',
   },
   {
-    quote: "The AmmoniClear Pro saved our harvest during an ammonia spike. Within hours, levels were back to safe range. Now we keep it on hand at all times.",
-    name: "Siti Rahman",
-    role: "Operations Director",
-    location: "Malaysia",
+    quote: 'FARM 80% cleared gill rot without shocking the pond. Moulting became uniform. Yield per acre went up by 120 kg.',
+    name: 'S. Venkat',
+    role: 'Mid-Scale Farmer',
+    location: 'Nellore, Tamil Nadu',
   },
   {
-    quote: "We've been using AquaBio Pro for two seasons now. The water quality improvement is noticeable, and our feed costs have dropped by 20%.",
-    name: "Chen Wei Lin",
-    role: "Technical Consultant",
-    location: "Thailand",
+    quote: 'We were trapped in an antibiotic cycle. GUT-X and FARMADINE helped us break free. Our fish are healthier than ever.',
+    name: 'Bharat P.',
+    role: 'Farm Manager',
+    location: 'Surat, Gujarat',
   },
 ];
 ---
 
-<section class="section-padding bg-gray-50">
+<section class="section-padding bg-surface-muted">
   <div class="container-wide">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-primary-800 mb-4">
-        Trusted by Leading Farms
+    <div class="text-center mb-14">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-ink mb-4 text-balance">
+        Trusted by Coastal Farmers
       </h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Hear from aquaculture professionals who rely on AMRich products every day.
+      <p class="text-lg text-ink-light max-w-2xl mx-auto">
+        Hear from aquaculture professionals who rely on Amrich Pharma products every day.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {testimonials.map((t) => (
-        <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-          <!-- Stars -->
-          <div class="flex space-x-1 mb-4">
-            {[...Array(5)].map(() => (
-              <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
+        <div class="bg-surface border border-border rounded-2xl p-8 flex flex-col">
+          <div class="flex gap-0.5 mb-5">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} class="size-4 text-amber-400" set:html={getIcon('star')} />
             ))}
           </div>
 
-          <!-- Quote -->
-          <blockquote class="text-gray-600 text-sm leading-relaxed mb-6">
-            "{t.quote}"
+          <blockquote class="text-sm text-ink-light leading-relaxed mb-6 flex-1">
+            &ldquo;{t.quote}&rdquo;
           </blockquote>
 
-          <!-- Author -->
-          <div class="border-t border-gray-100 pt-4">
-            <div class="font-bold text-primary-800 text-sm">{t.name}</div>
-            <div class="text-gray-500 text-xs">{t.role} — {t.location}</div>
+          <div class="pt-4 border-t border-border">
+            <div class="font-semibold text-sm text-ink">{t.name}</div>
+            <div class="text-xs text-ink-light/70">{t.role} &mdash; {t.location}</div>
           </div>
         </div>
       ))}
     </div>
 
-    <!-- Trust Logos -->
     <div class="mt-12 text-center">
-      <p class="text-sm text-gray-500 mb-4">Trusted by farms across</p>
-      <div class="flex flex-wrap justify-center items-center gap-8 text-gray-400">
-        <span class="text-lg font-semibold">Vietnam</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-lg font-semibold">Malaysia</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-lg font-semibold">Thailand</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-lg font-semibold">Indonesia</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-lg font-semibold">Philippines</span>
+      <p class="text-xs text-ink-light/60 mb-4 uppercase tracking-widest font-semibold">Serving Farms Across</p>
+      <div class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium text-ink-light">
+        <span>Andhra Pradesh</span>
+        <span>Tamil Nadu</span>
+        <span>Odisha</span>
+        <span>Gujarat</span>
+        <span>Kerala</span>
       </div>
     </div>
   </div>
